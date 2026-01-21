@@ -1,0 +1,711 @@
+export type ValueToken = string;
+
+export type CaseStudySection =
+    | {
+        type: 'hero';
+        image: string;
+        title: string;
+        meta: { label: string; value: string }[];
+        footnote?: string;
+        liveUrl?: string;
+    }
+    | {
+        type: 'tldr';
+        intro: string;
+        cards: { title: string; description: string; image: string }[];
+    }
+    | {
+        type: 'tldr';
+        intro: string;
+        cards: { title: string; description: string; image: string }[];
+    }
+    | {
+        type: 'problem-context';
+        intro: string;
+        cards: { title: string; description: string }[];
+        footer: string;
+    }
+    | {
+        type: 'constraints';
+        title: string;
+        cards: { title: string; description: string }[];
+    }
+    | {
+        type: 'approach';
+        title: string;
+        image1: string; // low fidelity
+        image2: string; // high fidelity
+        steps: { title: string; description: string }[];
+    }
+    | {
+        type: 'key-decisions';
+        title: string;
+        decisions: {
+            id: string; // e.g., "01"
+            title: string;
+            image: string; // placeholder path
+            description: string;
+            rationale: string | string[];
+            tradeoff: string;
+            backgroundColor?: string;
+        }[];
+    }
+    | {
+        type: 'what-i-shipped';
+        title: string;
+        items: {
+            id: string;
+            label: string;
+            description: string[]; // bullet points
+            media: string; // video/image placeholder
+        }[];
+    }
+    | {
+        type: 'proxies';
+        title: string;
+        description: string;
+        items: {
+            id: string;
+            title: string;
+            points: string[];
+            variant: 'default' | 'card'; // default = text only, card = beige background
+        }[];
+    }
+    | {
+        type: 'measurement-plan';
+        title: string;
+        description: string;
+        items: {
+            title: string;
+            subtitle: string;
+            steps: string;
+            goal: string;
+        }[];
+    }
+    | {
+        type: 'challenges';
+        title: string;
+        items: {
+            id: string;
+            title: string;
+            description: string;
+            solutions: string[];
+        }[];
+    }
+    | {
+        type: 'collaboration';
+        title: string;
+        description: string;
+        items: string[];
+        image: string;
+    }
+    | {
+        type: 'iteration-roadmap';
+        title: string;
+        items: {
+            text: string;
+            position: 'top' | 'bottom'; // To place above or below the road
+            column: number; // To roughly align horizontally (1-3 for top, 4-5 for bottom)
+        }[];
+    }
+    | {
+        type: 'reflection';
+        title: string;
+        heading: string;
+        content: { text: string; strong?: boolean }[];
+    }
+    | { type: 'text'; content: string[] };
+
+export interface Project {
+    slug: string;
+    title: string;
+    role: string;
+    timeframe: string;
+    problem: string;
+    outcome: string;
+    tags: string[];
+    thumbnail?: string; // Optional path to image
+    logo?: string; // Logo for the sidebar
+    video?: string; // Video loop for the preview
+    summary?: string; // The big headline (e.g. "Turning podcast listeners...")
+    details?: string[]; // Rolling text details
+    content: CaseStudySection[]; // New modular content array
+    nextProject?: Project;
+}
+
+export interface SiteConfig {
+    meta: {
+        name: string;
+        tagline: string;
+        email: string;
+        links: {
+            linkedin: string;
+            github?: string;
+            twitter?: string;
+        };
+        resumeUrl: string; // Or path to file
+    };
+    header: {
+        location: {
+            label: string;
+            value: string;
+            timeZone: string;
+        };
+        currentRole: {
+            label: string;
+            value: string;
+        };
+        availability: {
+            label: string;
+            value: string;
+        };
+        cta: {
+            label: string;
+            href: string;
+        };
+    };
+    navigation: {
+        items: { label: string; href: string }[];
+    };
+    home: {
+        hero: {
+            headline: string;
+            subhead: string;
+            valueTokens: ValueToken[];
+            primaryAction: {
+                label: string;
+                href: string;
+            };
+            secondaryAction: {
+                label: string;
+                href: string;
+            };
+        };
+        mindset: {
+            title: string;
+            description: string;
+            principles: {
+                id: string;
+                title: string;
+                description: string;
+            }[];
+        };
+        aboutTeaser: {
+            content: string[];
+            linkText: string;
+            linkHref: string;
+        };
+        howIWork: {
+            steps: {
+                title: string;
+                description: string;
+            }[];
+        };
+    };
+    projects: Project[];
+}
+
+export const siteConfig: SiteConfig = {
+    meta: {
+        name: "Manohar",
+        tagline: "Product Designer",
+        email: "hello@example.com",
+        links: {
+            linkedin: "https://linkedin.com/in/username",
+            github: "https://github.com/username",
+        },
+        resumeUrl: "/resume",
+    },
+    header: {
+        location: {
+            label: "U.S. based",
+            value: "Open to relocate",
+            timeZone: "America/New_York",
+        },
+        currentRole: {
+            label: "Masters in",
+            value: "Human-Centered Design",
+        },
+        availability: {
+            label: "Open to roles",
+            value: "Graduating 2026",
+        },
+        cta: {
+            label: "Get in touch",
+            href: "mailto:hello@example.com",
+        }
+    },
+    navigation: {
+        items: [
+            { label: "Home", href: "/" },
+            { label: "Work", href: "/#work" },
+            { label: "Explore", href: "/explore" }, // Assumption, update as needed
+        ]
+    },
+    home: {
+        hero: {
+            headline: "Product designer with an engineering backbone and a systems-first mindset.",
+            subhead: "I map workflows, identify leverage points, and craft interfaces that feel simple and inevitable—especially in complex, systems-heavy products.",
+            valueTokens: ["Systems-first", "AI UX + trust", "Shipped work"],
+            primaryAction: {
+                label: "View Work",
+                href: "#work",
+            },
+            secondaryAction: {
+                label: "Contact",
+                href: "mailto:hello@example.com",
+            },
+        },
+        mindset: {
+            title: "Mindset",
+            description: "I think of products as living systems. They’re not just screens; they involve behaviors, incentives, support loops, and moments of trust that evolve over time. I design by mapping the system, finding what’s causing friction, and building the smallest set of changes that meaningfully shift outcomes.",
+            principles: [
+                {
+                    id: "01",
+                    title: "Systems-first thinking",
+                    description: "I start with incentives, bottlenecks, and team constraints — not just UI screens.",
+                },
+                {
+                    id: "02",
+                    title: "Clarity & craft",
+                    description: "Hierarchy, interaction, and accessibility come first. If it’s not readable and usable, it’s not done.",
+                },
+                {
+                    id: "03",
+                    title: "Shipping mindset",
+                    description: "I iterate fast, communicate clearly, and deliver polished work that survives real constraints.",
+                },
+            ],
+        },
+        aboutTeaser: {
+            content: [
+                "I believe clarity is the most important metric. My background in engineering allows me to bridge the gap between design intent and shipped reality.",
+                "When I'm not designing, I practice meditation to sharpen my attention and ability to see systems clearly.",
+            ],
+            linkText: "More about me",
+            linkHref: "/about",
+        },
+        // howIWork removed or kept if needed, but mindset seems to replace it visually?
+        // Keeping it for now to avoid breaking types if used elsewhere, but data above is the new source of truth for the section.
+        howIWork: {
+            steps: [
+                {
+                    title: "Identify leverage points",
+                    description: "Start with incentives, bottlenecks, and hard constraints.",
+                },
+                {
+                    title: "Map workflows & edge cases",
+                    description: "Don't just design the happy path. Detail the system.",
+                },
+                {
+                    title: "Prototype & Validate",
+                    description: "Get to something tangible quickly to test assumptions.",
+                },
+                {
+                    title: "Ship, Measure, Iterate",
+                    description: "Impact is measured in production, not Figma files.",
+                },
+            ],
+        },
+    },
+    projects: [
+        {
+            slug: "cooperant-learning",
+            title: "Cooperant Learning",
+            role: "Product Designer (0→1) + Implementation",
+            timeframe: "2023 — 2024",
+            summary: "Turning podcast listeners into CEU earners.",
+            problem: "Data scientists couldn't visualize complex model drifts in real-time.",
+            outcome: "Shipped v1 dashboard adopted by 5 Fortune 500 clients.",
+            tags: ["AI/ML", "Data Viz", "Systems Design"],
+            thumbnail: "/images/cl-dashboard.png", // Placeholder
+            logo: "/images/cl-logo.png", // Placeholder
+            video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+            details: [
+                "Role: Product Designer (0→1) + Implementation",
+                "Scope: UX strategy, IA, interaction design, UI + design system, WordPress implementation, QA, handoff documentation",
+                "Timeline: ~4 months",
+                "Platform: WordPress + LearnDash (LMS) + WooCommerce (commerce) + custom components/styles",
+                "Primary users: BCBAs, RBTs, clinic admins (internal training as an add-on)"
+            ],
+            content: [
+                {
+                    type: 'hero',
+                    image: "/images/cl-dashboard.png", // Using placeholder for now, user to replace
+                    title: "Turning podcast listeners into CEU* earners.",
+                    meta: [
+                        { label: "Role", value: "Product Designer (0→1) +\nImplementation" },
+                        { label: "Scope", value: "UX strategy, IA, interaction design, UI + design system, iPad app, WordPress implementation, QA, handoff documentation" },
+                        { label: "Platform", value: "WordPress + LearnDash (LMS) +\nWooCommerce (commerce) + custom components/styles" },
+                        { label: "Primary users", value: "BCBAs, RBTs, clinic admins (internal training as an add-on)" },
+                        { label: "Timeline", value: "~4 months" }
+                    ],
+                    footnote: "* Continuing Education Units (CEUs) are credits that measure participation in professional development programs.",
+                    liveUrl: "https://cooperantlearning.com"
+                },
+                {
+                    type: 'tldr',
+                    intro: "Cooperant Learning is an evidence-based continuing education platform where behavior professionals can discover CEU content, purchase quickly, complete quizzes, and download certificates—with progress tracked in a purpose-built learning dashboard.",
+                    cards: [
+                        {
+                            title: "One canonical course URL + state-based UI",
+                            description: "(logged out → logged in → purchased → completed) keeps sharing simple and reduces duplicate templates/edge cases.",
+                            image: "/images/cl-tldr-1.png" // Placeholder
+                        },
+                        {
+                            title: "User benefit:",
+                            description: "Clear “what to do next” CTAs across episodes/courses + a single place to track CEUs and download certificates.",
+                            image: "/images/cl-tldr-2.png" // Placeholder
+                        },
+                        {
+                            title: "Business benefit:",
+                            description: "A smoother discovery→purchase flow and a scalable content system designed to convert free listening into paid CEU completion.",
+                            image: "/images/cl-tldr-3.png" // Placeholder
+                        }
+                    ]
+                },
+                {
+                    type: 'problem-context',
+                    intro: "Sparks Behavioral Services had high-quality educational content (podcasts + trainings), but the experience needed to do three things exceptionally well:",
+                    cards: [
+                        {
+                            title: "Build trust fast",
+                            description: "(CEUs require credibility, policies, and clarity)"
+                        },
+                        {
+                            title: "Reduce friction in",
+                            description: "the “pay → quiz → certificate” journey"
+                        },
+                        {
+                            title: "Support multiple audiences",
+                            description: "(BCBAs, RBTs, admins) without turning the platform into a maze"
+                        }
+                    ],
+                    footer: "This wasn’t a redesign—it was a new product: define the core journeys, build the system, and ship something stable enough for real users and real transactions."
+                },
+                {
+                    type: 'constraints',
+                    title: "Constraints",
+                    cards: [
+                        {
+                            title: "0→1 product:",
+                            description: "no legacy UX to inherit; everything needed definition from first principles"
+                        },
+                        {
+                            title: "New launch:",
+                            description: "meaningful analytics weren\u2019t available yet (so impact is framed as proxies + measurement plan)"
+                        },
+                        {
+                            title: "Platform constraints:",
+                            description: "LearnDash and WooCommerce each have strong opinions (templates, states, account surfaces)"
+                        },
+                        {
+                            title: "High trust + compliance:",
+                            description: "CEU workflows need clarity, policy visibility, and certificate reliability"
+                        },
+                        {
+                            title: "Speed matters:",
+                            description: "content had to be publishable by the team without breaking layouts or logic"
+                        }
+                    ]
+                },
+                {
+                    type: 'approach',
+                    title: "Approach (what I actually did)",
+                    image1: "/images/cl-low-fi.png", // Placeholder
+                    image2: "/images/cl-high-fi.png", // Placeholder
+                    steps: [
+                        {
+                            title: "Benchmark + define the journeys",
+                            description: "(discovery → purchase → learning → certificate)"
+                        },
+                        {
+                            title: "Low-fidelity wireframes",
+                            description: "to lock IA, states, and page responsibilities"
+                        },
+                        {
+                            title: "Design system",
+                            description: "to ensure consistency across marketing, listings, and LMS/commerce templates"
+                        },
+                        {
+                            title: "Implementation + QA",
+                            description: "(state handling, logged out vs logged in experiences, purchase flows, certificate loop)"
+                        },
+                        {
+                            title: "Handoff",
+                            description: "(documented how to upload episodes/courses, set product IDs, and avoid breaking templates/styles)"
+                        }
+                    ]
+                },
+                {
+                    type: 'key-decisions',
+                    title: "Key Decisions",
+                    decisions: [
+                        {
+                            id: "01",
+                            title: "Use one canonical course URL with state-based UI",
+                            image: "/images/cl-key-decision-1.png",
+                            description: "Instead of splitting “logged out,” “purchase,” and “completed” into separate pages, I designed a single course page that changes its UI based on user state.",
+                            rationale: [
+                                "Sharing is simpler (one link works for everyone)",
+                                "UI stays consistent while CTAs change meaningfully",
+                                "Fewer templates reduces breakage risk as content scales"
+                            ],
+                            tradeoff: "State logic must be explicit and tested. I handled this by defining clear states and ensuring every CTA returns users to the same course URL after gating."
+                        },
+                        {
+                            id: "02",
+                            title: "Gate login/register only at the moment of intent",
+                            image: "/images/cl-key-decision-2.png",
+                            description: "Users can browse freely. Login/register triggers only when a user tries to Add to cart / Enroll / Start / Take quiz.",
+                            rationale: "Forcing account creation too early kills momentum. Gating only on intent preserves discovery while still protecting paid learning actions.",
+                            tradeoff: "This requires careful “return-to-context” handling after login. The experience was designed so users land back where they started (course page or listing), not dumped somewhere generic.",
+                            backgroundColor: "#242424"
+                        },
+                        {
+                            id: "03",
+                            title: "Separate “Learning Dashboard” from “My Account”",
+                            image: "/images/cl-key-decision-3.png",
+                            description: "Learning Dashboard = progress, courses in progress/completed, CEUs earned, certificates\nMy Account = orders, downloads, addresses, payment methods, profile/password",
+                            rationale: "LearnDash and WooCommerce both offer “account-like” areas; combining them often creates confusion. Separation keeps each space clean and predictable.",
+                            tradeoff: "Users need a simple bridge between these spaces. I added clear cross-links (“My Account” and “Edit Profile”) and consistent navigation patterns."
+                        }
+                    ]
+                },
+                {
+                    type: 'what-i-shipped',
+                    title: "What shipped (v1 scope)",
+                    items: [
+                        {
+                            id: "01",
+                            label: "Discovery + trust",
+                            description: [
+                                "Home page positioned around the core promise: Listen. Learn. Earn CEUs.",
+                                "About + Contact pages with FAQs and support clarity",
+                                "Clear ACE/provider trust cues and policy access (privacy/terms/CEU policy)"
+                            ],
+                            media: "/images/video-placeholder-1.png" // Placeholder
+                        },
+                        {
+                            id: "02",
+                            label: "Listings + search",
+                            description: [
+                                "Courses listing with filters/tags (RBT, specialty, parents, etc.)",
+                                "Podcast & CEU listing with *latest episode* emphasis + browseable grid"
+                            ],
+                            media: "/images/video-placeholder-2.png" // Placeholder
+                        },
+                        {
+                            id: "03",
+                            label: "Episode → CEU flow",
+                            description: [
+                                "Episode page with audio experience + CEU CTA, tabs for notes/resources/transcripts"
+                            ],
+                            media: "/images/video-placeholder-3.png" // Placeholder
+                        },
+                        {
+                            id: "04",
+                            label: "Course page states",
+                            description: [
+                                "Logged-out: preview + objectives + “Login to access”",
+                                "Logged-in / not purchased: add-to-cart / enroll CTAs",
+                                "Purchased: start/continue + take quiz",
+                                "Completed: download/print certificate + dashboard access"
+                            ],
+                            media: "/images/video-placeholder-4.png" // Placeholder
+                        },
+                        {
+                            id: "05",
+                            label: "Learning & account",
+                            description: [
+                                "Learning Dashboard: progress + completed courses + certificate access",
+                                "My Account / My Profile separation for commerce + identity tasks"
+                            ],
+                            media: "/images/video-placeholder-5.png" // Placeholder
+                        },
+                        {
+                            id: "06",
+                            label: "Reliability basics",
+                            description: [
+                                "Email verification + password reset flow tested end-to-end",
+                                "Purchase flow tested through WooCommerce order confirmation"
+                            ],
+                            media: "/images/video-placeholder-6.png" // Placeholder
+                        }
+                    ]
+                },
+                {
+                    type: 'proxies',
+                    title: "Proxies (what I can credibly claim now)",
+                    description: "Because the product is newly launched, I’m framing impact using defensible proxies rather than fabricated analytics.",
+                    items: [
+                        {
+                            id: "Proxy 1",
+                            title: "State-based UI reduces complexity + confusion",
+                            points: [
+                                "1 canonical course URL supports multiple user states",
+                                "4 explicit states ensure every user sees the correct next step"
+                            ],
+                            variant: 'default'
+                        },
+                        {
+                            id: "Proxy 2",
+                            title: "Login friction minimized without blocking discovery",
+                            points: [
+                                "Login/register only appears when the user attempts gated actions",
+                                "Users return to the original context after login"
+                            ],
+                            variant: 'card'
+                        },
+                        {
+                            id: "Proxy 3",
+                            title: "Certificate retrieval becomes self-serve",
+                            points: [
+                                "Certificates are surfaced in the dashboard and tied to completion states",
+                                "The “what now?” step after completion is explicit (Download/Print Certificate)"
+                            ],
+                            variant: 'card'
+                        },
+                        {
+                            id: "Proxy 4",
+                            title: "Design system improves consistency + scalability",
+                            points: [
+                                "Shared components (cards, buttons, chips, forms) reduce drift across templates",
+                                "Accessibility considerations baked into components (focus, labels, contrast)"
+                            ],
+                            variant: 'default'
+                        }
+                    ]
+                },
+                {
+                    type: 'measurement-plan',
+                    title: "Measurement plan (what we’ll track once analytics matures)",
+                    description: "This is what I designed the product to measure (and how I’d validate success)",
+                    items: [
+                        {
+                            title: "Funnel",
+                            subtitle: "(Discovery → Purchase)",
+                            steps: "Listing view → course/episode view → add-to-cart → checkout start → purchase success",
+                            goal: "Goal: identify drop-off points and reduce friction."
+                        },
+                        {
+                            title: "Activation",
+                            subtitle: "(Purchase → Learning)",
+                            steps: "Purchase success → course start → quiz start",
+                            goal: "Goal: ensure buyers actually begin learning quickly."
+                        },
+                        {
+                            title: "Completion",
+                            subtitle: "(Learning → CEU)",
+                            steps: "Quiz attempts → pass rate → certificate download/print",
+                            goal: "Goal: make CEU earning reliable and easy to prove."
+                        },
+                        {
+                            title: "Support load",
+                            subtitle: "(Self-serve health)",
+                            steps: "Top contact reasons (certificate, login, purchase, access)",
+                            goal: "Goal: reduce recurring confusion via UX + FAQ placement."
+                        },
+                        {
+                            title: "Qualitative checks",
+                            subtitle: "(early, fast, defensible)",
+                            steps: "5-user task validation: “buy a CEU,” “complete quiz,” “find certificate,” “reset password”",
+                            goal: "Heuristic/accessibility audit on key pages"
+                        }
+                    ]
+                },
+                {
+                    type: 'challenges',
+                    title: 'Challenges & how I handled them (the "messy middle")',
+                    items: [
+                        {
+                            id: "01",
+                            title: "Multiple platforms, one user experience",
+                            description: "LearnDash and WooCommerce each create their own “shape” of UI and account behavior. I unified the experience by:",
+                            solutions: [
+                                "Defining clear surface ownership (learning vs commerce)",
+                                "Standardizing components via the design system",
+                                "Testing each state so CTAs never contradict the user’s reality (logged out vs enrolled vs completed)"
+                            ]
+                        },
+                        {
+                            id: "02",
+                            title: "Keeping the experience scannable",
+                            description: "This platform serves busy professionals. I used:",
+                            solutions: [
+                                "Strong CTA hierarchy",
+                                "Short, repeatable patterns (cards, tabs, chips)",
+                                "“One obvious next step” per state"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    type: 'collaboration',
+                    title: "Collaboration & handoff",
+                    description: "I worked directly with stakeholders to ensure the platform could be operated without me",
+                    items: [
+                        "Defined a repeatable episode/course publishing process",
+                        "Documented how product IDs map to episodes and how templates should be used",
+                        "Provided a handoff brief to prevent accidental layout breakage (theme/template/CSS guardrails)"
+                    ],
+                    image: "/images/handoff-placeholder.png"
+                },
+                {
+                    type: 'iteration-roadmap',
+                    title: "What I’d do next (iteration roadmap)",
+                    items: [
+                        { text: "Instrument analytics + event tracking (funnel + completion + support reasons)", position: 'top', column: 1 },
+                        { text: "Run 5–8 usability sessions focused on purchase and certificate retrieval", position: 'top', column: 2 },
+                        { text: "Mobile stress-test key pages (episode, course states, checkout, dashboard tables)", position: 'top', column: 3 },
+                        { text: "Content ops hardening (templates, validation checks, admin UX)", position: 'bottom', column: 2 }, // Offset
+                        { text: "Conversion experiments (CTA wording, episode → CEU framing, trust modules placement)", position: 'bottom', column: 3 }
+                    ]
+                },
+                {
+                    type: 'reflection',
+                    title: "Reflection (why this project matters)",
+                    heading: "Cooperant Learning is the kind of product design work I want to do",
+                    content: [
+                        { text: "Full-stack UX (" },
+                        { text: "strategy → system → UI → real implementation", strong: true },
+                        { text: ") on a platform where trust, clarity, and flow directly impact whether users can earn credit and prove it professionally." }
+                    ]
+                }
+            ],
+            nextProject: {
+                slug: "black-baza",
+                title: "Black Baza Coffee Co.",
+                role: "Product Designer",
+                timeframe: "2022",
+                summary: "Redefining the coffee supply chain transparency.",
+                problem: "High drop-off rate during the user onboarding flow.",
+                outcome: "Increased conversion by 15% through simplified KYC flows.",
+                tags: ["Mobile", "Fintech", "Growth"],
+                logo: "/images/bb-logo.png",
+                video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+                details: [
+                    "Role: Product Designer",
+                    "Scope: End-to-end product design",
+                    "Timeline: 2022",
+                    "Platform: Mobile App",
+                    "Primary users: Coffee Consumers"
+                ],
+                content: [],
+            },
+        },
+        // {
+        //     slug: "mochitta",
+        //     title: "Mochitta",
+        //     role: "Brand & Web Design",
+        //     timeframe: "2024",
+        //     summary: "Crafting a digital presence for a modern brand.",
+        //     problem: "Lack of brand identity.",
+        //     outcome: "Launched full brand suite.",
+        //     tags: ["Branding", "Web"],
+        //     logo: "/images/mochitta-logo.png",
+        //     video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        //     content: [],
+        // },
+    ],
+};
