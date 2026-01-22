@@ -25,8 +25,8 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
                         />
                     )}
 
-                    {/* Gradient Overlay: Bottom fade for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
+                    {/* Gradient Overlay: Localized behind text, fading to transparent */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/30 via-30% to-transparent to-50%" />
 
                     {/* Headline Overlay - Bottom Left */}
                     <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full max-w-5xl">
