@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 import { AboutSection } from "@/components/AboutSection";
 import { WorkSection } from "@/components/WorkSection";
 import { MindsetSection } from "@/components/MindsetSection";
-import { ToolsSection } from "@/components/ToolsSection";
+
 
 export default function Home() {
   return (
@@ -27,7 +27,7 @@ export default function Home() {
       <MindsetSection />
 
       {/* Tools Section */}
-      <ToolsSection />
+
 
     </div>
   );
