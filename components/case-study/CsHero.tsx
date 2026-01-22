@@ -32,7 +32,7 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
                     <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full max-w-5xl">
                         {/* Split title into lines if needed or rely on natural wrap */}
                         <Reveal>
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wide text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                            <h1 className="text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wide text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                                 {title}
                             </h1>
                         </Reveal>
