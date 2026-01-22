@@ -26,7 +26,7 @@ export function CsProxies({ title, description, items }: ProxiesProps) {
 
             {/* Content Container - Full width on mobile for carousel */}
             <div className="w-full md:w-[85%] max-w-[1440px] mx-auto">
-                <div className="flex overflow-x-auto md:grid md:grid-cols-2 gap-4 md:gap-x-12 md:gap-y-8 px-[5%] md:px-0 no-scrollbar snap-x snap-mandatory">
+                <div className="flex overflow-x-auto md:grid md:grid-cols-2 gap-4 md:gap-8 px-[5%] md:px-0 no-scrollbar snap-x snap-mandatory">
                     {items.map((item, index) => (
                         <div
                             key={index}
