@@ -66,7 +66,7 @@ export function CsMeasurementPlan({ title, description, items }: MeasurementPlan
                 <div className="flex flex-col h-full pt-24 md:pt-24 2xl:pt-32 relative z-10 text-left">
 
                     {/* Header - Constrained width */}
-                    <div className="w-[90%] md:w-[85%] max-w-[1440px] mx-auto md:max-w-[75%] mb-8 shrink-0">
+                    <div className="w-[90%] md:w-[85%] max-w-[1440px] mx-auto mb-8 shrink-0">
                         <Reveal>
                             <span className="text-sm font-bold uppercase tracking-wider text-white mb-4 block" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                                 {title}
