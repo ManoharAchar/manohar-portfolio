@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
+import { MediaRenderer } from "@/components/MediaRenderer";
 
 // Extract the specific TLDR type for props
 type TLDRProps = Extract<CaseStudySection, { type: 'tldr' }>;
@@ -119,7 +120,7 @@ export function CsTLDR({ intro, cards }: TLDRProps) {
                                         {/* Image Area - 55% Mobile / 65% Desktop */}
                                         <div className="h-[55%] md:h-[65%] w-full bg-white rounded-[20px] relative overflow-hidden shrink-0">
                                             {card.image && !card.image.includes('placeholder') && (
-                                                <img
+                                                <MediaRenderer
                                                     src={card.image}
                                                     alt=""
                                                     className="w-full h-full object-cover"

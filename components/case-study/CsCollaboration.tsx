@@ -1,8 +1,8 @@
 "use client";
 
 import { CaseStudySection } from "@/content/site";
-import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
+import { MediaRenderer } from "@/components/MediaRenderer";
 
 type CollaborationProps = Extract<CaseStudySection, { type: 'collaboration' }>;
 
@@ -46,20 +46,20 @@ export function CsCollaboration({ title, description, items, image }: Collaborat
                     {/* Right Column: Image/Card Placeholder */}
                     <div className="flex-1 w-full relative">
                         <div className="bg-white rounded-[32px] w-full aspect-[4/3] flex items-center justify-center relative overflow-hidden shadow-sm">
-                            <Reveal delay={0.3}>
-                                <div className="text-center p-8">
-                                    <p className="text-[#141414]/40 font-bold mb-2">Handoff document</p>
-                                    <p className="text-[#141414]/30 text-sm">related image here</p>
-                                </div>
-                            </Reveal>
-                            {/* Real image would go here:
-                           <Image 
-                                src={image} 
-                                alt="Handoff documentation preview" 
-                                fill 
-                                className="object-cover" 
-                           /> 
-                           */}
+                            {image && !image.includes('placeholder') ? (
+                                <MediaRenderer
+                                    src={image}
+                                    alt="Handoff documentation preview"
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <Reveal delay={0.3}>
+                                    <div className="text-center p-8">
+                                        <p className="text-[#141414]/40 font-bold mb-2">Handoff document</p>
+                                        <p className="text-[#141414]/30 text-sm">related image here</p>
+                                    </div>
+                                </Reveal>
+                            )}
                         </div>
                     </div>
 

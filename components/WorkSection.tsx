@@ -15,6 +15,8 @@ import { Reveal } from "./Reveal";
 export function WorkSection() {
     const [activeSlug, setActiveSlug] = useState(siteConfig.projects[0].slug);
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [isVideoHovered, setIsVideoHovered] = useState(false);
+    const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
     const activeProject = siteConfig.projects.find((p) => p.slug === activeSlug) || siteConfig.projects[0];
 
@@ -117,7 +119,19 @@ export function WorkSection() {
                                 <div className="flex flex-col gap-6 w-full">
                                     {/* Main Preview Image/Video Area */}
                                     {/* Distinct White Box per design - Matching Sidebar Radius */}
-                                    <div className="relative w-full aspect-[640/384] h-auto md:h-[400px] md:aspect-auto bg-white rounded-2xl overflow-hidden shadow-sm flex items-center justify-center shrink-0 group">
+                                    <Link
+                                        href={`/work/${activeProject.slug}`}
+                                        className="relative w-full aspect-[640/384] h-auto md:h-[400px] md:aspect-auto bg-white rounded-2xl overflow-hidden shadow-sm flex items-center justify-center shrink-0 group cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+                                        onMouseEnter={() => setIsVideoHovered(true)}
+                                        onMouseMove={(e) => {
+                                            const rect = e.currentTarget.getBoundingClientRect();
+                                            setCursorPosition({
+                                                x: e.clientX - rect.left,
+                                                y: e.clientY - rect.top
+                                            });
+                                        }}
+                                        onMouseLeave={() => setIsVideoHovered(false)}
+                                    >
                                         {activeProject.video ? (
                                             <video
                                                 ref={videoRef}
@@ -126,7 +140,7 @@ export function WorkSection() {
                                                 loop
                                                 muted
                                                 playsInline
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-cover pointer-events-none"
                                                 src={activeProject.video}
                                                 poster={activeProject.thumbnail || activeProject.logo}
                                             />
@@ -138,7 +152,22 @@ export function WorkSection() {
                                         ) : (
                                             <div className="w-full h-full bg-neutral-100 flex items-center justify-center text-black" />
                                         )}
-                                    </div>
+
+                                        {/* Cursor Tooltip */}
+                                        {isVideoHovered && (
+                                            <div
+                                                className="absolute pointer-events-none z-50 bg-black/80 text-white px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-opacity duration-200"
+                                                style={{
+                                                    left: `${cursorPosition.x}px`,
+                                                    top: `${cursorPosition.y}px`,
+                                                    transform: 'translate(12px, 12px)',
+                                                    fontFamily: 'var(--font-archivo)'
+                                                }}
+                                            >
+                                                Click to dive deeper
+                                            </div>
+                                        )}
+                                    </Link>
 
                                     {/* Bottom Info - Dark Theme Text */}
                                     <div className="w-full md:w-[80%] px-0">

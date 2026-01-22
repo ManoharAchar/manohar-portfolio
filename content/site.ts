@@ -228,7 +228,7 @@ export const siteConfig: SiteConfig = {
         },
         availability: {
             label: "Open to roles",
-            value: "Graduating 2026",
+            value: "Graduating April 2026",
         },
         cta: {
             label: "Get in touch",
@@ -331,7 +331,7 @@ export const siteConfig: SiteConfig = {
             content: [
                 {
                     type: 'hero',
-                    image: "/images/cl-dashboard.png", // Using placeholder for now, user to replace
+                    image: "/images/case-studies/cooperant-learning/hero-banner.png",
                     title: "Turning podcast listeners into CEU* earners.",
                     meta: [
                         { label: "Role", value: "Product Designer (0→1) +\nImplementation" },
@@ -350,17 +350,17 @@ export const siteConfig: SiteConfig = {
                         {
                             title: "One canonical course URL + state-based UI",
                             description: "(logged out → logged in → purchased → completed) keeps sharing simple and reduces duplicate templates/edge cases.",
-                            image: "/images/cl-tldr-1.png" // Placeholder
+                            image: "/videos/case-studies/cooperant-learning/tldr-card-1.mp4"
                         },
                         {
                             title: "User benefit:",
                             description: "Clear “what to do next” CTAs across episodes/courses + a single place to track CEUs and download certificates.",
-                            image: "/images/cl-tldr-2.png" // Placeholder
+                            image: "/videos/case-studies/cooperant-learning/tldr-card-2.mp4"
                         },
                         {
                             title: "Business benefit:",
                             description: "A smoother discovery→purchase flow and a scalable content system designed to convert free listening into paid CEU completion.",
-                            image: "/images/cl-tldr-3.png" // Placeholder
+                            image: "/videos/case-studies/cooperant-learning/tldr-card-3.mp4"
                         }
                     ]
                 },
@@ -412,8 +412,8 @@ export const siteConfig: SiteConfig = {
                 {
                     type: 'approach',
                     title: "Approach (what I actually did)",
-                    image1: "/images/cl-low-fi.png", // Placeholder
-                    image2: "/images/cl-high-fi.png", // Placeholder
+                    image1: "/images/case-studies/cooperant-learning/approach-lowfi.png",
+                    image2: "/images/case-studies/cooperant-learning/approach-highfi.png",
                     steps: [
                         {
                             title: "Benchmark + define the journeys",
@@ -484,7 +484,7 @@ export const siteConfig: SiteConfig = {
                                 "About + Contact pages with FAQs and support clarity",
                                 "Clear ACE/provider trust cues and policy access (privacy/terms/CEU policy)"
                             ],
-                            media: "/images/video-placeholder-1.png" // Placeholder
+                            media: "/videos/case-studies/cooperant-learning/what-shipped-discovery.mp4"
                         },
                         {
                             id: "02",
@@ -493,7 +493,7 @@ export const siteConfig: SiteConfig = {
                                 "Courses listing with filters/tags (RBT, specialty, parents, etc.)",
                                 "Podcast & CEU listing with *latest episode* emphasis + browseable grid"
                             ],
-                            media: "/images/video-placeholder-2.png" // Placeholder
+                            media: "/videos/case-studies/cooperant-learning/what-shipped-listing.mp4"
                         },
                         {
                             id: "03",
@@ -501,7 +501,7 @@ export const siteConfig: SiteConfig = {
                             description: [
                                 "Episode page with audio experience + CEU CTA, tabs for notes/resources/transcripts"
                             ],
-                            media: "/images/video-placeholder-3.png" // Placeholder
+                            media: "/videos/case-studies/cooperant-learning/what-shipped-episode.mp4"
                         },
                         {
                             id: "04",
@@ -512,7 +512,7 @@ export const siteConfig: SiteConfig = {
                                 "Purchased: start/continue + take quiz",
                                 "Completed: download/print certificate + dashboard access"
                             ],
-                            media: "/images/video-placeholder-4.png" // Placeholder
+                            media: "/videos/case-studies/cooperant-learning/tldr-card-1.mp4"
                         },
                         {
                             id: "05",
@@ -521,7 +521,7 @@ export const siteConfig: SiteConfig = {
                                 "Learning Dashboard: progress + completed courses + certificate access",
                                 "My Account / My Profile separation for commerce + identity tasks"
                             ],
-                            media: "/images/video-placeholder-5.png" // Placeholder
+                            media: "/videos/case-studies/cooperant-learning/tldr-card-2.mp4"
                         },
                         {
                             id: "06",
@@ -530,7 +530,7 @@ export const siteConfig: SiteConfig = {
                                 "Email verification + password reset flow tested end-to-end",
                                 "Purchase flow tested through WooCommerce order confirmation"
                             ],
-                            media: "/images/video-placeholder-6.png" // Placeholder
+                            media: "/videos/case-studies/cooperant-learning/what-shipped-reliability.mp4"
                         }
                     ]
                 },
@@ -649,7 +649,7 @@ export const siteConfig: SiteConfig = {
                         "Documented how product IDs map to episodes and how templates should be used",
                         "Provided a handoff brief to prevent accidental layout breakage (theme/template/CSS guardrails)"
                     ],
-                    image: "/images/handoff-placeholder.png"
+                    image: "/images/case-studies/cooperant-learning/collaboration-handoff.png"
                 },
                 {
                     type: 'iteration-roadmap',

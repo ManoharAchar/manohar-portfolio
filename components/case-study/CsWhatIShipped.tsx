@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
+import { MediaRenderer } from "@/components/MediaRenderer";
 
 type WhatIShippedProps = Extract<CaseStudySection, { type: 'what-i-shipped' }>;
 
@@ -125,11 +126,19 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.5 }}
                         >
-                            {/* Placeholder for Video */}
-                            <div className="text-center">
-                                <p className="font-bold text-lg mb-2">{items[activeIndex].label}</p>
-                                <p className="text-neutral-400">Video element here</p>
-                            </div>
+                            {/* Media Display */}
+                            {items[activeIndex].media && !items[activeIndex].media.includes('placeholder') ? (
+                                <MediaRenderer
+                                    src={items[activeIndex].media}
+                                    alt={items[activeIndex].label}
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <div className="text-center">
+                                    <p className="font-bold text-lg mb-2">{items[activeIndex].label}</p>
+                                    <p className="text-neutral-400">Video element here</p>
+                                </div>
+                            )}
                         </motion.div>
                     </AnimatePresence>
                 </div>

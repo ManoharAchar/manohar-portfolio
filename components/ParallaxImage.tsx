@@ -11,7 +11,7 @@ interface ParallaxImageProps {
     offset?: number; // How much parallax movement (pixels or %)
 }
 
-export function ParallaxImage({ src, alt, className, offset = 50 }: ParallaxImageProps) {
+export function ParallaxImage({ src, alt, className, offset = 25 }: ParallaxImageProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -22,7 +22,7 @@ export function ParallaxImage({ src, alt, className, offset = 50 }: ParallaxImag
         return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
-    const currentOffset = isMobile ? 15 : offset;
+    const currentOffset = isMobile ? 10 : offset;
 
     // Track scroll progress of the container relative to the viewport
     const { scrollYProgress } = useScroll({
@@ -46,7 +46,7 @@ export function ParallaxImage({ src, alt, className, offset = 50 }: ParallaxImag
                 src={src}
                 alt={alt}
                 className="w-full h-full object-cover"
-                style={{ y: springY, scale: 1.15 }} // Scale 1.15 gives room for the parallax movement
+                style={{ y: springY, scale: 1.08 }} // Scale 1.08 gives room for the parallax movement
             />
         </div>
     );
