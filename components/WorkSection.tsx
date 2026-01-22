@@ -189,8 +189,8 @@ export function WorkSection() {
                                     </div>
                                 </div>
 
-                                {/* Independent CTA Button - Bottom Right */}
-                                <div className="absolute bottom-0 right-0 flex justify-end">
+                                {/* Independent CTA Button - Bottom Right on Desktop, In-flow on Mobile */}
+                                <div className="static md:absolute mt-6 md:mt-0 bottom-0 right-0 flex justify-end">
                                     <RotatingButton href={`/work/${activeProject.slug}`} />
                                 </div>
                             </motion.div>
