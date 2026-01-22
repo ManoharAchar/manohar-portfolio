@@ -21,7 +21,7 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
                         <img
                             src={image}
                             alt={title}
-                            className="w-full h-full object-cover opacity-60 mix-blend-overlay"
+                            className="w-full h-full object-cover"
                         />
                     )}
 
