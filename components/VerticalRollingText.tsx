@@ -25,7 +25,7 @@ export function VerticalRollingText({ items, interval = 3000, className, style }
     if (!items || items.length === 0) return null;
 
     return (
-        <div className={cn("relative overflow-hidden h-[1.5em] w-full block", className)} style={style}>
+        <div className={cn("relative overflow-hidden h-[3em] w-full block", className)} style={style}>
             <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                     key={index}
@@ -33,7 +33,7 @@ export function VerticalRollingText({ items, interval = 3000, className, style }
                     animate={{ y: "0%", filter: "blur(0px)", opacity: 1 }}
                     exit={{ y: "-100%", filter: "blur(2px)", opacity: 0 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute top-0 left-0 w-full truncate"
+                    className="absolute top-0 left-0 w-full line-clamp-2"
                 >
                     {items[index]}
                 </motion.div>

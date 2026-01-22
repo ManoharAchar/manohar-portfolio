@@ -182,11 +182,11 @@ export function WorkSection() {
                                             {activeProject.details && activeProject.details.length > 0 ? (
                                                 <VerticalRollingText
                                                     items={activeProject.details}
-                                                    className="text-[#B56A3A] font-semibold text-[24px] mt-4"
+                                                    className="text-[#B56A3A] font-semibold text-xl leading-tight mt-4"
                                                     style={{ fontFamily: 'var(--font-archivo)' }}
                                                 />
                                             ) : (
-                                                <p className="text-[#B56A3A] font-semibold text-[24px] mt-4" style={{ fontFamily: 'var(--font-archivo)' }}>Role: {activeProject.role}</p>
+                                                <p className="text-[#B56A3A] font-semibold text-xl leading-tight mt-4" style={{ fontFamily: 'var(--font-archivo)' }}>Role: {activeProject.role}</p>
                                             )}
                                         </div>
                                     </div>
