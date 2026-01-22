@@ -25,11 +25,17 @@ export function CsConstraints({ title, cards }: ConstraintsProps) {
             <div className="w-full md:w-[85%] max-w-[1440px] mx-auto">
 
                 {/* Header */}
-                <div className="mb-8 max-w-4xl w-[90%] md:w-full mx-auto md:mx-0">
+                <div className="mb-8 max-w-4xl w-[90%] md:w-full mx-auto md:mx-0 flex items-end justify-between">
                     <Reveal>
                         <span className="text-sm font-bold uppercase tracking-wider text-white block" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                             {title}
                         </span>
+                    </Reveal>
+                    {/* Interaction Prompt - Desktop Only, aligned with title */}
+                    <Reveal delay={0.2} className="hidden md:block">
+                        <p className="text-sm text-neutral-500 font-medium tracking-wide text-right">
+                            Try hovering to fight constraints
+                        </p>
                     </Reveal>
                     {/* Intro text removed per user request */}
                 </div>
@@ -99,15 +105,6 @@ export function CsConstraints({ title, cards }: ConstraintsProps) {
                             </motion.div>
                         );
                     })}
-                </div>
-
-                {/* Interaction Prompt - Desktop Only */}
-                <div className="hidden md:flex w-full justify-end mt-8">
-                    <Reveal delay={0.4}>
-                        <p className="text-sm text-neutral-500 font-medium tracking-wide">
-                            Try hovering to fight constraints
-                        </p>
-                    </Reveal>
                 </div>
             </div>
         </section >

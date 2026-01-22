@@ -22,7 +22,17 @@ export function CsApproach({ title, image1, image2, steps }: ApproachProps) {
                     {/* Left Column: Images (Spans 8 cols) */}
                     {/* Mobile: Flex Column, Auto Height. Desktop: Grid 2-col, Fixed Height. */}
                     <div className="md:col-span-8 flex flex-col md:grid md:grid-cols-2 gap-4 h-auto md:h-[600px]">
-                        {/* Low Fidelity Placeholder */}
+                        {/* High Fidelity (Now First/Left) */}
+                        <div className="bg-[#1A1A1A] rounded-[24px] flex items-center justify-center border border-white/5 p-8 relative overflow-hidden group aspect-[16/11] md:aspect-auto md:h-full">
+                            {/* Placeholder visual */}
+                            <div className="text-neutral-500 text-center">
+                                <span className="block mb-2 text-sm uppercase tracking-widest">High Fidelity</span>
+                                <span className="text-xs opacity-50">Image Placeholder</span>
+                            </div>
+                            <img src={image2} alt="High fidelity design" className="absolute inset-0 w-full h-full object-cover" />
+                        </div>
+
+                        {/* Low Fidelity (Now Second/Right) */}
                         <div className="bg-[#1A1A1A] rounded-[24px] flex items-center justify-center border border-white/5 p-8 relative overflow-hidden group aspect-[16/11] md:aspect-auto md:h-full">
                             {/* Placeholder visual */}
                             <div className="text-neutral-500 text-center">
@@ -30,17 +40,7 @@ export function CsApproach({ title, image1, image2, steps }: ApproachProps) {
                                 <span className="text-xs opacity-50">Image Placeholder</span>
                             </div>
                             {/* Actual Image Tag */}
-                            <img src={image1} alt="Low fidelity wireframes" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity" />
-                        </div>
-
-                        {/* High Fidelity Placeholder */}
-                        <div className="bg-[#1A1A1A] rounded-[24px] flex items-center justify-center border border-white/5 p-8 relative overflow-hidden group aspect-[16/11] md:aspect-auto md:h-full">
-                            {/* Placeholder visual */}
-                            <div className="text-neutral-500 text-center">
-                                <span className="block mb-2 text-sm uppercase tracking-widest">High Fidelity</span>
-                                <span className="text-xs opacity-50">Image Placeholder</span>
-                            </div>
-                            <img src={image2} alt="High fidelity design" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity" />
+                            <img src={image1} alt="Low fidelity wireframes" className="absolute inset-0 w-full h-full object-cover" />
                         </div>
                     </div>
 

@@ -15,7 +15,7 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
 
                 {/* 1. Hero Image Container with Overlay Text */}
                 {/* Aspect Ratio roughly 16:9 or custom per design */}
-                <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[2.4/1] bg-neutral-900 rounded-3xl overflow-hidden mb-12 md:mb-24">
+                <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[2.4/1] bg-neutral-900 rounded-3xl overflow-hidden mb-4 md:mb-16">
                     {/* Background Image */}
                     {image && (
                         <img
@@ -25,8 +25,8 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
                         />
                     )}
 
-                    {/* Gradient Overlay: Localized behind text, fading to transparent */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/30 via-30% to-transparent to-50%" />
+                    {/* Gradient Overlay: Darker localized gradient behind text for better readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 via-35% to-transparent to-60%" />
 
                     {/* Headline Overlay - Bottom Left */}
                     <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full max-w-5xl">
