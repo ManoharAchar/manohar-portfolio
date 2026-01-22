@@ -21,7 +21,7 @@ export function RotatingButton({
     return (
         <Link href={href} scroll={true} className={cn("group relative block w-24 h-24 md:w-32 md:h-32", className)}>
             {/* Main Circle Container */}
-            <div className="absolute inset-0 rounded-full bg-[#A34F35] flex items-center justify-center border border-[#A34F35]/20 overflow-hidden transition-transform duration-300 hover:scale-110">
+            <div className="absolute inset-0 rounded-full bg-[#A29BFE] flex items-center justify-center border border-[#A29BFE]/20 overflow-hidden transition-transform duration-300 hover:scale-110">
 
                 {/* Rotating Container (Text + Arrow) */}
                 <div className="absolute inset-0 w-full h-full animate-[spin_10s_linear_infinite] group-hover:[animation-play-state:paused]">
