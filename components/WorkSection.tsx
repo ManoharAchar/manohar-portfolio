@@ -62,7 +62,7 @@ export function WorkSection() {
                     <div className="lg:hidden absolute left-0 right-0 bottom-0 h-[140px] md:h-[180px] bg-[#242424] rounded-t-3xl pointer-events-none" />
 
                     {/* Sidebar / Project List (Bottom on Mobile, Left on Desktop) */}
-                    <div data-lenis-prevent className="relative z-10 lg:col-span-3 order-2 lg:order-first flex flex-row lg:flex-col gap-4 lg:gap-6 overflow-x-auto lg:overflow-y-auto w-full lg:h-full pb-2 lg:pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    <div data-lenis-prevent className="relative z-10 lg:col-span-3 order-2 lg:order-first flex flex-row lg:flex-col gap-4 lg:gap-6 overflow-x-auto lg:overflow-y-auto w-full lg:h-full py-4 lg:py-0 lg:pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                         {siteConfig.projects.map((project) => (
                             <button
                                 key={project.slug}
