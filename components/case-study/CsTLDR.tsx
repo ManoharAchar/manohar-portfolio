@@ -102,7 +102,7 @@ export function CsTLDR({ intro, cards }: TLDRProps) {
                         <motion.div
                             ref={cardsRef}
                             style={{ x }}
-                            className="flex gap-6 w-max px-4 md:px-0"
+                            className="flex gap-6 w-max px-0 md:px-0"
                         >
                             {/* Cards */}
                             {cards.map((card, index) => (
@@ -135,7 +135,7 @@ export function CsTLDR({ intro, cards }: TLDRProps) {
                                         {/* pt-8 (32px) from image top edge */}
                                         {/* px-2 (+Parent px-4) = 24px horiz. */}
                                         {/* pb-4 combined with Parent pb-4 = 32px from bottom tile edge */}
-                                        <div className="h-[45%] md:h-[35%] flex flex-col justify-start pt-8 px-2 pb-4 gap-2">
+                                        <div className="h-[45%] md:h-[35%] flex flex-col justify-start pt-4 px-2 pb-4 gap-2">
                                             {/* Gap-2 ensures tighter spacing between Title and Description */}
                                             <Reveal>
                                                 <h3 className="text-lg md:text-[22px] font-bold text-white leading-tight" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
