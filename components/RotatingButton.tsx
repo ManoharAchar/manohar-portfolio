@@ -10,18 +10,23 @@ interface RotatingButtonProps {
     className?: string;
     topText?: string;
     bottomText?: string;
+    color?: string;
 }
 
 export function RotatingButton({
     href,
     className,
     topText = "CLICK HERE",
-    bottomText = "TO DIVE DEEPER"
+    bottomText = "TO DIVE DEEPER",
+    color = "#A34F35"
 }: RotatingButtonProps) {
     return (
         <Link href={href} scroll={true} className={cn("group relative block w-24 h-24 md:w-32 md:h-32", className)}>
             {/* Main Circle Container */}
-            <div className="absolute inset-0 rounded-full bg-[#A29BFE] flex items-center justify-center border border-[#A29BFE]/20 overflow-hidden transition-transform duration-300 hover:scale-110">
+            <div
+                className="absolute inset-0 rounded-full flex items-center justify-center border overflow-hidden transition-transform duration-300 hover:scale-110"
+                style={{ backgroundColor: color, borderColor: `${color}33` }} // 33 is approx 20% opacity in hex
+            >
 
                 {/* Rotating Container (Text + Arrow) */}
                 <div className="absolute inset-0 w-full h-full animate-[spin_10s_linear_infinite] group-hover:[animation-play-state:paused]">

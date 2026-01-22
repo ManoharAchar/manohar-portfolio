@@ -46,6 +46,7 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
                                 topText="CLICK HERE"
                                 bottomText="GO TO LIVE SITE"
                                 className="w-28 h-28"
+                                color="#A29BFE"
                             />
                         </div>
                     )}
@@ -59,6 +60,7 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
                             topText="CLICK HERE"
                             bottomText="GO TO LIVE SITE"
                             className="w-20 h-20"
+                            color="#A29BFE"
                         />
                     </div>
                 )}
