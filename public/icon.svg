@@ -2,8 +2,12 @@
   <!-- Round Background -->
   <circle cx="50" cy="50" r="50" fill="#B56A3A" />
 
-  <!-- Lotus Group scaled and centered to fit inside the circle -->
-  <g transform="translate(15, 20) scale(0.7)">
+  <!-- Lotus Group scaled UP to 0.9 and re-centered -->
+  <!-- Center of unscaled lotus is approx (50, 42.5). Target (50, 50). 
+       Tx = 50 - 50*0.9 = 5
+       Ty = 50 - 42.5*0.9 = 11.75 -> ~12
+  -->
+  <g transform="translate(5, 12) scale(0.9)">
       <style>
         path {
           stroke: #F6F4EF; /* Cream/White for contrast on orange */
