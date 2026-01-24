@@ -12,11 +12,26 @@ type WhatIShippedProps = Extract<CaseStudySection, { type: 'what-i-shipped' }>;
 export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Auto-rotation logic
+    // Detect mobile viewport
     useEffect(() => {
-        if (isPaused) {
+        const checkMobile = () => {
+            setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+        };
+
+        // Initial check
+        checkMobile();
+
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Auto-rotation logic (Desktop only)
+    useEffect(() => {
+        // Don't auto-rotate if paused OR if on mobile
+        if (isPaused || isMobile) {
             if (intervalRef.current) clearInterval(intervalRef.current);
             return;
         }
@@ -28,12 +43,12 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current);
         };
-    }, [isPaused, items.length]);
+    }, [isPaused, isMobile, items.length]);
 
     return (
         <section className="bg-[#0A0A0A] text-white py-16 md:py-32 w-full overflow-hidden">
-            <div className="w-[90%] md:w-[85%] max-w-[1440px] mx-auto">
-                <div className="flex items-end justify-between mb-8">
+            <div className="w-full md:w-[85%] max-w-[1440px] mx-auto">
+                <div className="flex items-end justify-between mb-8 px-6 md:px-0">
                     <Reveal>
                         <h2 className="text-sm font-bold uppercase tracking-wider text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                             {title}
@@ -45,11 +60,16 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
                 </div>
 
                 {/* Tabs Grid */}
-                <div className="flex overflow-x-auto md:grid md:grid-cols-6 gap-4 mb-6 border-b border-white/10 pb-4 no-scrollbar snap-x snap-mandatory mask-gradient-right">
+                {/* Mobile: Edge-to-edge scrolling with start padding for alignment */}
+                <div className="flex overflow-x-auto overflow-y-hidden md:grid md:grid-cols-6 gap-4 mb-6 border-b border-white/10 pb-4 no-scrollbar snap-x snap-mandatory mask-gradient-right md:px-0">
                     {items.map((item, index) => (
                         <div
                             key={index}
-                            className="relative group cursor-pointer min-w-[40vw] md:min-w-0 snap-start flex-shrink-0"
+                            className={cn(
+                                "relative group cursor-pointer min-w-[40vw] md:min-w-0 snap-start flex-shrink-0",
+                                index === 0 ? "pl-6 md:pl-0" : "",
+                                index === items.length - 1 ? "pr-6 md:pr-0" : ""
+                            )}
                             onMouseEnter={() => {
                                 setIsPaused(true);
                                 setActiveIndex(index);
@@ -70,7 +90,11 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
                             {activeIndex === index && (
                                 <motion.div
                                     layoutId="activeTabIndicator"
-                                    className="absolute -bottom-[17px] left-0 right-0 h-[2px] bg-white"
+                                    className={cn(
+                                        "absolute -bottom-[17px] h-[2px] bg-white",
+                                        index === 0 ? "left-6 md:left-0" : "left-0",
+                                        index === items.length - 1 ? "right-6 md:right-0" : "right-0"
+                                    )}
                                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                                 />
                             )}
@@ -79,7 +103,7 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
                 </div>
 
                 {/* Dynamic Content Area */}
-                <div className="h-[120px] md:h-[100px] mb-8 relative">
+                <div className="h-[120px] md:h-[100px] mb-8 relative md:px-0">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeIndex}
@@ -87,7 +111,7 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.3 }}
-                            className="absolute top-0 left-0 w-full md:w-[var(--tab-width)] md:ml-[calc(var(--active-tab)*16.666%)] md:pr-4 transition-all duration-300 ease-in-out"
+                            className="absolute top-0 left-0 w-full md:w-[var(--tab-width)] md:ml-[calc(var(--active-tab)*16.666%)] md:pr-4 transition-all duration-300 ease-in-out px-6 md:pl-0 md:pr-4"
                             style={{
                                 '--active-tab': activeIndex,
                                 '--tab-width': activeIndex === 5 ? '25%' : '35%'

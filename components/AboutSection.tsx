@@ -2,6 +2,7 @@
 
 import { Reveal } from "./Reveal";
 import { ScrollRevealText } from "./ScrollRevealText";
+import { AboutCarousel } from "./AboutCarousel";
 
 export function AboutSection() {
     return (
@@ -17,7 +18,9 @@ export function AboutSection() {
 
                         {/* Mobile Only Video - Placed here to be between Label and Text */}
                         <div className="lg:hidden w-full h-auto">
-                            <div className="w-full aspect-[640/384] bg-black rounded-3xl" />
+                            <div className="w-full aspect-[640/384]">
+                                <AboutCarousel enableParallax />
+                            </div>
                         </div>
 
                         <div className="text-2xl md:text-3xl lg:text-4xl leading-tight font-medium px-4 lg:px-0" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
@@ -30,7 +33,9 @@ export function AboutSection() {
                     {/* Use top-[25vh] to stick near visual center without overlapping previous section via restart/transform */}
                     <div className="hidden lg:block relative min-h-full">
                         <div className="sticky top-[25vh] w-full h-auto ml-auto lg:max-w-none">
-                            <div className="w-full aspect-[640/384] bg-black rounded-3xl" />
+                            <div className="w-full aspect-[640/384]">
+                                <AboutCarousel />
+                            </div>
                         </div>
                     </div>
 

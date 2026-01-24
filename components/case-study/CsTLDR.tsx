@@ -102,7 +102,7 @@ export function CsTLDR({ intro, cards }: TLDRProps) {
                         <motion.div
                             ref={cardsRef}
                             style={{ x }}
-                            className="flex gap-6 w-max px-0 md:px-0"
+                            className="flex gap-6 w-max px-0 md:px-0 pr-6 md:pr-0"
                         >
                             {/* Cards */}
                             {cards.map((card, index) => (

@@ -35,8 +35,17 @@ export function WorkCard({ project }: WorkCardProps) {
 
                 {/* Middle: Thumbnail (if present) - abstract placeholder if not */}
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-800">
-                    {/* If we had next/image here, we'd use it. For now, empty or basic placeholder logic */}
-                    {project.thumbnail ? (
+                    {/* Video Preview (Priority) */}
+                    {project.video ? (
+                        <video
+                            src={project.video}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover"
+                        />
+                    ) : project.thumbnail ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     ) : (

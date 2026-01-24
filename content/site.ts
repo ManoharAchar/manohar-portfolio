@@ -320,7 +320,7 @@ export const siteConfig: SiteConfig = {
             tags: ["AI/ML", "Data Viz", "Systems Design"],
             thumbnail: "/images/cl-dashboard.png", // Placeholder
             logo: "/images/cl-logo.png", // Placeholder
-            video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+            video: "/videos/cooperant_learning_lead.mp4",
             details: [
                 "Role: Product Designer (0→1) + Implementation",
                 "Scope: UX strategy, IA, interaction design, UI + design system, WordPress implementation, QA, handoff documentation",

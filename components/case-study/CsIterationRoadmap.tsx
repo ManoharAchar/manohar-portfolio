@@ -18,7 +18,9 @@ export function CsIterationRoadmap({ title, items }: IterationRoadmapProps) {
     });
 
     // Determine direction based on scroll (similar to ruler)
-    const x = useTransform(scrollYProgress, [0, 1], ["0px", "-200px"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]); // Move left
+    const dashY = useTransform(scrollYProgress, [0, 1], ["0px", "400px"]); // Move down (mobile)
+    const mobileRoadY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]); // Parallax for mobile road
 
     return (
         <section ref={sectionRef} className="relative w-full pt-0 pb-0 md:pt-32 md:pb-16 bg-[#DDD6CC] text-[#141414] overflow-hidden min-h-[550px] 2xl:min-h-[750px]">
@@ -110,16 +112,20 @@ export function CsIterationRoadmap({ title, items }: IterationRoadmapProps) {
             {/* Mobile Layout: Vertical Road Timeline (Flush Left) */}
             <div className="lg:hidden relative w-full mt-0 pb-0">
                 {/* The Vertical Road - Flush Left */}
-                <div className="absolute left-0 top-0 bottom-0 w-[64px] bg-[#242424]">
+                <motion.div
+                    className="absolute left-0 -top-[20%] -bottom-[20%] w-[64px] bg-[#242424]"
+                    style={{ y: mobileRoadY }}
+                >
                     {/* Center Dashed Line */}
-                    <div className="absolute left-1/2 top-0 bottom-0 w-[4px] -translate-x-1/2"
+                    <motion.div className="absolute left-1/2 top-0 bottom-0 w-[4px] -translate-x-1/2"
                         style={{
                             backgroundImage: 'linear-gradient(to bottom, #DDD6CC 50%, transparent 50%)',
                             backgroundSize: '4px 40px',
-                            opacity: 0.5
+                            opacity: 0.5,
+                            backgroundPositionY: dashY
                         }}
                     />
-                </div>
+                </motion.div>
 
                 {/* Content Items - Pushed right of road */}
                 <div className="flex flex-col gap-16 pl-[96px] pr-[5%] pt-24 pb-24">
