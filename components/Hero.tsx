@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { siteConfig } from "@/content/site";
 import { useScroll, useTransform, motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
+import { HeroPlaceholder } from "./HeroPlaceholder";
 
 export function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -140,15 +141,7 @@ export function Hero() {
                 >
                     {/* Placeholder for Video */}
                     <div className="absolute inset-0 bg-neutral-950 flex items-center justify-center overflow-hidden">
-                        <video
-                            className="w-full h-full object-cover opacity-80"
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                        >
-                            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
-                        </video>
+                        <HeroPlaceholder />
 
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div className="text-center transform transition-transform duration-500 hover:scale-110">

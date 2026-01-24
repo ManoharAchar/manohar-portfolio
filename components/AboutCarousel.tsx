@@ -61,6 +61,13 @@ export function AboutCarousel({ className, enableParallax = false }: { className
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
         >
+            {/* Hidden Pre-mount Container for Instant Loading */}
+            <div className="absolute inset-0 w-0 h-0 opacity-0 overflow-hidden pointer-events-none">
+                {IMAGES.map((img, idx) => (
+                    <img key={idx} src={img.src} alt="preload" loading="eager" />
+                ))}
+            </div>
+
             {/* Image Display */}
             <div className="absolute inset-0 w-full h-full">
                 <AnimatePresence mode="wait">
@@ -74,6 +81,7 @@ export function AboutCarousel({ className, enableParallax = false }: { className
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }} // Try 0 for instant switch visual, or stick to basically instant swap
                         transition={{ duration: 0 }} // Instant transition
+                        loading="eager" // Force eager load for current image too
                     />
                 </AnimatePresence>
             </div>

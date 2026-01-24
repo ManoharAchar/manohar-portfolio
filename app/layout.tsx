@@ -6,6 +6,7 @@ import { TopBar } from "@/components/TopBar";
 import { Footer } from "@/components/Footer";
 import { NavigationDock } from "@/components/NavigationDock";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { Preloader } from "@/components/Preloader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -49,6 +50,7 @@ export default function RootLayout({
           archivo.variable
         )}
       >
+        <Preloader />
         <SmoothScroll />
         <TopBar />
         <main id="main-content" className="flex-grow pt-24 min-h-screen">
