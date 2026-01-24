@@ -2,8 +2,9 @@
   <!-- Round Background -->
   <circle cx="50" cy="50" r="50" fill="#B56A3A" />
 
-  <!-- Lotus Group scaled and centered to fit inside the circle -->
-  <g transform="translate(15, 20) scale(0.7)">
+  <!-- Lotus Group scaled to 0.8 (Sweet spot between 0.7 and 0.9) -->
+  <!-- Centering calculation: Tx=10, Ty=16 -->
+  <g transform="translate(10, 16) scale(0.8)">
       <style>
         path {
           stroke: #F6F4EF; /* Cream/White for contrast on orange */
