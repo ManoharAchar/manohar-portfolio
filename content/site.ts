@@ -19,11 +19,6 @@ export type CaseStudySection =
         cards: { title: string; description: string; image: string }[];
     }
     | {
-        type: 'tldr';
-        intro: string;
-        cards: { title: string; description: string; image: string }[];
-    }
-    | {
         type: 'problem-context';
         intro: string;
         cards: { title: string; description: string }[];
