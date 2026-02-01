@@ -5,13 +5,17 @@ export type CaseStudySection =
         type: 'hero';
         image: string;
         title: string;
+        subtitle?: string;
         meta: { label: string; value: string }[];
         footnote?: string;
         liveUrl?: string;
+        ctaLabel?: string;
+        buttonColor?: string;
     }
     | {
         type: 'tldr';
         intro: string;
+        title?: string;
         cards: { title: string; description: string; image: string }[];
     }
     | {
@@ -33,9 +37,11 @@ export type CaseStudySection =
     | {
         type: 'approach';
         title: string;
-        image1: string; // low fidelity
-        image2: string; // high fidelity
-        steps: { title: string; description: string }[];
+        image1?: string; // low fidelity (optional for cards variant)
+        image2?: string; // high fidelity (optional for cards variant)
+        variant?: 'default' | 'cards';
+        backgroundColor?: string;
+        steps: { title: string; description: string; icon?: string }[];
     }
     | {
         type: 'key-decisions';
@@ -47,6 +53,7 @@ export type CaseStudySection =
             description: string;
             rationale: string | string[];
             tradeoff: string;
+            evidence?: string;
             backgroundColor?: string;
         }[];
     }
@@ -112,7 +119,43 @@ export type CaseStudySection =
         type: 'reflection';
         title: string;
         heading: string;
-        content: { text: string; strong?: boolean }[];
+        content?: { text: string; strong?: boolean }[];
+        items?: { label: string; text: string }[];
+    }
+    | {
+        type: 'design-execution';
+        title: string;
+        variant?: 'dark' | 'light';
+        intro?: string;
+        items: {
+            title: string;
+            description: string;
+            image?: string; // Optional path, if missing render placeholder
+        }[];
+    }
+    | {
+        type: 'testing-results';
+        title: string;
+        rounds: {
+            id: string;
+            title: string;
+            subtitle: string;
+            stats: {
+                label: string;
+                value: string;
+                description: string;
+            }[];
+        }[];
+    }
+    | {
+        type: 'iteration-gallery';
+        title: string;
+        items: {
+            title: string;
+            whatWeSaw: string;
+            whatIChanged: string;
+            image: string; // Placeholder
+        }[];
     }
     | { type: 'text'; content: string[] };
 
@@ -341,7 +384,8 @@ export const siteConfig: SiteConfig = {
                         { label: "Timeline", value: "~4 months" }
                     ],
                     footnote: "* Continuing Education Units (CEUs) are credits that measure participation in professional development programs.",
-                    liveUrl: "https://cooperantlearning.com"
+                    liveUrl: "https://cooperantlearning.com",
+                    buttonColor: "#A29BFE"
                 },
                 {
                     type: 'tldr',
@@ -670,6 +714,380 @@ export const siteConfig: SiteConfig = {
                         { text: "Full-stack UX (" },
                         { text: "strategy → system → UI → real implementation", strong: true },
                         { text: ") on a platform where trust, clarity, and flow directly impact whether users can earn credit and prove it professionally." }
+                    ]
+                }
+            ],
+            nextProject: {
+                slug: "senior-mode-android",
+                title: "Senior Mode for Android",
+                role: "Product Designer",
+                timeframe: "2024",
+                summary: "Simplifying Android for seniors.",
+                problem: "Android interface is too complex for seniors.",
+                outcome: "Increased adoption by seniors.",
+                tags: ["Android", "Accessibility", "Research"],
+                thumbnail: "/images/senior-mode-thumb.png", // Placeholder
+                logo: "/images/senior-mode-logo.png", // Placeholder
+                video: "", // Placeholder
+                details: [
+                    "Role: Product Designer",
+                    "Scope: UX/UI",
+                    "Timeline: 2024"
+                ],
+                content: [],
+            },
+        },
+        {
+            slug: "senior-mode-android",
+            title: "Senior Mode for Android",
+            role: "Product Designer",
+            timeframe: "2024",
+            summary: "Simplifying Android for seniors.",
+            problem: "Android interface is too complex for seniors.",
+            outcome: "Increased adoption by seniors.",
+            tags: ["Android", "Accessibility", "Research"],
+            thumbnail: "/images/senior-mode-thumb.png", // Placeholder
+            logo: "/images/senior-mode-logo.png", // Placeholder
+            video: "", // Placeholder
+            details: [
+                "Role: Product Designer",
+                "Scope: UX/UI",
+                "Timeline: 2024"
+            ],
+            content: [
+                {
+                    type: 'hero',
+                    image: "/images/SeniorMode_Hero.png", // Placeholder
+                    title: "Senior Mode for Android",
+                    subtitle: "Make critical phone state obvious + enable one-tap recovery when accidental setting changes happen.",
+                    meta: [
+                        { label: "Role", value: "Product Designer (self-initiated) — end-to-end" },
+                        { label: "Scope", value: "Research + interaction/UI + prototyping + usability testing + iteration" },
+                        { label: "Platform", value: "Android (concept) + Figma interactive prototype" },
+                        { label: "Primary users", value: "Seniors (60–<80) + caregivers (adult children / helpers)" },
+                        { label: "Timeline", value: "~1.5 months" },
+                        { label: "Testing", value: "Remote moderated usability testing" },
+                        { label: "Participants", value: "10 seniors + 8 caregivers (India)" }
+                    ],
+                    liveUrl: "#", // Placeholder as requested (link: none) but label needed
+                    ctaLabel: "OPEN PROTOTYPE",
+                    buttonColor: "#C58F9D"
+                },
+                {
+                    type: 'tldr',
+                    title: "Outcome Summary (0–20 seconds)",
+                    intro: "Senior Mode simplifies the smartphone experience to reduce anxiety and support load, validated through iterative testing with seniors and caregivers.",
+                    cards: [
+                        {
+                            title: "Prevent accidental settings changes from turning into “my phone is broken” moments.",
+                            description: "Senior Mode makes critical device state obvious (ringer / silent / connectivity basics) and reduces the chance of accidental changes causing stress or missed calls.",
+                            image: "/images/OutcomeCard_01.png" // Placeholder
+                        },
+                        {
+                            title: "Less stress for seniors. Less panic + support load for caregivers.",
+                            description: "Seniors regain confidence because the phone behaves predictably. Caregivers get a faster way to restore the intended setup when something goes off-track.",
+                            image: "/images/OutcomeCard_02.png" // Placeholder
+                        },
+                        {
+                            title: "Validated with seniors + caregivers, then iterated and re-tested.",
+                            description: "Remote moderated usability testing with 10 seniors + 8 caregivers (India), followed by a V2 iteration and a micro-test to check if the fixes improved the earlier issues.",
+                            image: "/images/OutcomeCard_03.png" // Placeholder
+                        }
+                    ]
+                },
+                {
+                    type: 'problem-context',
+                    intro: "I kept seeing the same pattern (including in my own family): a senior accidentally changes a setting (often Silent, sometimes Wi-Fi, brightness, or rotate) and then everything spirals.",
+                    cards: [
+                        {
+                            title: "Senior experience",
+                            description: "“Something is wrong. I don’t want to touch it.” Confusion turns into paralysis."
+                        },
+                        {
+                            title: "Caregiver experience",
+                            description: "Missed calls, anxiety, repeated troubleshooting, and time lost doing remote \"phone support.\""
+                        },
+                        {
+                            title: "Root issue",
+                            description: "Phones hide critical device state behind gestures and subtle UI cues. Seniors don’t fail because they’re “not smart.” They fail because the system doesn’t make state and recovery obvious."
+                        }
+                    ],
+                    footer: "Design goal: Reduce communication blackouts by making phone state (especially sound) instantly legible for seniors and enabling fast, transparent caregiver recovery when something breaks."
+                },
+                {
+                    type: 'constraints',
+                    title: "Constraints",
+                    cards: [
+                        {
+                            title: "Recruiting & scheduling:",
+                            description: "Seniors + caregivers had to be available together, remotely."
+                        },
+                        {
+                            title: "Testing environment:",
+                            description: "Remote moderated sessions require careful neutrality (avoid leading, but prevent drop-offs)."
+                        },
+                        {
+                            title: "Device realism:",
+                            description: "Prototype testing via Figma (Mirror/prototype) instead of a real Android build."
+                        },
+                        {
+                            title: "Audience limits:",
+                            description: "Participants were India-based (strong relevance, but still a sample limitation)."
+                        },
+                        {
+                            title: "Ethics:",
+                            description: "Verbal consent; no personally identifiable info captured (participant IDs only)."
+                        }
+                    ]
+                },
+                {
+                    type: 'approach',
+                    title: "Approach",
+                    variant: 'cards',
+                    backgroundColor: '#C58F9D',
+                    steps: [
+                        {
+                            title: "Scoped the opportunity",
+                            description: "Reviewed comparable solutions and sketched early flows to define what the prototype must prove.",
+                            icon: "ScanSearch"
+                        },
+                        {
+                            title: "Built the prototype",
+                            description: "Created a fully wired high-fidelity flow for both seniors and caregivers.",
+                            icon: "Layers"
+                        },
+                        {
+                            title: "Designed the study",
+                            description: "Defined 6 tasks, success criteria, and metrics (pass/fail, time, errors, confidence/trust/effort).",
+                            icon: "ClipboardList"
+                        },
+                        {
+                            title: "Ran remote sessions",
+                            description: "Tested with 10 seniors and 8 caregivers, rotating task order to reduce learning bias.",
+                            icon: "Video"
+                        },
+                        {
+                            title: "Iterated and re-validated",
+                            description: "Synthesized results, shipped a targeted V2, and micro-tested the riskiest flow to confirm improvement.",
+                            icon: "RefreshCw"
+                        }
+                    ]
+                },
+                {
+                    type: 'key-decisions',
+                    title: "Key Decisions",
+                    decisions: [
+                        {
+                            id: "01",
+                            title: "Make sound state explicit on “Home” and “Controls”",
+                            image: "/images/KeyDecision_01.png", // Placeholder
+                            description: "Surface “Phone will ring / Phone is silent” as readable language, not subtle UI state.",
+                            rationale: "V1 showed seniors struggled with state interpretation, especially around Silent/Ringing—your core JTBD.",
+                            tradeoff: "Uses premium screen space; slightly less “clean” than stock Android minimalism.",
+                            evidence: "V1 blocker task (S2) dropped to 70% pass and drove most assistance; V2 micro-test restored state recognition to 100% on key surfaces."
+                        },
+                        {
+                            id: "02",
+                            title: "Fix discoverability: add an explicit “Controls” entry (not swipe-only)",
+                            image: "/images/KeyDecision_02.png", // Placeholder
+                            backgroundColor: "#242424",
+                            description: "Provide a visible Controls entry on Home so seniors aren’t required to discover a gesture.",
+                            rationale: "Hidden interactions (swipe/scroll) caused avoidable friction in V1.",
+                            tradeoff: "More UI elements competing for attention; Home must stay calm.",
+                            evidence: "V2 micro-test showed discoverability improved, but some users still tried Search/top status first—so the Controls entry is necessary, not sufficient."
+                        },
+                        {
+                            id: "03",
+                            title: "Caregiver fixes apply instantly (for “safe” fixes), with audit + undo",
+                            image: "/images/KeyDecision_03.png", // Placeholder
+                            description: "Allow caregivers to apply fixes immediately for low-risk changes (ringer/brightness), and log it on both devices.",
+                            rationale: "The caregiver’s job is rapid recovery; delays increase stress and missed communication.",
+                            tradeoff: "Reduces senior autonomy in the moment—so trust and reversibility must be explicit.",
+                            evidence: "Testing synthesis recommends instant apply for safe fixes and adding “what will change” clarity + undo window cues."
+                        }
+                    ]
+                },
+                {
+                    type: 'design-execution',
+                    title: "Design strategy",
+                    items: [
+                        {
+                            title: "Make the phone’s status obvious",
+                            description: "Seniors shouldn’t have to interpret toggles—critical state like “Will my phone ring?” must be visible in plain language."
+                        },
+                        {
+                            title: "Offer one clear next step",
+                            description: "When something goes wrong, the UI should present a single, safe action (fix it now / request help), not multiple paths."
+                        },
+                        {
+                            title: "Build trust with transparency",
+                            description: "Caregiver help should never feel “mysterious”—show what changed, who changed it, and give the user control (log / disable help)."
+                        }
+                    ]
+                },
+                {
+                    type: 'testing-results',
+                    title: "What the testing proved (and where it broke)",
+                    rounds: [
+                        {
+                            id: "Round 1",
+                            title: "Round 1",
+                            subtitle: "(full usability)",
+                            stats: [
+                                {
+                                    label: "Seniors",
+                                    value: "86.7%",
+                                    description: "Overall pass rate across senior tasks, but one blocker dominated: fixing Silent via Quick Controls (S2)."
+                                },
+                                {
+                                    label: "Caregivers",
+                                    value: "100%",
+                                    description: "pass rate across caregiver tasks; confidence ~5.6/7."
+                                },
+                                {
+                                    label: "Segmentation",
+                                    value: "25%",
+                                    description: "Low device-familiarity seniors had 25% pass on S2 and 100% required help—this is the core risk segment you’re designing for."
+                                }
+                            ]
+                        },
+                        {
+                            id: "Round 2",
+                            title: "Round 2",
+                            subtitle: "(Targeted micro-validation)",
+                            stats: [
+                                {
+                                    label: "Seniors",
+                                    value: "100%",
+                                    description: "State recognition: 100% on Home and Controls surfaces"
+                                },
+                                {
+                                    label: "Caregivers",
+                                    value: "100%",
+                                    description: "Fix-path speed: 100% success; median 20.5s to indicate the right action area (Controls) and median 13.5s to locate Sound in Quick Controls."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    type: 'design-execution',
+                    title: 'Trust, safety, and ethics',
+                    variant: 'light',
+                    intro: 'Because fixes can apply instantly (without senior consent in-the-moment), the design must communicate control and accountability:',
+                    items: [
+                        {
+                            title: 'Kill switch / disable remote help',
+                            description: '(with authentication) so seniors can opt out at any time.',
+                            image: '' // Placeholder
+                        },
+                        {
+                            title: 'What will change',
+                            description: 'preview for higher-impact actions (recommended), while keeping instant apply for safe fixes.',
+                            image: '' // Placeholder
+                        },
+                        {
+                            title: 'Audit trail on both devices + visible',
+                            description: '"what the senior will see" after applying a fix.',
+                            image: '' // Placeholder
+                        }
+                    ]
+                },
+                {
+                    type: 'what-i-shipped',
+                    title: "What I built",
+                    items: [
+                        {
+                            id: "01",
+                            label: "Senior experience",
+                            description: [
+                                "At-a-glance “Phone will ring / Phone is silent” status",
+                                "Explicit Controls entry (no hidden gestures)",
+                                "Simplified settings surface",
+                                "Clear Request help → Sent confirmation flow"
+                            ],
+                            media: "placeholder"
+                        },
+                        {
+                            id: "02",
+                            label: "Caregiver experience",
+                            description: [
+                                "Alerts → Apply fix → Success flow for fast recovery",
+                                "History view so caregivers can verify what changed and when"
+                            ],
+                            media: "placeholder"
+                        },
+                        {
+                            id: "03",
+                            label: "Trust + safety layer",
+                            description: [
+                                "Scoped permissions & visible change feedback on the senior device",
+                                "Audit trail & undo/revert capabilities",
+                                "Senior-side kill switch to disable caregiver assistance"
+                            ],
+                            media: "placeholder"
+                        },
+                        {
+                            id: "04",
+                            label: "Edge-case handling",
+                            description: [
+                                "Offline/queued fixes with clear status messaging so the system stays understandable when connectivity is unreliable"
+                            ],
+                            media: "placeholder"
+                        },
+                        {
+                            id: "05",
+                            label: "Evidence package",
+                            description: [
+                                "Remote moderated testing kit (tasks + operational metrics + rating scales)",
+                                "Anonymized datasets & synthesis",
+                                "V1 → V2 iteration set grounded in observed breakdowns"
+                            ],
+                            media: "placeholder"
+                        }
+                    ]
+                },
+                {
+                    type: 'iteration-gallery',
+                    title: "Iteration",
+                    items: [
+                        {
+                            title: "Made “Will my phone ring?” impossible to miss.",
+                            whatWeSaw: "Seniors glanced at the top chips but still weren’t confident about sound state—and didn’t know where to go to fix it.",
+                            whatIChanged: "Replaced subtle chips with a plain-language status tile (“Phone will ring / Phone is silent”) and added an explicit Controls entry on Home.",
+                            image: "" // Placeholder
+                        },
+                        {
+                            title: "Removed swipe-only navigation and surfaced the “next step.”",
+                            whatWeSaw: "Swipe-based discovery and below-the-fold controls caused hesitation (especially when users didn’t expect to scroll).",
+                            whatIChanged: "Introduced a clearer “Controls” affordance and simplified the surface so the primary actions feel immediately tappable.",
+                            image: "" // Placeholder
+                        },
+                        {
+                            title: "Turned Sound into a single obvious action (with reassurance).",
+                            whatWeSaw: "Users could find Sound, but state + intent were still easy to misread (“Which one is active?” “Did it actually change?”).",
+                            whatIChanged: "Made Sound label-first (“Phone will ring”), added Test ring, and clarified the safety behavior (silent auto-reverts + brightness protection + “Restore Senior defaults”).",
+                            image: "" // Placeholder
+                        }
+                    ]
+                },
+                {
+                    type: 'reflection',
+                    title: "Reflection",
+                    heading: "",
+                    items: [
+                        {
+                            label: "What I learned",
+                            text: "Older adults don’t struggle with “complexity” as much as invisible state and hidden interactions—designing for them means making status and next steps explicit."
+                        },
+                        {
+                            label: "What I’d do differently",
+                            text: "I’d plan a baseline comparison on stock Android from day one and capture more structured observational notes per task (not just scores) to strengthen the story."
+                        },
+                        {
+                            label: "What’s next",
+                            text: "Turn the concept into a lightweight spec + prototype package for an Android team (permissions model, audit/log requirements, edge cases), and validate with a slightly larger sample across device familiarity levels."
+                        }
                     ]
                 }
             ],

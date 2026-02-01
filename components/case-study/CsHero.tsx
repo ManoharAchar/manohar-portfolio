@@ -8,7 +8,7 @@ import { Reveal } from "@/components/Reveal";
 // Extract the specific Hero type for props
 type HeroProps = Extract<CaseStudySection, { type: 'hero' }>;
 
-export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
+export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLabel, buttonColor }: HeroProps) {
     return (
         <section className="relative w-full bg-[#0A0A0A] text-white pt-8 pb-12 md:pb-16">
             <div className="w-[90%] md:w-[85%] max-w-[1440px] mx-auto">
@@ -36,6 +36,13 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
                                 {title}
                             </h1>
                         </Reveal>
+                        {subtitle && (
+                            <Reveal delay={0.1}>
+                                <p className="text-lg md:text-2xl lg:text-3xl font-normal leading-[1.3] tracking-normal text-white mt-4 md:mt-6" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                                    {subtitle}
+                                </p>
+                            </Reveal>
+                        )}
                     </div>
 
                     {/* Live Site Button - Desktop: Bottom Right, Mobile: Hidden (shown below) */}
@@ -44,9 +51,9 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
                             <RotatingButton
                                 href={liveUrl}
                                 topText="CLICK HERE"
-                                bottomText="GO TO LIVE SITE"
+                                bottomText={ctaLabel || "GO TO LIVE SITE"}
                                 className="w-28 h-28"
-                                color="#A29BFE"
+                                color={buttonColor || "#A29BFE"}
                             />
                         </div>
                     )}
@@ -58,9 +65,9 @@ export function CsHero({ title, image, meta, footnote, liveUrl }: HeroProps) {
                         <RotatingButton
                             href={liveUrl}
                             topText="CLICK HERE"
-                            bottomText="GO TO LIVE SITE"
+                            bottomText={ctaLabel || "GO TO LIVE SITE"}
                             className="w-20 h-20"
-                            color="#A29BFE"
+                            color={buttonColor || "#A29BFE"}
                         />
                     </div>
                 )}

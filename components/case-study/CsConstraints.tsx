@@ -21,18 +21,17 @@ export function CsConstraints({ title, cards }: ConstraintsProps) {
     }, []);
 
     return (
-        <section className="bg-[#0A0A0A] text-white pt-24 pb-16 md:py-32 mb-24 overflow-hidden">
+        <section className="bg-[#0A0A0A] text-white pt-24 pb-16 md:py-32 overflow-hidden">
             <div className="w-full md:w-[85%] max-w-[1440px] mx-auto">
 
                 {/* Header */}
-                <div className="mb-8 max-w-4xl w-[90%] md:w-full mx-auto md:mx-0 flex items-end justify-between">
+                <div className="mb-8 w-[90%] md:w-full mx-auto md:mx-0 flex items-end justify-between">
                     <Reveal>
                         <span className="text-sm font-bold uppercase tracking-wider text-white block" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                             {title}
                         </span>
                     </Reveal>
-                    {/* Interaction Prompt - Desktop Only, aligned with title */}
-                    <Reveal delay={0.2} className="hidden md:block">
+                    <Reveal delay={0.2} width="100%" className="hidden md:block">
                         <p className="text-sm text-neutral-500 font-medium tracking-wide text-right">
                             Try hovering to fight constraints
                         </p>

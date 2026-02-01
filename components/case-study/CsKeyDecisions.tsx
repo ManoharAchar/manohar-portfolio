@@ -13,7 +13,7 @@ export function CsKeyDecisions({ title, decisions }: KeyDecisionsProps) {
 
                 {/* Section Header */}
                 <Reveal>
-                    <h2 className="text-sm font-bold uppercase tracking-wider text-black mb-8 md:mb-16 block" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                    <h2 className="text-sm font-bold uppercase tracking-wider text-black mb-8 block" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                         {title}
                     </h2>
                 </Reveal>
@@ -70,7 +70,7 @@ export function CsKeyDecisions({ title, decisions }: KeyDecisionsProps) {
 
                                         {/* Rationale */}
                                         <div>
-                                            <h4 className="text-xs md:text-sm font-bold text-white mb-2 md:mb-4 uppercase tracking-wide">Rationale</h4>
+                                            <h4 className="text-xs md:text-sm font-bold text-white mb-1 md:mb-2 uppercase tracking-wide">Rationale</h4>
                                             {Array.isArray(decision.rationale) ? (
                                                 <ul className="space-y-2 md:space-y-3">
                                                     {decision.rationale.map((point, i) => (
@@ -89,11 +89,21 @@ export function CsKeyDecisions({ title, decisions }: KeyDecisionsProps) {
 
                                         {/* Tradeoff */}
                                         <div>
-                                            <h4 className="text-xs md:text-sm font-bold text-white mb-2 md:mb-4 uppercase tracking-wide">Tradeoff</h4>
+                                            <h4 className="text-xs md:text-sm font-bold text-white mb-1 md:mb-2 uppercase tracking-wide">Tradeoff</h4>
                                             <p className="text-neutral-400 leading-relaxed text-sm md:text-base">
                                                 {decision.tradeoff}
                                             </p>
                                         </div>
+
+                                        {/* Evidence */}
+                                        {decision.evidence && (
+                                            <div>
+                                                <h4 className="text-xs md:text-sm font-bold text-white mb-1 md:mb-2 uppercase tracking-wide">Evidence</h4>
+                                                <p className="text-neutral-400 leading-relaxed text-sm md:text-base">
+                                                    {decision.evidence}
+                                                </p>
+                                            </div>
+                                        )}
 
                                     </div>
                                 </div>

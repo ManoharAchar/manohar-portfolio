@@ -10,7 +10,7 @@ import { MediaRenderer } from "@/components/MediaRenderer";
 // Extract the specific TLDR type for props
 type TLDRProps = Extract<CaseStudySection, { type: 'tldr' }>;
 
-export function CsTLDR({ intro, cards }: TLDRProps) {
+export function CsTLDR({ intro, cards, title }: TLDRProps) {
     const targetRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<HTMLDivElement>(null);
     const [scrollRange, setScrollRange] = useState(0);
@@ -85,7 +85,7 @@ export function CsTLDR({ intro, cards }: TLDRProps) {
                     <div className="w-[90%] md:w-full md:max-w-[75%] mx-auto md:mx-0 mb-8 shrink-0">
                         <Reveal>
                             <span className="text-sm font-bold uppercase tracking-wider text-white mb-4 block" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                                TL;DR (0–20 seconds)
+                                {title || "TL;DR (0–20 seconds)"}
                             </span>
                         </Reveal>
                         <Reveal delay={0.2}>

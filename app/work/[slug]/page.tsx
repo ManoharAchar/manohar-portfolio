@@ -14,7 +14,10 @@ import { CsMeasurementPlan } from "@/components/case-study/CsMeasurementPlan";
 import { CsChallenges } from "@/components/case-study/CsChallenges";
 import { CsCollaboration } from "@/components/case-study/CsCollaboration";
 import { CsIterationRoadmap } from "@/components/case-study/CsIterationRoadmap";
+import { CsIterationGallery } from "@/components/case-study/CsIterationGallery";
 import { CsReflection } from '@/components/case-study/CsReflection';
+import { CsDesignExecution } from "@/components/case-study/CsDesignExecution";
+import { CsTestingResults } from "@/components/case-study/CsTestingResults";
 
 
 interface Props {
@@ -97,8 +100,17 @@ export default async function CaseStudyPage({ params }: Props) {
                     case 'iteration-roadmap':
                         return <CsIterationRoadmap key={index} {...section} />;
 
+                    case 'iteration-gallery':
+                        return <CsIterationGallery key={index} {...section} />;
+
                     case 'reflection':
                         return <CsReflection key={index} {...section} />;
+
+                    case 'design-execution':
+                        return <CsDesignExecution key={index} {...section} />;
+
+                    case 'testing-results':
+                        return <CsTestingResults key={index} {...section} />;
 
                     // Future sections will be added here
                     case 'text':

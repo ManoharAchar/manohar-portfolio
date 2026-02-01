@@ -32,17 +32,17 @@ export function RotatingButton({
                 <div className="absolute inset-0 w-full h-full animate-[spin_10s_linear_infinite] group-hover:[animation-play-state:paused]">
                     <svg viewBox="0 0 100 100" className="w-full h-full">
                         <defs>
-                            {/* Path going Clockwise for Top Text - Radius 34 (moved inward to match bottom) */}
-                            <path id="pathTop" d="M 16, 50 a 34,34 0 1,1 68,0" fill="none" />
-                            {/* Path going Counter-Clockwise for Bottom Text - Radius 40 */}
-                            <path id="pathBottom" d="M 10, 50 a 40,40 0 0,0 80,0" fill="none" />
+                            {/* Path going Clockwise for Top Text - Radius 37 */}
+                            <path id="pathTop" d="M 13, 50 a 37,37 0 1,1 74,0" fill="none" />
+                            {/* Path going Counter-Clockwise for Bottom Text - Radius 37 */}
+                            <path id="pathBottom" d="M 13, 50 a 37,37 0 0,0 74,0" fill="none" />
                         </defs>
-                        <text fontSize="12.5" fontWeight="bold" fill="white" letterSpacing="1" style={{ fontFamily: 'var(--font-archivo)' }} dominantBaseline="middle">
+                        <text fontSize="11.25" fontWeight="bold" fill="white" letterSpacing="1" style={{ fontFamily: 'var(--font-archivo)' }} dominantBaseline="middle">
                             <textPath href="#pathTop" startOffset="50%" textAnchor="middle">
                                 {topText}
                             </textPath>
                         </text>
-                        <text fontSize="12.5" fontWeight="bold" fill="white" letterSpacing="1" style={{ fontFamily: 'var(--font-archivo)' }} dominantBaseline="middle">
+                        <text fontSize="11.25" fontWeight="bold" fill="white" letterSpacing="1" style={{ fontFamily: 'var(--font-archivo)' }} dominantBaseline="middle">
                             <textPath href="#pathBottom" startOffset="50%" textAnchor="middle">
                                 {bottomText}
                             </textPath>

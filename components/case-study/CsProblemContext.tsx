@@ -13,7 +13,7 @@ export function CsProblemContext({ intro, cards, footer }: ProblemContextProps) 
                 {/* Intro Section */}
                 <div className="w-full md:max-w-[75%] mb-12">
                     <Reveal>
-                        <span className="text-sm font-bold uppercase tracking-wider text-black mb-6 block" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                        <span className="text-sm font-bold uppercase tracking-wider text-black mb-4 block" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                             Problem & context
                         </span>
                     </Reveal>
@@ -32,10 +32,10 @@ export function CsProblemContext({ intro, cards, footer }: ProblemContextProps) 
                             delay={0.2 + (index * 0.1)}
                             className="bg-[#E6E2D6] rounded-[24px] p-8 md:p-10 flex flex-col justify-start h-full min-h-[224px]"
                         >
-                            <h3 className="text-xl md:text-2xl font-bold mb-2 leading-tight" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                            <h3 className="text-2xl md:text-3xl font-bold mb-2 leading-tight" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                 {card.title}
                             </h3>
-                            <p className="text-[#555555] text-xl md:text-2xl font-medium leading-relaxed" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                            <p className="text-[#555555] text-xl md:text-2xl font-medium leading-[1.46]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                 {card.description}
                             </p>
                         </Reveal>
