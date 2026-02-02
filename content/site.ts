@@ -256,17 +256,17 @@ export const siteConfig: SiteConfig = {
     },
     header: {
         location: {
-            label: "U.S. based",
-            value: "Open to relocate",
+            label: "0→1 Product Shipper",
+            value: "From ambiguity → shipped v1",
             timeZone: "America/New_York",
         },
         currentRole: {
-            label: "Masters in",
-            value: "Human-Centered Design",
+            label: "Systems-First Designer",
+            value: "States, scale, consistency",
         },
         availability: {
-            label: "Open to roles",
-            value: "Graduating April 2026",
+            label: "Research-Led Decisions",
+            value: "Evidence → tradeoffs → UI",
         },
         cta: {
             label: "Get in touch",
@@ -742,7 +742,7 @@ export const siteConfig: SiteConfig = {
             outcome: "Increased adoption by seniors.",
             tags: ["Android", "Accessibility", "Research"],
             thumbnail: "/images/senior-mode-thumb.png", // Placeholder
-            logo: "/images/senior-mode-logo.png", // Placeholder
+            logo: "/images/senior-mode-logo.png",
             video: "", // Placeholder
             details: [
                 "Role: Product Designer",
@@ -810,31 +810,24 @@ export const siteConfig: SiteConfig = {
                     footer: "Design goal: Reduce communication blackouts by making phone state (especially sound) instantly legible for seniors and enabling fast, transparent caregiver recovery when something breaks."
                 },
                 {
-                    type: 'constraints',
-                    title: "Constraints",
-                    cards: [
+                    type: 'design-execution',
+                    title: "Design strategy",
+                    items: [
                         {
-                            title: "Recruiting & scheduling:",
-                            description: "Seniors + caregivers had to be available together, remotely."
+                            title: "Make the phone’s status obvious",
+                            description: "Seniors shouldn’t have to interpret toggles—critical state like “Will my phone ring?” must be visible in plain language."
                         },
                         {
-                            title: "Testing environment:",
-                            description: "Remote moderated sessions require careful neutrality (avoid leading, but prevent drop-offs)."
+                            title: "Offer one clear next step",
+                            description: "When something goes wrong, the UI should present a single, safe action (fix it now / request help), not multiple paths."
                         },
                         {
-                            title: "Device realism:",
-                            description: "Prototype testing via Figma (Mirror/prototype) instead of a real Android build."
-                        },
-                        {
-                            title: "Audience limits:",
-                            description: "Participants were India-based (strong relevance, but still a sample limitation)."
-                        },
-                        {
-                            title: "Ethics:",
-                            description: "Verbal consent; no personally identifiable info captured (participant IDs only)."
+                            title: "Build trust with transparency",
+                            description: "Caregiver help should never feel “mysterious”—show what changed, who changed it, and give the user control (log / disable help)."
                         }
                     ]
                 },
+
                 {
                     type: 'approach',
                     title: "Approach",
@@ -902,24 +895,7 @@ export const siteConfig: SiteConfig = {
                         }
                     ]
                 },
-                {
-                    type: 'design-execution',
-                    title: "Design strategy",
-                    items: [
-                        {
-                            title: "Make the phone’s status obvious",
-                            description: "Seniors shouldn’t have to interpret toggles—critical state like “Will my phone ring?” must be visible in plain language."
-                        },
-                        {
-                            title: "Offer one clear next step",
-                            description: "When something goes wrong, the UI should present a single, safe action (fix it now / request help), not multiple paths."
-                        },
-                        {
-                            title: "Build trust with transparency",
-                            description: "Caregiver help should never feel “mysterious”—show what changed, who changed it, and give the user control (log / disable help)."
-                        }
-                    ]
-                },
+
                 {
                     type: 'testing-results',
                     title: "What the testing proved (and where it broke)",
@@ -962,6 +938,56 @@ export const siteConfig: SiteConfig = {
                                     description: "Fix-path speed: 100% success; median 20.5s to indicate the right action area (Controls) and median 13.5s to locate Sound in Quick Controls."
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    type: 'iteration-gallery',
+                    title: "Iteration",
+                    items: [
+                        {
+                            title: "Made “Will my phone ring?” impossible to miss.",
+                            whatWeSaw: "Seniors glanced at the top chips but still weren’t confident about sound state—and didn’t know where to go to fix it.",
+                            whatIChanged: "Replaced subtle chips with a plain-language status tile (“Phone will ring / Phone is silent”) and added an explicit Controls entry on Home.",
+                            image: "" // Placeholder
+                        },
+                        {
+                            title: "Removed swipe-only navigation and surfaced the “next step.”",
+                            whatWeSaw: "Swipe-based discovery and below-the-fold controls caused hesitation (especially when users didn’t expect to scroll).",
+                            whatIChanged: "Introduced a clearer “Controls” affordance and simplified the surface so the primary actions feel immediately tappable.",
+                            image: "" // Placeholder
+                        },
+                        {
+                            title: "Turned Sound into a single obvious action (with reassurance).",
+                            whatWeSaw: "Users could find Sound, but state + intent were still easy to misread (“Which one is active?” “Did it actually change?”).",
+                            whatIChanged: "Made Sound label-first (“Phone will ring”), added Test ring, and clarified the safety behavior (silent auto-reverts + brightness protection + “Restore Senior defaults”).",
+                            image: "" // Placeholder
+                        }
+                    ]
+                },
+                {
+                    type: 'constraints',
+                    title: "Constraints",
+                    cards: [
+                        {
+                            title: "Recruiting & scheduling:",
+                            description: "Seniors + caregivers had to be available together, remotely."
+                        },
+                        {
+                            title: "Testing environment:",
+                            description: "Remote moderated sessions require careful neutrality (avoid leading, but prevent drop-offs)."
+                        },
+                        {
+                            title: "Device realism:",
+                            description: "Prototype testing via Figma (Mirror/prototype) instead of a real Android build."
+                        },
+                        {
+                            title: "Audience limits:",
+                            description: "Participants were India-based (strong relevance, but still a sample limitation)."
+                        },
+                        {
+                            title: "Ethics:",
+                            description: "Verbal consent; no personally identifiable info captured (participant IDs only)."
                         }
                     ]
                 },
@@ -1042,30 +1068,7 @@ export const siteConfig: SiteConfig = {
                         }
                     ]
                 },
-                {
-                    type: 'iteration-gallery',
-                    title: "Iteration",
-                    items: [
-                        {
-                            title: "Made “Will my phone ring?” impossible to miss.",
-                            whatWeSaw: "Seniors glanced at the top chips but still weren’t confident about sound state—and didn’t know where to go to fix it.",
-                            whatIChanged: "Replaced subtle chips with a plain-language status tile (“Phone will ring / Phone is silent”) and added an explicit Controls entry on Home.",
-                            image: "" // Placeholder
-                        },
-                        {
-                            title: "Removed swipe-only navigation and surfaced the “next step.”",
-                            whatWeSaw: "Swipe-based discovery and below-the-fold controls caused hesitation (especially when users didn’t expect to scroll).",
-                            whatIChanged: "Introduced a clearer “Controls” affordance and simplified the surface so the primary actions feel immediately tappable.",
-                            image: "" // Placeholder
-                        },
-                        {
-                            title: "Turned Sound into a single obvious action (with reassurance).",
-                            whatWeSaw: "Users could find Sound, but state + intent were still easy to misread (“Which one is active?” “Did it actually change?”).",
-                            whatIChanged: "Made Sound label-first (“Phone will ring”), added Test ring, and clarified the safety behavior (silent auto-reverts + brightness protection + “Restore Senior defaults”).",
-                            image: "" // Placeholder
-                        }
-                    ]
-                },
+
                 {
                     type: 'reflection',
                     title: "Reflection",

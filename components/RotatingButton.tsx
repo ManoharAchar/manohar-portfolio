@@ -33,16 +33,16 @@ export function RotatingButton({
                     <svg viewBox="0 0 100 100" className="w-full h-full">
                         <defs>
                             {/* Path going Clockwise for Top Text - Radius 37 */}
-                            <path id="pathTop" d="M 13, 50 a 37,37 0 1,1 74,0" fill="none" />
-                            {/* Path going Counter-Clockwise for Bottom Text - Radius 37 */}
-                            <path id="pathBottom" d="M 13, 50 a 37,37 0 0,0 74,0" fill="none" />
+                            <path id="pathTop" d="M 13,50 A 37,37 0 1,1 87,50" fill="none" />
+                            {/* Path going Clockwise for Bottom Text - Radius 37 (Reverse direction) */}
+                            <path id="pathBottom" d="M 87,50 A 37,37 0 1,1 13,50" fill="none" />
                         </defs>
-                        <text fontSize="11.25" fontWeight="bold" fill="white" letterSpacing="1" style={{ fontFamily: 'var(--font-archivo)' }} dominantBaseline="middle">
+                        <text fontSize="11.25" fontWeight="bold" fill="white" letterSpacing="1" style={{ fontFamily: 'var(--font-archivo)' }}>
                             <textPath href="#pathTop" startOffset="50%" textAnchor="middle">
                                 {topText}
                             </textPath>
                         </text>
-                        <text fontSize="11.25" fontWeight="bold" fill="white" letterSpacing="1" style={{ fontFamily: 'var(--font-archivo)' }} dominantBaseline="middle">
+                        <text fontSize="11.25" fontWeight="bold" fill="white" letterSpacing="1" style={{ fontFamily: 'var(--font-archivo)' }}>
                             <textPath href="#pathBottom" startOffset="50%" textAnchor="middle">
                                 {bottomText}
                             </textPath>

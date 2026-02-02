@@ -53,7 +53,7 @@ export function WorkSection() {
                 </div>
 
                 {/* Main Container */}
-                <div className="relative bg-[#0A0A0A] rounded-3xl p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 h-auto lg:h-[660px] overflow-hidden">
+                <div className="relative bg-[#0A0A0A] rounded-3xl p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 h-auto lg:min-h-[660px] overflow-hidden">
 
                     {/* Desktop Sidebar Background Layer (Left 25%) */}
                     <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-[25%] bg-[#242424] rounded-r-3xl pointer-events-none" />
@@ -106,7 +106,7 @@ export function WorkSection() {
                     </div>
 
                     {/* Active Project Detail View - Right Panel */}
-                    <div className="lg:col-span-9 pt-0 flex flex-col relative order-1">
+                    <div className="lg:col-span-9 pt-0 lg:p-8 flex flex-col relative order-1">
 
                         <AnimatePresence mode="wait">
                             <motion.div

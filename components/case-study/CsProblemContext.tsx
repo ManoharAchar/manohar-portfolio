@@ -35,7 +35,7 @@ export function CsProblemContext({ intro, cards, footer }: ProblemContextProps) 
                             <h3 className="text-2xl md:text-3xl font-bold mb-2 leading-tight" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                 {card.title}
                             </h3>
-                            <p className="text-[#555555] text-xl md:text-2xl font-medium leading-[1.46]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                            <p className="text-[#555555] text-[19px] md:text-[23px] font-medium leading-[1.38]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                 {card.description}
                             </p>
                         </Reveal>

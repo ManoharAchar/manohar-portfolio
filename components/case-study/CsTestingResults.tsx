@@ -51,7 +51,7 @@ export function CsTestingResults({ title, rounds }: TestingResultsProps) {
                                     key={index}
                                     onClick={() => setActiveRoundIndex(index)}
                                     className={cn(
-                                        "p-8 text-left transition-all duration-300 relative flex-1 flex flex-col justify-center",
+                                        "p-8 text-left transition-all duration-300 relative flex-1 flex flex-col justify-center items-center",
                                         isActive
                                             ? "bg-[#C58F9D] text-white rounded-l-[32px] rounded-r-none translate-x-[2px]" // Push 2px to definitely overlap
                                             : cn(
@@ -63,12 +63,14 @@ export function CsTestingResults({ title, rounds }: TestingResultsProps) {
                                         marginRight: 0
                                     }}
                                 >
-                                    <span className={cn("text-3xl font-bold mb-3 block", isActive ? "text-white" : "text-[#141414]")} style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
-                                        {round.title}
-                                    </span>
-                                    <span className={cn("text-base font-bold", isActive ? "text-white/90" : "text-[#141414]/70")}>
-                                        {round.subtitle}
-                                    </span>
+                                    <div className="flex flex-col items-start text-left">
+                                        <span className={cn("text-3xl font-bold mb-3 block", isActive ? "text-white" : "text-[#141414]")} style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                                            {round.title}
+                                        </span>
+                                        <span className={cn("text-base font-bold max-w-[140px]", isActive ? "text-white/90" : "text-[#141414]/70")}>
+                                            {round.subtitle}
+                                        </span>
+                                    </div>
                                 </button>
                             );
                         })}
@@ -95,8 +97,9 @@ export function CsTestingResults({ title, rounds }: TestingResultsProps) {
                                     className="w-full"
                                 >
                                     {/* Mobile Only Header */}
-                                    <h3 className="text-white font-bold text-xl md:text-2xl mb-8 md:hidden">
-                                        {rounds[activeRoundIndex].title} <span className="font-normal opacity-70">({rounds[activeRoundIndex].subtitle})</span>
+                                    <h3 className="text-white font-bold text-xl md:text-2xl mb-8 md:hidden flex flex-col gap-1">
+                                        <span>{rounds[activeRoundIndex].title}</span>
+                                        <span className="font-normal opacity-70 text-lg">{rounds[activeRoundIndex].subtitle}</span>
                                     </h3>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
@@ -111,7 +114,7 @@ export function CsTestingResults({ title, rounds }: TestingResultsProps) {
                                                 >
                                                     {stat.value}
                                                 </span>
-                                                <p className="text-white/90 text-sm md:text-base leading-relaxed font-bold">
+                                                <p className="text-white/90 text-base md:text-lg leading-relaxed font-bold">
                                                     {stat.description}
                                                 </p>
                                             </div>

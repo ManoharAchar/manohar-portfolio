@@ -17,7 +17,7 @@ export function Footer() {
     const scale = 1.05;
 
     return (
-        <footer ref={containerRef} id="site-footer" className="relative w-full min-h-[400px] md:min-h-[600px] flex items-end md:items-center justify-center overflow-hidden bg-[#F6F4EF] pt-12 pb-24 md:py-32">
+        <footer ref={containerRef} id="site-footer" className="relative w-full min-h-[400px] md:min-h-[600px] flex items-end justify-center overflow-hidden bg-[#F6F4EF] pt-12 pb-4 md:pt-32 md:pb-6">
 
             {/* Background Image Layer */}
             <div className="absolute inset-0 z-0">

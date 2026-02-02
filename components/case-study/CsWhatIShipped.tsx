@@ -46,7 +46,7 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
     }, [isPaused, isMobile, items.length]);
 
     return (
-        <section className="bg-[#0A0A0A] text-white py-16 md:py-32 w-full overflow-hidden">
+        <section className="bg-[#0A0A0A] text-white pt-16 pb-16 md:py-32 w-full overflow-hidden">
             <div className="w-full md:w-[85%] max-w-[1440px] mx-auto">
                 <div className="flex items-end justify-between mb-8 px-6 md:px-0">
                     <Reveal>
@@ -103,14 +103,14 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
                 </div>
 
                 {/* Dynamic Content Area */}
-                <div className="h-[120px] md:h-[100px] mb-8 relative md:px-0">
+                <div className="h-[160px] md:h-[100px] mb-8 relative md:px-0">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeIndex}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.3 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
                             className="absolute top-0 left-0 w-full md:w-[var(--tab-width)] md:ml-[calc(var(--active-tab)*16.666%)] md:pr-4 transition-all duration-300 ease-in-out px-6 md:pl-0 md:pr-4"
                             style={{
                                 '--active-tab': activeIndex,

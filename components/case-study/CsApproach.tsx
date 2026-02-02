@@ -84,7 +84,7 @@ function CsApproachCards({ title, image1, image2, steps, backgroundColor = '#0A0
                     </div>
 
                     {/* Horizontal Scroll Track */}
-                    <div className="w-full md:w-[85%] max-w-[1440px] md:mx-auto mb-[200px] md:mb-0 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-8 md:pb-0">
+                    <div className="w-full md:w-[85%] max-w-[1440px] md:mx-auto mb-16 md:mb-0 overflow-x-auto overflow-y-hidden md:overflow-visible snap-x snap-mandatory no-scrollbar pb-8 md:pb-0">
                         <motion.div
                             ref={cardsRef}
                             style={{ x: (typeof window !== 'undefined' && window.innerWidth >= 768) ? x : 0 }}
@@ -93,14 +93,14 @@ function CsApproachCards({ title, image1, image2, steps, backgroundColor = '#0A0
                             {steps.map((step, index) => (
                                 <div
                                     key={index}
-                                    className="w-[70vw] md:w-[280px] 2xl:w-[400px] shrink-0 h-[320px] 2xl:h-[450px] snap-center"
+                                    className="w-[70vw] md:w-[280px] 2xl:w-[400px] shrink-0 h-[450px] snap-center"
                                 >
                                     <div className="bg-white rounded-[24px] p-6 2xl:p-8 h-full flex flex-col justify-between relative shadow-xl">
                                         <div className="flex flex-col gap-4">
-                                            <h3 className="text-2xl font-bold text-black leading-tight mb-4" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                                            <h3 className="text-2xl font-bold text-black leading-tight mb-4 min-h-[60px]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                                 {step.title}
                                             </h3>
-                                            <p className="text-black text-xl md:text-2xl leading-relaxed">
+                                            <p className="text-black text-xl md:text-2xl leading-relaxed md:leading-[1.3]">
                                                 {step.description}
                                             </p>
                                         </div>
@@ -110,7 +110,7 @@ function CsApproachCards({ title, image1, image2, steps, backgroundColor = '#0A0
                                         <div className="mt-4 2xl:mt-8 flex justify-between items-end">
                                             <Reveal delay={0.1 * index}>
                                                 <p
-                                                    className="font-bold text-6xl md:text-5xl 2xl:text-7xl leading-none opacity-100"
+                                                    className="font-bold text-6xl md:text-[64px] 2xl:text-7xl leading-none opacity-100"
                                                     style={{ color: bgColor }} // Use the section background color for the number
                                                 >
                                                     {index + 1}
@@ -122,7 +122,7 @@ function CsApproachCards({ title, image1, image2, steps, backgroundColor = '#0A0
                                                         const Icon = iconMap[step.icon!];
                                                         return (
                                                             <Icon
-                                                                className="w-12 h-12 md:w-16 md:h-16 opacity-40 mix-blend-multiply"
+                                                                className="w-12 h-12 md:w-[52px] md:h-[52px] opacity-40 mix-blend-multiply"
                                                                 style={{ color: bgColor }}
                                                                 strokeWidth={1.5}
                                                             />

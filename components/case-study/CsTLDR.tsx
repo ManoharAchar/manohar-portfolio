@@ -111,7 +111,7 @@ export function CsTLDR({ intro, cards, title }: TLDRProps) {
                                     // Widths: 90vw (Mobile), 55vw (Table), 36vw (Desktop) -> ~20% increase
                                     // Height: 60vh layout fix, min-h-600px to prevent text crowding on laptops
                                     // Height: Mobile reduced to 400px to prevent overflow with header
-                                    className="w-[80vw] md:w-[55vw] lg:w-[36vw] shrink-0 h-[50vh] min-h-[400px] md:h-[55vh] md:min-h-[500px]"
+                                    className="w-[80vw] md:w-[55vw] lg:w-[36vw] shrink-0 h-[60vh] min-h-[500px] md:h-[55vh] md:min-h-[500px]"
                                 >
                                     {/* Card Container: #242424, rounded-32px */}
                                     {/* Padding: pt-4 px-4 (16px), pb-4 (16px bottom gap - reduced 50%) */}
@@ -143,7 +143,7 @@ export function CsTLDR({ intro, cards, title }: TLDRProps) {
                                                 </h3>
                                             </Reveal>
                                             <Reveal delay={0.1}>
-                                                <p className="text-[#999999] text-base md:text-lg font-normal leading-relaxed overflow-y-auto" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                                                <p className="text-[#999999] text-base md:text-lg font-normal leading-snug md:leading-relaxed overflow-y-auto" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                                     {card.description}
                                                 </p>
                                             </Reveal>

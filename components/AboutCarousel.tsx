@@ -6,14 +6,14 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionV
 import { cn } from "@/lib/utils";
 
 const IMAGES = [
-    { src: "/images/about/01-headshot.png", label: "That's me! Say Hi!!" },
+    { src: "/images/about/01-headshot.jpg", label: "That's me! Say Hi!!" },
     { src: "/images/about/02-workstation.jpg", label: "The workshop" },
     { src: "/images/about/03-design-club.jpg", label: "Hosting a Design Hackathon is a handful Ill tell you that" },
     { src: "/images/about/04-brioche.jpg", label: "Tiktok recipie turned out better than I expected" },
     { src: "/images/about/05-acappella.jpg", label: "Our Acapella version of \"Espresso\" is quiet good ngl" },
     { src: "/images/about/06-pumpkin-painting.jpg", label: "Art is a big part of how I express myself" },
     { src: "/images/about/07-crispy-fries.jpg", label: "Ill just say you cant trust me with a bag a fries" },
-    { src: "/images/about/08-doodles-laughs.png", label: "Dropping a few Caricature hacks at a club event" },
+    { src: "/images/about/08-doodles-laughs.jpg", label: "Dropping a few Caricature hacks at a club event" },
 ];
 
 export function AboutCarousel({ className, enableParallax = false }: { className?: string; enableParallax?: boolean }) {
@@ -56,7 +56,7 @@ export function AboutCarousel({ className, enableParallax = false }: { className
     return (
         <div
             ref={containerRef}
-            className={cn("relative w-full h-full overflow-hidden bg-[#1C1C1C] rounded-3xl cursor-none", className)}
+            className={cn("relative w-full h-full overflow-hidden bg-[#1C1C1C] rounded-3xl", className)}
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}

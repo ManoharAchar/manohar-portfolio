@@ -31,7 +31,7 @@ export function CsIterationGallery({ title, items }: IterationGalleryProps) {
     };
 
     return (
-        <section className="bg-[#C58F9D] py-16 md:py-32 w-full overflow-hidden">
+        <section className="bg-[#C58F9D] pt-16 pb-16 md:pt-32 md:pb-48 w-full overflow-hidden">
             <div className="w-full md:w-[85%] max-w-[1440px] mx-auto px-4 md:px-0">
                 <div className="mb-8 md:mb-12">
                     <Reveal>
@@ -44,7 +44,7 @@ export function CsIterationGallery({ title, items }: IterationGalleryProps) {
                 {/* Mobile View: Horizontal Scroll */}
                 <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 no-scrollbar -mx-4 px-4">
                     {items.map((item, index) => (
-                        <div key={index} className="min-w-[85vw] snap-center bg-white rounded-[24px] overflow-hidden flex flex-col">
+                        <div key={index} className="min-w-[85vw] snap-center bg-white rounded-[24px] overflow-hidden flex flex-col justify-between">
                             <div className="p-6 pb-2">
                                 <h3 className="text-2xl font-bold text-[#0A0A0A] mb-6 leading-tight" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                     {item.title}
@@ -52,20 +52,18 @@ export function CsIterationGallery({ title, items }: IterationGalleryProps) {
 
                                 <div className="space-y-6">
                                     <div>
-                                        <div className="flex items-start gap-2 mb-1">
-                                            <span className="font-bold text-sm min-w-4">-</span>
-                                            <span className="font-bold text-sm uppercase tracking-wider">What we saw:</span>
+                                        <div className="mb-1">
+                                            <span className="font-bold text-sm uppercase tracking-wider text-[#0A0A0A]">What we saw:</span>
                                         </div>
-                                        <p className="pl-6 text-sm text-neutral-600 leading-relaxed">
+                                        <p className="text-sm text-neutral-600 leading-relaxed">
                                             {item.whatWeSaw}
                                         </p>
                                     </div>
                                     <div>
-                                        <div className="flex items-start gap-2 mb-1">
-                                            <span className="font-bold text-sm min-w-4">-</span>
-                                            <span className="font-bold text-sm uppercase tracking-wider">What I changed:</span>
+                                        <div className="mb-1">
+                                            <span className="font-bold text-sm uppercase tracking-wider text-[#0A0A0A]">What I changed:</span>
                                         </div>
-                                        <p className="pl-6 text-sm text-neutral-600 leading-relaxed">
+                                        <p className="text-sm text-neutral-600 leading-relaxed">
                                             {item.whatIChanged}
                                         </p>
                                     </div>
@@ -73,7 +71,7 @@ export function CsIterationGallery({ title, items }: IterationGalleryProps) {
                             </div>
 
                             {/* Image Placeholder Area */}
-                            <div className="mt-4 bg-neutral-100 aspect-square m-4 rounded-[16px] flex items-center justify-center text-center p-4">
+                            <div className="mt-4 bg-neutral-100 h-[280px] shrink-0 mx-6 mb-6 rounded-[16px] flex items-center justify-center text-center p-4">
                                 <span className="text-neutral-400 font-medium text-sm">
                                     {index === 0 ? "1st" : index === 1 ? "2nd" : "3rd"} iteration image here
                                 </span>
@@ -83,22 +81,14 @@ export function CsIterationGallery({ title, items }: IterationGalleryProps) {
                 </div>
 
                 {/* Desktop View: Carousel Card */}
-                <div className="hidden md:flex items-center justify-center relative">
-                    {/* Navigation Buttons - Positioned outside card but inside container */}
+                <div className="hidden md:flex items-center justify-between gap-6 relative">
+                    {/* Navigation Buttons - Positioned relative to card */}
                     <button
                         onClick={prevSlide}
-                        className="absolute left-0 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border border-neutral-100 hover:bg-neutral-50 transition-colors"
+                        className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border border-neutral-100 hover:bg-neutral-50 transition-colors shrink-0"
                         aria-label="Previous slide"
                     >
                         <ChevronLeft className="w-6 h-6 text-[#C58F9D]" />
-                    </button>
-
-                    <button
-                        onClick={nextSlide}
-                        className="absolute right-0 z-20 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border border-neutral-100 hover:bg-neutral-50 transition-colors"
-                        aria-label="Next slide"
-                    >
-                        <ChevronRight className="w-6 h-6 text-[#C58F9D]" />
                     </button>
 
                     {/* Main Card */}
@@ -120,20 +110,18 @@ export function CsIterationGallery({ title, items }: IterationGalleryProps) {
 
                                     <div className="space-y-8">
                                         <div>
-                                            <div className="flex items-center gap-3 mb-2">
-                                                <span className="h-0.5 w-3 bg-black block"></span>
-                                                <span className="font-bold text-base uppercase tracking-wider">What we saw:</span>
+                                            <div className="mb-2">
+                                                <span className="font-bold text-base uppercase tracking-wider text-[#0A0A0A]">What we saw:</span>
                                             </div>
-                                            <p className="pl-6 text-base text-neutral-600 leading-relaxed">
+                                            <p className="text-base text-neutral-600 leading-relaxed">
                                                 {items[activeIndex].whatWeSaw}
                                             </p>
                                         </div>
                                         <div>
-                                            <div className="flex items-center gap-3 mb-2">
-                                                <span className="h-0.5 w-3 bg-black block"></span>
-                                                <span className="font-bold text-base uppercase tracking-wider">What I changed:</span>
+                                            <div className="mb-2">
+                                                <span className="font-bold text-base uppercase tracking-wider text-[#0A0A0A]">What I changed:</span>
                                             </div>
-                                            <p className="pl-6 text-base text-neutral-600 leading-relaxed">
+                                            <p className="text-base text-neutral-600 leading-relaxed">
                                                 {items[activeIndex].whatIChanged}
                                             </p>
                                         </div>
@@ -149,6 +137,14 @@ export function CsIterationGallery({ title, items }: IterationGalleryProps) {
                             </motion.div>
                         </AnimatePresence>
                     </div>
+
+                    <button
+                        onClick={nextSlide}
+                        className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border border-neutral-100 hover:bg-neutral-50 transition-colors shrink-0"
+                        aria-label="Next slide"
+                    >
+                        <ChevronRight className="w-6 h-6 text-[#C58F9D]" />
+                    </button>
 
                     {/* Indicators */}
                     <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-3">
