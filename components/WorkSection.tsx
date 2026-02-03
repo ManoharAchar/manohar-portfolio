@@ -143,7 +143,7 @@ export function WorkSection() {
                                                 loop
                                                 muted
                                                 playsInline
-                                                className="w-full h-full object-cover pointer-events-none"
+                                                className="w-full h-full object-contain pointer-events-none"
                                                 src={activeProject.video}
                                                 poster={activeProject.thumbnail || activeProject.logo}
                                             />
