@@ -4,6 +4,7 @@ export type CaseStudySection =
     | {
         type: 'hero';
         image: string;
+        mobileImage?: string;
         title: string;
         subtitle?: string;
         meta: { label: string; value: string }[];
@@ -370,6 +371,7 @@ export const siteConfig: SiteConfig = {
                 {
                     type: 'hero',
                     image: "/images/case-studies/cooperant-learning/hero-banner.png",
+                    mobileImage: "/images/case-studies/cooperant-learning/hero-mobile.jpg",
                     title: "Turning podcast listeners into CEU* earners.",
                     meta: [
                         { label: "Role", value: "Product Designer (0→1) +\nImplementation" },
@@ -753,6 +755,7 @@ export const siteConfig: SiteConfig = {
                 {
                     type: 'hero',
                     image: "/images/case-studies/senior-mode/hero-banner.jpg",
+                    mobileImage: "/images/case-studies/senior-mode/hero-mobile.jpg",
                     title: "Senior Mode for Android",
                     subtitle: "Make critical phone state obvious + enable one-tap recovery when accidental setting changes happen.",
                     meta: [

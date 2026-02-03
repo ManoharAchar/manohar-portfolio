@@ -8,7 +8,7 @@ import { Reveal } from "@/components/Reveal";
 // Extract the specific Hero type for props
 type HeroProps = Extract<CaseStudySection, { type: 'hero' }>;
 
-export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLabel, buttonColor }: HeroProps) {
+export function CsHero({ title, subtitle, image, mobileImage, meta, footnote, liveUrl, ctaLabel, buttonColor }: HeroProps) {
     return (
         <section className="relative w-full bg-[#0A0A0A] text-white pt-8 pb-12 md:pb-16">
             <div className="w-[90%] md:w-[85%] max-w-[1440px] mx-auto">
@@ -16,12 +16,21 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
                 {/* 1. Hero Image Container with Overlay Text */}
                 {/* Aspect Ratio roughly 16:9 or custom per design */}
                 <div className="relative w-full aspect-[4/5] md:aspect-[16/9] lg:aspect-[2.4/1] bg-neutral-900 rounded-3xl overflow-hidden mb-4 md:mb-16">
-                    {/* Background Image */}
+                    {/* Background Image - Mobile Specific */}
+                    {mobileImage && (
+                        <img
+                            src={mobileImage}
+                            alt={title}
+                            className="w-full h-full object-cover md:hidden"
+                        />
+                    )}
+
+                    {/* Background Image - Desktop (or fallback if no mobile image) */}
                     {image && (
                         <img
                             src={image}
                             alt={title}
-                            className="w-full h-full object-cover"
+                            className={cn("w-full h-full object-cover", mobileImage && "hidden md:block")}
                         />
                     )}
 
@@ -29,12 +38,7 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 via-45% to-transparent" />
 
                     {/* Headline Overlay - Positioned for Red Box area on mobile, Bottom Left on Desktop */}
-                    <div className={cn(
-                        "absolute left-0 p-6 md:p-12 w-full max-w-5xl z-10",
-                        // If subtitle exists (Senior Mode), keep it high (bottom-36) to clear the subtitle overlay
-                        // If NO subtitle (Cooperant Learning), move it lower (bottom-12) as requested
-                        subtitle ? "bottom-36 md:bottom-0" : "bottom-12 md:bottom-0"
-                    )}>
+                    <div className="absolute bottom-36 md:bottom-0 left-0 p-6 md:p-12 w-full max-w-5xl z-10">
                         {/* Split title into lines if needed or rely on natural wrap */}
                         <Reveal>
                             <h1 className="text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wide text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
