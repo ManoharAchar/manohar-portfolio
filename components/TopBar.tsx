@@ -63,7 +63,8 @@ export function TopBar() {
         hidden: { y: "-100%" }
     };
 
-    const transition = { duration: 0.5, ease: [0.42, 0, 0.58, 1] }; // easeInOut equivalent
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const transition: any = { duration: 0.5, ease: [0.42, 0, 0.58, 1] };
 
     return (
         <>
