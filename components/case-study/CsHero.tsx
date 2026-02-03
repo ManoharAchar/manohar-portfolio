@@ -47,7 +47,7 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
 
                     {/* Mobile Only: Subtitle Overlay (Blue Box area) - Replaces Role */}
                     {subtitle && (
-                        <div className="md:hidden absolute bottom-6 left-6 z-20 max-w-[60%]">
+                        <div className="md:hidden absolute bottom-20 left-6 z-20 max-w-[60%]">
                             <Reveal delay={0.2}>
                                 <p className="text-sm font-medium text-neutral-200 leading-tight" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                     {subtitle}
