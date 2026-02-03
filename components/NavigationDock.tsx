@@ -5,25 +5,55 @@ import { usePathname } from "next/navigation";
 import { siteConfig } from "@/content/site";
 import { RollingText } from "@/components/RollingText";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export function NavigationDock() {
     const pathname = usePathname();
     const [isVisible, setIsVisible] = useState(true);
+    const footerVisible = useRef(false);
+    const wibVisible = useRef(false);
+    const reflectionVisible = useRef(false);
+    const proxiesVisible = useRef(false);
 
     useEffect(() => {
         const footer = document.getElementById('site-footer');
-        if (!footer) return;
+        const whatIBuilt = document.getElementById('what-i-built');
+        const reflection = document.getElementById('reflection');
+        const proxies = document.getElementById('proxies');
+
+        const updateVisibility = () => {
+            // Hide if Footer is visible
+            // OR if WhatIBuilt is visible AND neither Reflection NOR Proxies is visible
+            // (Meaning we are in the middle of WhatIBuilt, but not yet seeing the next section)
+            const shouldHide = footerVisible.current || (wibVisible.current && !reflectionVisible.current && !proxiesVisible.current);
+            setIsVisible(!shouldHide);
+        };
 
         const observer = new IntersectionObserver((entries) => {
-            const entry = entries[0];
-            // If footer is intersecting (visible), hide the dock
-            setIsVisible(!entry.isIntersecting);
+            entries.forEach(entry => {
+                if (entry.target === footer) {
+                    footerVisible.current = entry.isIntersecting;
+                }
+                if (entry.target === whatIBuilt) {
+                    wibVisible.current = entry.isIntersecting;
+                }
+                if (entry.target === reflection) {
+                    reflectionVisible.current = entry.isIntersecting;
+                }
+                if (entry.target === proxies) {
+                    proxiesVisible.current = entry.isIntersecting;
+                }
+            });
+            updateVisibility();
         }, {
-            threshold: 0.1 // Trigger when 10% of footer is visible
+            threshold: 0.1 // Trigger when 10% is visible
         });
 
-        observer.observe(footer);
+        if (footer) observer.observe(footer);
+        if (whatIBuilt) observer.observe(whatIBuilt);
+        if (reflection) observer.observe(reflection);
+        if (proxies) observer.observe(proxies);
+
         return () => observer.disconnect();
     }, []);
 

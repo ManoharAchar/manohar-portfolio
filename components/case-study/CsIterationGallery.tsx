@@ -6,6 +6,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { MediaRenderer } from "@/components/MediaRenderer";
 
 type IterationGalleryProps = Extract<CaseStudySection, { type: 'iteration-gallery' }>;
 
@@ -70,11 +71,17 @@ export function CsIterationGallery({ title, items }: IterationGalleryProps) {
                                 </div>
                             </div>
 
-                            {/* Image Placeholder Area */}
-                            <div className="mt-4 bg-neutral-100 h-[280px] shrink-0 mx-6 mb-6 rounded-[16px] flex items-center justify-center text-center p-4">
-                                <span className="text-neutral-400 font-medium text-sm">
-                                    {index === 0 ? "1st" : index === 1 ? "2nd" : "3rd"} iteration image here
-                                </span>
+                            {/* Image Area */}
+                            <div className="mt-4 bg-neutral-100 h-[280px] shrink-0 mx-6 mb-6 rounded-[16px] overflow-hidden flex items-center justify-center text-center p-0 relative">
+                                {item.image ? (
+                                    <MediaRenderer src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                                ) : (
+                                    <div className="p-4">
+                                        <span className="text-neutral-400 font-medium text-sm">
+                                            {index === 0 ? "1st" : index === 1 ? "2nd" : "3rd"} iteration image here
+                                        </span>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
@@ -128,11 +135,15 @@ export function CsIterationGallery({ title, items }: IterationGalleryProps) {
                                     </div>
                                 </div>
 
-                                {/* Right Image Placeholder */}
-                                <div className="col-span-7 bg-neutral-100 rounded-[24px] flex items-center justify-center min-h-[400px]">
-                                    <span className="text-neutral-400 font-medium text-lg">
-                                        {activeIndex === 0 ? "1st" : activeIndex === 1 ? "2nd" : "3rd"} iteration image here
-                                    </span>
+                                {/* Right Image Area */}
+                                <div className="col-span-7 bg-neutral-100 rounded-[24px] flex items-center justify-center min-h-[400px] overflow-hidden relative">
+                                    {items[activeIndex].image ? (
+                                        <MediaRenderer src={items[activeIndex].image} alt={items[activeIndex].title} className="w-full h-full object-cover" />
+                                    ) : (
+                                        <span className="text-neutral-400 font-medium text-lg">
+                                            {activeIndex === 0 ? "1st" : activeIndex === 1 ? "2nd" : "3rd"} iteration image here
+                                        </span>
+                                    )}
                                 </div>
                             </motion.div>
                         </AnimatePresence>

@@ -9,7 +9,7 @@ type ReflectionProps = Extract<CaseStudySection, { type: 'reflection' }>;
 
 export function CsReflection({ title, heading, content, items }: ReflectionProps) {
     return (
-        <section className="w-full py-24 md:py-32 bg-[#F6F4EF] text-[#141414]">
+        <section id="reflection" className="w-full py-24 md:py-32 bg-[#F6F4EF] text-[#141414]">
             <div className="w-[90%] md:w-[85%] max-w-[1440px] mx-auto">
 
                 {/* Section Title */}

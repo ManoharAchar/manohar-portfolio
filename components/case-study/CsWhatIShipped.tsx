@@ -29,24 +29,40 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
     }, []);
 
     // Auto-rotation logic (Desktop only)
+    // Auto-rotation logic (Desktop only)
+    // REMOVED: Interval-based rotation. Now driven by video onEnded.
+    // However, if we are on MOBILE or if the item is NOT a video (placeholder), we might still need a fallback timer.
+    // But for this section, we assume videos. If placeholders, we'll keep the timer as fallback?
+    // User specifically asked behavior for "tabs with videos".
+    // Let's keep the timer ONLY if the current item is NOT a video, so it doesn't get stuck.
+
     useEffect(() => {
-        // Don't auto-rotate if paused OR if on mobile
-        if (isPaused || isMobile) {
+        // If it's a video, we rely on onEnded.
+        // If it's a placeholder (no media), we need a fallback timer.
+        const currentItem = items[activeIndex];
+        const hasVideo = currentItem.media && !currentItem.media.includes('placeholder');
+
+        if (isPaused || isMobile || hasVideo) {
             if (intervalRef.current) clearInterval(intervalRef.current);
             return;
         }
 
+        // Fallback timer for non-video items
         intervalRef.current = setInterval(() => {
             setActiveIndex((prev) => (prev + 1) % items.length);
-        }, 6000); // 6 seconds per tab
+        }, 6000);
 
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current);
         };
-    }, [isPaused, isMobile, items.length]);
+    }, [isPaused, isMobile, items, activeIndex]);
+
+    const nextSlide = () => {
+        setActiveIndex((prev) => (prev + 1) % items.length);
+    };
 
     return (
-        <section className="bg-[#0A0A0A] text-white pt-16 pb-16 md:py-32 w-full overflow-hidden">
+        <section id="what-i-built" className="bg-[#0A0A0A] text-white pt-16 pb-16 md:py-32 w-full overflow-hidden">
             <div className="w-full md:w-[85%] max-w-[1440px] mx-auto">
                 <div className="flex items-end justify-between mb-8 px-6 md:px-0">
                     <Reveal>
@@ -61,7 +77,12 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
 
                 {/* Tabs Grid */}
                 {/* Mobile: Edge-to-edge scrolling with start padding for alignment */}
-                <div className="flex overflow-x-auto overflow-y-hidden md:grid md:grid-cols-6 gap-4 mb-6 border-b border-white/10 pb-4 no-scrollbar snap-x snap-mandatory mask-gradient-right md:px-0">
+                <div
+                    className="flex overflow-x-auto overflow-y-hidden md:grid gap-4 mb-6 border-b border-white/10 pb-4 no-scrollbar snap-x snap-mandatory mask-gradient-right md:px-0"
+                    style={{
+                        gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))`
+                    } as React.CSSProperties}
+                >
                     {items.map((item, index) => (
                         <div
                             key={index}
@@ -111,10 +132,11 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute top-0 left-0 w-full md:w-[var(--tab-width)] md:ml-[calc(var(--active-tab)*16.666%)] md:pr-4 transition-all duration-300 ease-in-out px-6 md:pl-0 md:pr-4"
+                            className="absolute top-0 left-0 w-full md:w-[var(--tab-width)] md:ml-[calc(var(--active-tab)*var(--col-width))] md:pr-4 transition-all duration-300 ease-in-out px-6 md:pl-0 md:pr-4"
                             style={{
                                 '--active-tab': activeIndex,
-                                '--tab-width': activeIndex === 5 ? '25%' : '35%'
+                                '--col-width': `${100 / items.length}%`,
+                                '--tab-width': activeIndex === items.length - 1 ? '25%' : '35%'
                             } as React.CSSProperties}
                         >
                             {/* 
@@ -140,7 +162,7 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
             <div className="w-[95vw] md:w-[85%] max-w-[1440px] mx-auto">
 
                 {/* Video / Media Display Area */}
-                <div className="w-full aspect-[16/9] md:aspect-[2.5/1] bg-white rounded-[24px] md:rounded-[32px] flex items-center justify-center relative overflow-hidden">
+                <div className="w-full aspect-[16/9] md:aspect-[2/1] bg-white rounded-[24px] md:rounded-[32px] flex items-center justify-center relative overflow-hidden">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeIndex}
@@ -156,6 +178,10 @@ export function CsWhatIShipped({ title, items }: WhatIShippedProps) {
                                     src={items[activeIndex].media}
                                     alt={items[activeIndex].label}
                                     className="w-full h-full object-cover"
+                                    loop={isPaused} // Loop if hovered/paused
+                                    onEnded={() => {
+                                        if (!isPaused) nextSlide(); // Next slide if not hovered
+                                    }}
                                 />
                             ) : (
                                 <div className="text-center">

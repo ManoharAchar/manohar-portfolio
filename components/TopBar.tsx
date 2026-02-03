@@ -5,19 +5,78 @@ import { siteConfig } from "@/content/site";
 import { Button } from "./Button";
 import { ContactButtonFramer } from "./ContactButton";
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SkipLink } from "./SkipLink";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function TopBar() {
     // Static transparent bar, no scroll state needed for transparency
+    const [isVisible, setIsVisible] = useState(true);
+    const footerVisible = useRef(false);
+    const wibVisible = useRef(false);
+    const reflectionVisible = useRef(false);
+    const proxiesVisible = useRef(false);
+
+    useEffect(() => {
+        const footer = document.getElementById('site-footer');
+        const whatIBuilt = document.getElementById('what-i-built');
+        const reflection = document.getElementById('reflection');
+        const proxies = document.getElementById('proxies');
+
+        const updateVisibility = () => {
+            // Hide if Footer is visible
+            // OR if WhatIBuilt is visible AND neither Reflection NOR Proxies is visible
+            const shouldHide = footerVisible.current || (wibVisible.current && !reflectionVisible.current && !proxiesVisible.current);
+            setIsVisible(!shouldHide);
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.target === footer) {
+                    footerVisible.current = entry.isIntersecting;
+                }
+                if (entry.target === whatIBuilt) {
+                    wibVisible.current = entry.isIntersecting;
+                }
+                if (entry.target === reflection) {
+                    reflectionVisible.current = entry.isIntersecting;
+                }
+                if (entry.target === proxies) {
+                    proxiesVisible.current = entry.isIntersecting;
+                }
+            });
+            updateVisibility();
+        }, {
+            threshold: 0.1 // Trigger when 10% is visible
+        });
+
+        if (footer) observer.observe(footer);
+        if (whatIBuilt) observer.observe(whatIBuilt);
+        if (reflection) observer.observe(reflection);
+        if (proxies) observer.observe(proxies);
+
+        return () => observer.disconnect();
+    }, []);
+
+    const variants = {
+        visible: { y: "0%" },
+        hidden: { y: "-100%" }
+    };
+
+    const transition = { duration: 0.5, ease: "easeInOut" };
 
     return (
         <>
             <SkipLink />
 
             {/* Layer 1: Text Content (Blended) - Calculates difference against background */}
-            <header className="fixed top-0 left-0 right-0 z-50 py-6 bg-transparent pointer-events-none mix-blend-difference text-white">
+            <motion.header
+                className="fixed top-0 left-0 right-0 z-50 py-6 bg-transparent pointer-events-none mix-blend-difference text-white"
+                initial="visible"
+                animate={isVisible ? "visible" : "hidden"}
+                variants={variants}
+                transition={transition}
+            >
                 <div className="w-[95vw] mx-auto h-full flex items-center justify-between">
 
                     {/* MOBILE LEFT */}
@@ -47,10 +106,16 @@ export function TopBar() {
                         <div className="w-[140px] h-10" />
                     </div>
                 </div>
-            </header>
+            </motion.header>
 
             {/* Layer 2: CTA Button (Normal) - Sits on top, no blending */}
-            <header className="fixed top-0 left-0 right-0 z-50 py-6 bg-transparent pointer-events-none">
+            <motion.header
+                className="fixed top-0 left-0 right-0 z-50 py-6 bg-transparent pointer-events-none"
+                initial="visible"
+                animate={isVisible ? "visible" : "hidden"}
+                variants={variants}
+                transition={transition}
+            >
                 <div className="w-[95vw] mx-auto h-full flex items-center justify-between">
 
                     {/* Invisible Spacers to match Layer 1 layout precisely */}
@@ -81,7 +146,7 @@ export function TopBar() {
                         />
                     </div>
                 </div>
-            </header>
+            </motion.header>
         </>
     );
 }

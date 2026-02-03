@@ -752,7 +752,7 @@ export const siteConfig: SiteConfig = {
             content: [
                 {
                     type: 'hero',
-                    image: "/images/SeniorMode_Hero.png", // Placeholder
+                    image: "/images/case-studies/senior-mode/hero-banner.jpg",
                     title: "Senior Mode for Android",
                     subtitle: "Make critical phone state obvious + enable one-tap recovery when accidental setting changes happen.",
                     meta: [
@@ -776,17 +776,17 @@ export const siteConfig: SiteConfig = {
                         {
                             title: "Prevent accidental settings changes from turning into “my phone is broken” moments.",
                             description: "Senior Mode makes critical device state obvious (ringer / silent / connectivity basics) and reduces the chance of accidental changes causing stress or missed calls.",
-                            image: "/images/OutcomeCard_01.png" // Placeholder
+                            image: "/videos/case-studies/senior-mode/outcome-1.mp4"
                         },
                         {
                             title: "Less stress for seniors. Less panic + support load for caregivers.",
                             description: "Seniors regain confidence because the phone behaves predictably. Caregivers get a faster way to restore the intended setup when something goes off-track.",
-                            image: "/images/OutcomeCard_02.png" // Placeholder
+                            image: "/videos/case-studies/senior-mode/outcome-2.mp4"
                         },
                         {
                             title: "Validated with seniors + caregivers, then iterated and re-tested.",
                             description: "Remote moderated usability testing with 10 seniors + 8 caregivers (India), followed by a V2 iteration and a micro-test to check if the fixes improved the earlier issues.",
-                            image: "/images/OutcomeCard_03.png" // Placeholder
+                            image: "/videos/case-studies/senior-mode/outcome-3.mp4"
                         }
                     ]
                 },
@@ -811,18 +811,21 @@ export const siteConfig: SiteConfig = {
                 },
                 {
                     type: 'design-execution',
-                    title: "Design strategy",
+                    title: "Design Principles",
                     items: [
                         {
                             title: "Make the phone’s status obvious",
+                            image: "/images/case-studies/senior-mode/design-principle-1.jpg",
                             description: "Seniors shouldn’t have to interpret toggles—critical state like “Will my phone ring?” must be visible in plain language."
                         },
                         {
                             title: "Offer one clear next step",
+                            image: "/images/case-studies/senior-mode/design-principle-2.jpg",
                             description: "When something goes wrong, the UI should present a single, safe action (fix it now / request help), not multiple paths."
                         },
                         {
                             title: "Build trust with transparency",
+                            image: "/images/case-studies/senior-mode/design-principle-3.jpg",
                             description: "Caregiver help should never feel “mysterious”—show what changed, who changed it, and give the user control (log / disable help)."
                         }
                     ]
@@ -868,7 +871,7 @@ export const siteConfig: SiteConfig = {
                         {
                             id: "01",
                             title: "Make sound state explicit on “Home” and “Controls”",
-                            image: "/images/KeyDecision_01.png", // Placeholder
+                            image: "/images/case-studies/senior-mode/decision-card-1.jpg",
                             description: "Surface “Phone will ring / Phone is silent” as readable language, not subtle UI state.",
                             rationale: "V1 showed seniors struggled with state interpretation, especially around Silent/Ringing—your core JTBD.",
                             tradeoff: "Uses premium screen space; slightly less “clean” than stock Android minimalism.",
@@ -877,7 +880,7 @@ export const siteConfig: SiteConfig = {
                         {
                             id: "02",
                             title: "Fix discoverability: add an explicit “Controls” entry (not swipe-only)",
-                            image: "/images/KeyDecision_02.png", // Placeholder
+                            image: "/images/case-studies/senior-mode/decision-card-2.jpg",
                             backgroundColor: "#242424",
                             description: "Provide a visible Controls entry on Home so seniors aren’t required to discover a gesture.",
                             rationale: "Hidden interactions (swipe/scroll) caused avoidable friction in V1.",
@@ -887,7 +890,7 @@ export const siteConfig: SiteConfig = {
                         {
                             id: "03",
                             title: "Caregiver fixes apply instantly (for “safe” fixes), with audit + undo",
-                            image: "/images/KeyDecision_03.png", // Placeholder
+                            image: "/images/case-studies/senior-mode/decision-card-3.jpg",
                             description: "Allow caregivers to apply fixes immediately for low-risk changes (ringer/brightness), and log it on both devices.",
                             rationale: "The caregiver’s job is rapid recovery; delays increase stress and missed communication.",
                             tradeoff: "Reduces senior autonomy in the moment—so trust and reversibility must be explicit.",
@@ -919,13 +922,18 @@ export const siteConfig: SiteConfig = {
                                     label: "Segmentation",
                                     value: "25%",
                                     description: "Low device-familiarity seniors had 25% pass on S2 and 100% required help—this is the core risk segment you’re designing for."
+                                },
+                                {
+                                    label: "",
+                                    value: "",
+                                    description: "I iterated on the existing designs based on the round one test outcome"
                                 }
                             ]
                         },
                         {
                             id: "Round 2",
                             title: "Round 2",
-                            subtitle: "(Targeted micro-validation)",
+                            subtitle: "(Targeted micro-validation; Post design Iteration)",
                             stats: [
                                 {
                                     label: "Seniors",
@@ -933,7 +941,7 @@ export const siteConfig: SiteConfig = {
                                     description: "State recognition: 100% on Home and Controls surfaces"
                                 },
                                 {
-                                    label: "Caregivers",
+                                    label: "Seniors",
                                     value: "100%",
                                     description: "Fix-path speed: 100% success; median 20.5s to indicate the right action area (Controls) and median 13.5s to locate Sound in Quick Controls."
                                 }
@@ -947,21 +955,21 @@ export const siteConfig: SiteConfig = {
                     items: [
                         {
                             title: "Made “Will my phone ring?” impossible to miss.",
-                            whatWeSaw: "Seniors glanced at the top chips but still weren’t confident about sound state—and didn’t know where to go to fix it.",
-                            whatIChanged: "Replaced subtle chips with a plain-language status tile (“Phone will ring / Phone is silent”) and added an explicit Controls entry on Home.",
-                            image: "" // Placeholder
+                            whatWeSaw: "Seniors noticed the small “Ringing” chip, but it didn’t translate into confidence about the phone’s actual state—or what to do next.",
+                            whatIChanged: "Replaced subtle chips with a plain-language status tile (“Phone will ring”) and added an explicit Controls entry so recovery isn’t hidden.",
+                            image: "/images/case-studies/senior-mode/iteration-1.jpg"
                         },
                         {
-                            title: "Removed swipe-only navigation and surfaced the “next step.”",
-                            whatWeSaw: "Swipe-based discovery and below-the-fold controls caused hesitation (especially when users didn’t expect to scroll).",
-                            whatIChanged: "Introduced a clearer “Controls” affordance and simplified the surface so the primary actions feel immediately tappable.",
-                            image: "" // Placeholder
+                            title: "Turned Quick Controls into a reliable recovery hub.",
+                            whatWeSaw: "In V1, Quick Controls didn’t provide enough reassurance—Sound state felt easy to misread and Recovery didn’t feel like an immediate fallback.",
+                            whatIChanged: "Elevated Sound into a top card (“Phone will ring” + Test ring) and surfaced Restore Senior defaults as a clear, one-swipe-away safety net.",
+                            image: "/images/case-studies/senior-mode/iteration-2.jpg"
                         },
                         {
-                            title: "Turned Sound into a single obvious action (with reassurance).",
-                            whatWeSaw: "Users could find Sound, but state + intent were still easy to misread (“Which one is active?” “Did it actually change?”).",
-                            whatIChanged: "Made Sound label-first (“Phone will ring”), added Test ring, and clarified the safety behavior (silent auto-reverts + brightness protection + “Restore Senior defaults”).",
-                            image: "" // Placeholder
+                            title: "Made the Sound action unmistakable (and confirmable).",
+                            whatWeSaw: "Even after finding Sound, users could still hesitate on “which option is active?” and “did it actually change?”",
+                            whatIChanged: "Made Sound label-first (“Phone will ring”), strengthened the Ringing/Silent control hierarchy, and added a prominent Test ring + visible reassurance (silent auto-reverts / restore defaults).",
+                            image: "/images/case-studies/senior-mode/iteration-3.jpg"
                         }
                     ]
                 },
@@ -1000,17 +1008,17 @@ export const siteConfig: SiteConfig = {
                         {
                             title: 'Kill switch / disable remote help',
                             description: '(with authentication) so seniors can opt out at any time.',
-                            image: '' // Placeholder
+                            image: "/images/case-studies/senior-mode/trust-card-1.jpg"
                         },
                         {
                             title: 'What will change',
                             description: 'preview for higher-impact actions (recommended), while keeping instant apply for safe fixes.',
-                            image: '' // Placeholder
+                            image: "/images/case-studies/senior-mode/trust-card-2.jpg"
                         },
                         {
                             title: 'Audit trail on both devices + visible',
                             description: '"what the senior will see" after applying a fix.',
-                            image: '' // Placeholder
+                            image: "/images/case-studies/senior-mode/trust-card-3.jpg"
                         }
                     ]
                 },
@@ -1022,49 +1030,52 @@ export const siteConfig: SiteConfig = {
                             id: "01",
                             label: "Senior experience",
                             description: [
-                                "At-a-glance “Phone will ring / Phone is silent” status",
-                                "Explicit Controls entry (no hidden gestures)",
-                                "Simplified settings surface",
-                                "Clear Request help → Sent confirmation flow"
+                                "Plain-language Ringing / Silent status",
+                                "Visible Controls entry (no hidden gestures)",
+                                "Guardrailed settings + Restore defaults",
+                                "Request help → Sent confirmation"
                             ],
-                            media: "placeholder"
+                            media: "/videos/case-studies/senior-mode/build-senior-experience.mp4"
                         },
                         {
                             id: "02",
                             label: "Caregiver experience",
                             description: [
-                                "Alerts → Apply fix → Success flow for fast recovery",
-                                "History view so caregivers can verify what changed and when"
+                                "Alerts → Apply fix → Undo",
+                                "Add/remove helpers",
+                                "Helper requests + permission management",
+                                "Transfer primary caregiver"
                             ],
-                            media: "placeholder"
+                            media: "/videos/case-studies/senior-mode/build-caregiver-experience.mp4"
                         },
                         {
                             id: "03",
                             label: "Trust + safety layer",
                             description: [
-                                "Scoped permissions & visible change feedback on the senior device",
-                                "Audit trail & undo/revert capabilities",
-                                "Senior-side kill switch to disable caregiver assistance"
+                                "Scoped permissions + visible feedback",
+                                "Audit trail + undo/revert",
+                                "Senior-side kill switch (authenticated)"
                             ],
-                            media: "placeholder"
+                            media: "/videos/case-studies/senior-mode/build-trust-safety.mp4"
                         },
                         {
                             id: "04",
                             label: "Edge-case handling",
                             description: [
-                                "Offline/queued fixes with clear status messaging so the system stays understandable when connectivity is unreliable"
+                                "Offline/queued fixes with clear status",
+                                "Recovery messaging when connectivity breaks"
                             ],
-                            media: "placeholder"
+                            media: "/videos/case-studies/senior-mode/build-edge-cases.mp4"
                         },
                         {
                             id: "05",
-                            label: "Evidence package",
+                            label: "Onboarding Senior Mode",
                             description: [
-                                "Remote moderated testing kit (tasks + operational metrics + rating scales)",
-                                "Anonymized datasets & synthesis",
-                                "V1 → V2 iteration set grounded in observed breakdowns"
+                                "Explain changes before activation",
+                                "Add/verify primary caregiver",
+                                "Confirm defaults + logging/safety controls"
                             ],
-                            media: "placeholder"
+                            media: "/videos/case-studies/senior-mode/build-onboarding.mp4"
                         }
                     ]
                 },

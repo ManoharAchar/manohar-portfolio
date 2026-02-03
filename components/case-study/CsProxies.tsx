@@ -8,7 +8,7 @@ type ProxiesProps = Extract<CaseStudySection, { type: 'proxies' }>;
 
 export function CsProxies({ title, description, items }: ProxiesProps) {
     return (
-        <section className="bg-[#F6F4EF] text-[#141414] py-24 md:py-32">
+        <section id="proxies" className="bg-[#F6F4EF] text-[#141414] py-24 md:py-32">
             <div className="w-[90%] md:w-[85%] max-w-[1440px] mx-auto">
                 <div className="mb-8 md:max-w-4xl">
                     <Reveal>

@@ -103,22 +103,33 @@ export function CsTestingResults({ title, rounds }: TestingResultsProps) {
                                     </h3>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-                                        {rounds[activeRoundIndex].stats.map((stat, i) => (
-                                            <div key={i} className={cn("flex flex-col", i === rounds[activeRoundIndex].stats.length - 1 && rounds[activeRoundIndex].stats.length % 2 !== 0 ? "md:col-span-2 md:max-w-lg" : "")}>
-                                                <span className="text-xs md:text-sm uppercase tracking-wide text-white/70 font-bold mb-3">
-                                                    {stat.label}
-                                                </span>
-                                                <span
-                                                    className="text-5xl md:text-7xl font-bold text-white mb-4 block"
-                                                    style={{ fontFamily: 'var(--font-archivo), sans-serif', letterSpacing: '-0.03em' }}
-                                                >
-                                                    {stat.value}
-                                                </span>
-                                                <p className="text-white/90 text-base md:text-lg leading-relaxed font-bold">
-                                                    {stat.description}
-                                                </p>
-                                            </div>
-                                        ))}
+                                        {rounds[activeRoundIndex].stats.map((stat, i) => {
+                                            // Check if it's a "Note" item (no label/value)
+                                            const isNote = !stat.label && !stat.value;
+                                            return (
+                                                <div key={i} className={cn("flex flex-col",
+                                                    i === rounds[activeRoundIndex].stats.length - 1 && rounds[activeRoundIndex].stats.length % 2 !== 0 ? "md:col-span-2 md:max-w-lg" : "",
+                                                    isNote ? "h-full justify-end" : ""
+                                                )}>
+                                                    {stat.label && (
+                                                        <span className="text-xs md:text-sm uppercase tracking-wide text-white/70 font-bold mb-3">
+                                                            {stat.label}
+                                                        </span>
+                                                    )}
+                                                    {stat.value && (
+                                                        <span
+                                                            className="text-5xl md:text-7xl font-bold text-white mb-4 block"
+                                                            style={{ fontFamily: 'var(--font-archivo), sans-serif', letterSpacing: '-0.03em' }}
+                                                        >
+                                                            {stat.value}
+                                                        </span>
+                                                    )}
+                                                    <p className={cn("text-white/90 text-base md:text-lg leading-relaxed", isNote ? "font-medium" : "font-bold")}>
+                                                        {stat.description}
+                                                    </p>
+                                                </div>
+                                            );
+                                        })}
                                     </div>
 
                                 </motion.div>
