@@ -37,7 +37,7 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
                             </h1>
                         </Reveal>
                         {subtitle && (
-                            <Reveal delay={0.1}>
+                            <Reveal delay={0.1} className="hidden md:block">
                                 <p className="text-lg md:text-2xl lg:text-3xl font-normal leading-[1.3] tracking-normal text-white mt-4 md:mt-6 max-w-[90%]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                     {subtitle}
                                 </p>
@@ -45,15 +45,12 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
                         )}
                     </div>
 
-                    {/* Mobile Only: Role Overlay (Blue Box area) */}
-                    {meta.length > 0 && (
+                    {/* Mobile Only: Subtitle Overlay (Blue Box area) - Replaces Role */}
+                    {subtitle && (
                         <div className="md:hidden absolute bottom-6 left-6 z-20 max-w-[60%]">
-                            <Reveal delay={0.2} className="flex flex-col gap-1">
-                                <span className="text-xs font-bold uppercase tracking-wider text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                                    {meta[0].label}
-                                </span>
+                            <Reveal delay={0.2}>
                                 <p className="text-sm font-medium text-neutral-200 leading-tight" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
-                                    {meta[0].value}
+                                    {subtitle}
                                 </p>
                             </Reveal>
                         </div>
@@ -97,11 +94,7 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
                         <Reveal
                             key={index}
                             delay={0.2 + (index * 0.1)}
-                            className={cn(
-                                "flex flex-col gap-4",
-                                // Hide the first item (Role) on mobile since it's now in the overlay
-                                index === 0 ? "hidden md:flex" : "flex"
-                            )}
+                            className="flex flex-col gap-4"
                         >
                             <span className="text-sm font-bold uppercase tracking-wider text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                                 {item.label}
