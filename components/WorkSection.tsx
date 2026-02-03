@@ -177,9 +177,11 @@ export function WorkSection() {
 
                                     {/* Bottom Info - Dark Theme Text */}
                                     <div className="w-full md:w-[80%] pl-4">
-                                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide leading-[1.1] mb-2 text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                                            {activeProject.summary || activeProject.title}
-                                        </h3>
+                                        <Link href={`/work/${activeProject.slug}`} className="block w-fit">
+                                            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide leading-[1.1] mb-2 text-white hover:opacity-80 transition-opacity" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                                                {activeProject.summary || activeProject.title}
+                                            </h3>
+                                        </Link>
                                         <div className="space-y-1">
                                             <p className="text-neutral-300 font-semibold text-xl" style={{ fontFamily: 'var(--font-archivo)' }}>{activeProject.problem}</p>
                                             {activeProject.details && activeProject.details.length > 0 ? (
