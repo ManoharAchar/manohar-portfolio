@@ -378,7 +378,7 @@ export const siteConfig: SiteConfig = {
                         { label: "Primary users", value: "BCBAs, RBTs, clinic admins (internal training as an add-on)" },
                         { label: "Timeline", value: "~4 months" }
                     ],
-                    footnote: "* Continuing Education Units (CEUs) are credits that measure participation in professional development programs.",
+                    subtitle: "* Continuing Education Units (CEUs) are credits that measure participation in professional development programs.",
                     liveUrl: "https://cooperantlearning.com",
                     buttonColor: "#A29BFE"
                 },
