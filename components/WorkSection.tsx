@@ -173,7 +173,7 @@ export function WorkSection() {
                                     </Link>
 
                                     {/* Bottom Info - Dark Theme Text */}
-                                    <div className="w-full md:w-[80%] px-0">
+                                    <div className="w-full md:w-[80%] pl-4">
                                         <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide leading-[1.1] mb-2 text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                                             {activeProject.summary || activeProject.title}
                                         </h3>
