@@ -745,7 +745,7 @@ export const siteConfig: SiteConfig = {
             tags: ["Android", "Accessibility", "Research"],
             thumbnail: "/images/senior-mode-thumb.png", // Placeholder
             logo: "/images/senior-mode-logo.png",
-            video: "", // Placeholder
+            video: "/videos/case-studies/senior-mode/senior-mode-preview.mp4",
             details: [
                 "Role: Product Designer",
                 "Scope: UX/UI",
