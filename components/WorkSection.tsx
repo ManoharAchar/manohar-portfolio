@@ -143,7 +143,10 @@ export function WorkSection() {
                                                 loop
                                                 muted
                                                 playsInline
-                                                className="w-full h-full object-contain pointer-events-none"
+                                                className={cn(
+                                                    "w-full h-full pointer-events-none",
+                                                    activeProject.slug === "senior-mode-android" ? "object-contain" : "object-cover"
+                                                )}
                                                 src={activeProject.video}
                                                 poster={activeProject.thumbnail || activeProject.logo}
                                             />
