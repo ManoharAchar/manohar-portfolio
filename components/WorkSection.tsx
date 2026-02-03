@@ -124,7 +124,7 @@ export function WorkSection() {
                                     {/* Distinct White Box per design - Matching Sidebar Radius */}
                                     <Link
                                         href={`/work/${activeProject.slug}`}
-                                        className="relative w-full aspect-[640/384] h-auto md:h-[400px] md:aspect-auto bg-white rounded-2xl overflow-hidden shadow-sm flex items-center justify-center shrink-0 group cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
+                                        className="relative w-full aspect-[640/384] h-auto md:h-[400px] md:aspect-auto bg-black rounded-2xl overflow-hidden shadow-sm flex items-center justify-center shrink-0 group cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
                                         onMouseEnter={() => setIsVideoHovered(true)}
                                         onMouseMove={(e) => {
                                             const rect = e.currentTarget.getBoundingClientRect();
