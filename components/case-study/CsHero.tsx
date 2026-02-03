@@ -15,7 +15,7 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
 
                 {/* 1. Hero Image Container with Overlay Text */}
                 {/* Aspect Ratio roughly 16:9 or custom per design */}
-                <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[2.4/1] bg-neutral-900 rounded-3xl overflow-hidden mb-4 md:mb-16">
+                <div className="relative w-full aspect-[4/5] md:aspect-[16/9] lg:aspect-[2.4/1] bg-neutral-900 rounded-3xl overflow-hidden mb-4 md:mb-16">
                     {/* Background Image */}
                     {image && (
                         <img
@@ -26,10 +26,10 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
                     )}
 
                     {/* Gradient Overlay: Darker localized gradient behind text for better readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 via-35% to-transparent to-60%" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 via-45% to-transparent" />
 
-                    {/* Headline Overlay - Bottom Left */}
-                    <div className="absolute bottom-0 left-0 p-6 md:p-12 w-full max-w-5xl">
+                    {/* Headline Overlay - Positioned for Red Box area on mobile, Bottom Left on Desktop */}
+                    <div className="absolute bottom-36 md:bottom-0 left-0 p-6 md:p-12 w-full max-w-5xl z-10">
                         {/* Split title into lines if needed or rely on natural wrap */}
                         <Reveal>
                             <h1 className="text-3xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-wide text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
@@ -38,12 +38,39 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
                         </Reveal>
                         {subtitle && (
                             <Reveal delay={0.1}>
-                                <p className="text-lg md:text-2xl lg:text-3xl font-normal leading-[1.3] tracking-normal text-white mt-4 md:mt-6" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                                <p className="text-lg md:text-2xl lg:text-3xl font-normal leading-[1.3] tracking-normal text-white mt-4 md:mt-6 max-w-[90%]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                     {subtitle}
                                 </p>
                             </Reveal>
                         )}
                     </div>
+
+                    {/* Mobile Only: Role Overlay (Blue Box area) */}
+                    {meta.length > 0 && (
+                        <div className="md:hidden absolute bottom-6 left-6 z-20 max-w-[60%]">
+                            <Reveal delay={0.2} className="flex flex-col gap-1">
+                                <span className="text-xs font-bold uppercase tracking-wider text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                                    {meta[0].label}
+                                </span>
+                                <p className="text-sm font-medium text-neutral-200 leading-tight" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                                    {meta[0].value}
+                                </p>
+                            </Reveal>
+                        </div>
+                    )}
+
+                    {/* Mobile Only: CTA Button (Green Circle area) */}
+                    {liveUrl && (
+                        <div className="md:hidden absolute bottom-6 right-6 z-20">
+                            <RotatingButton
+                                href={liveUrl}
+                                topText="CLICK HERE"
+                                bottomText={ctaLabel || "GO TO LIVE SITE"}
+                                className="w-24 h-24"
+                                color={buttonColor || "#A29BFE"}
+                            />
+                        </div>
+                    )}
 
                     {/* Live Site Button - Desktop: Bottom Right, Mobile: Hidden (shown below) */}
                     {liveUrl && (
@@ -59,18 +86,7 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
                     )}
                 </div>
 
-                {/* Live Site Button - Mobile Only: Below image */}
-                {liveUrl && (
-                    <div className="md:hidden flex justify-end -mt-16 mb-8 relative z-20 pr-6">
-                        <RotatingButton
-                            href={liveUrl}
-                            topText="CLICK HERE"
-                            bottomText={ctaLabel || "GO TO LIVE SITE"}
-                            className="w-20 h-20"
-                            color={buttonColor || "#A29BFE"}
-                        />
-                    </div>
-                )}
+
 
                 {/* 2. Metadata Grid */}
                 {/* 4 Columns: Role, Scope, Platform, Meta (Timeline/Users combined or separate?) */}
@@ -78,7 +94,15 @@ export function CsHero({ title, subtitle, image, meta, footnote, liveUrl, ctaLab
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 border-t border-white/10 pt-12">
                     {meta.map((item, index) => (
-                        <Reveal key={index} delay={0.2 + (index * 0.1)} className="flex flex-col gap-4">
+                        <Reveal
+                            key={index}
+                            delay={0.2 + (index * 0.1)}
+                            className={cn(
+                                "flex flex-col gap-4",
+                                // Hide the first item (Role) on mobile since it's now in the overlay
+                                index === 0 ? "hidden md:flex" : "flex"
+                            )}
+                        >
                             <span className="text-sm font-bold uppercase tracking-wider text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                                 {item.label}
                             </span>

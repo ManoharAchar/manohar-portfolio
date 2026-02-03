@@ -781,12 +781,12 @@ export const siteConfig: SiteConfig = {
                         {
                             title: "Less stress for seniors. Less panic + support load for caregivers.",
                             description: "Seniors regain confidence because the phone behaves predictably. Caregivers get a faster way to restore the intended setup when something goes off-track.",
-                            image: "/videos/case-studies/senior-mode/outcome-2.mp4"
+                            image: "/videos/case-studies/senior-mode/outcome-3.mp4"
                         },
                         {
                             title: "Validated with seniors + caregivers, then iterated and re-tested.",
                             description: "Remote moderated usability testing with 10 seniors + 8 caregivers (India), followed by a V2 iteration and a micro-test to check if the fixes improved the earlier issues.",
-                            image: "/videos/case-studies/senior-mode/outcome-3.mp4"
+                            image: "/videos/case-studies/senior-mode/outcome-2.mp4"
                         }
                     ]
                 },
