@@ -181,7 +181,7 @@ export function WorkSection() {
                                             {activeProject.summary || activeProject.title}
                                         </h3>
                                         <div className="space-y-1">
-                                            <p className="text-neutral-300 font-semibold text-xl" style={{ fontFamily: 'var(--font-archivo)' }}>A Learning + Commerce platform (Designed + Built)</p>
+                                            <p className="text-neutral-300 font-semibold text-xl" style={{ fontFamily: 'var(--font-archivo)' }}>{activeProject.problem}</p>
                                             {activeProject.details && activeProject.details.length > 0 ? (
                                                 <VerticalRollingText
                                                     items={activeProject.details}

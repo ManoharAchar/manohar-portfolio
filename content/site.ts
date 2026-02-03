@@ -354,7 +354,7 @@ export const siteConfig: SiteConfig = {
             role: "Product Designer (0→1) + Implementation",
             timeframe: "2023 — 2024",
             summary: "Turning podcast listeners into CEU earners.",
-            problem: "Data scientists couldn't visualize complex model drifts in real-time.",
+            problem: "A Learning + Commerce platform (Designed + Built)",
             outcome: "Shipped v1 dashboard adopted by 5 Fortune 500 clients.",
             tags: ["AI/ML", "Data Viz", "Systems Design"],
             thumbnail: "/images/cl-dashboard.png", // Placeholder
@@ -739,17 +739,18 @@ export const siteConfig: SiteConfig = {
             title: "Senior Mode for Android",
             role: "Product Designer",
             timeframe: "2024",
-            summary: "Simplifying Android for seniors.",
-            problem: "Android interface is too complex for seniors.",
+            summary: "Preventing “my phone is broken” moments for seniors.",
+            problem: "A state-first Android Senior Mode + caregiver recovery layer (tested + iterated).",
             outcome: "Increased adoption by seniors.",
             tags: ["Android", "Accessibility", "Research"],
             thumbnail: "/images/senior-mode-thumb.png", // Placeholder
             logo: "/images/senior-mode-logo.png",
             video: "/videos/case-studies/senior-mode/senior-mode-preview.mp4",
             details: [
-                "Role: Product Designer",
-                "Scope: UX/UI",
-                "Timeline: 2024"
+                "Type: Concept + high-fidelity prototype (Figma)",
+                "Role: End-to-end (research → IA → UI → prototyping → testing → iteration)",
+                "Duration: ~1.5 months • Platform: Android (Senior phone) + caregiver companion flow",
+                "Audience: Seniors (60–80) + caregivers (children / helpers), India-based testing"
             ],
             content: [
                 {
