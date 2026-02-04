@@ -139,17 +139,16 @@ export function Hero() {
                     }}
                     className={`z-20 bg-neutral-900 overflow-hidden flex items-center justify-center ${isMobile ? "relative order-1 mt-2" : "absolute"}`}
                 >
-                    {/* Placeholder for Video */}
+                    {/* Video Showreel */}
                     <div className="absolute inset-0 bg-neutral-950 flex items-center justify-center overflow-hidden">
-                        <HeroPlaceholder />
-
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div className="text-center transform transition-transform duration-500 hover:scale-110">
-                                <span className="text-neutral-400 font-mono uppercase tracking-widest text-xs bg-black/50 px-2 py-1 rounded">
-                                    Showreel
-                                </span>
-                            </div>
-                        </div>
+                        <video
+                            src="/videos/showreel.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                 </motion.div>
 
