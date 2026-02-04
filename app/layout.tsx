@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { NavigationDock } from "@/components/NavigationDock";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Preloader } from "@/components/Preloader";
+import { LoadingProvider } from "@/context/LoadingContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -55,14 +56,16 @@ export default function RootLayout({
           archivo.variable
         )}
       >
-        <Preloader />
-        <SmoothScroll />
-        <TopBar />
-        <main id="main-content" className="flex-grow pt-24 min-h-screen">
-          {children}
-        </main>
-        <NavigationDock />
-        <Footer />
+        <LoadingProvider>
+          <Preloader />
+          <SmoothScroll />
+          <TopBar />
+          <main id="main-content" className="flex-grow pt-24 min-h-screen">
+            {children}
+          </main>
+          <NavigationDock />
+          <Footer />
+        </LoadingProvider>
       </body>
     </html>
   );

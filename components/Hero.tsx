@@ -3,13 +3,29 @@
 import { useRef, useEffect, useState } from "react";
 import { siteConfig } from "@/content/site";
 import { useScroll, useTransform, motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
+import { useLoading } from "@/context/LoadingContext";
 
 export function Hero() {
+    const { isLoading } = useLoading();
+    const videoRef = useRef<HTMLVideoElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress, scrollY } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"], // Critical: ensures animation starts at 0% when page is at top
     });
+
+    // Handle Video Playback on Load
+    useEffect(() => {
+        if (!isLoading && videoRef.current) {
+            videoRef.current.currentTime = 0;
+            const playPromise = videoRef.current.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Auto-play was prevented:", error);
+                });
+            }
+        }
+    }, [isLoading]);
 
     // Responsive Logic
     const [isMobile, setIsMobile] = useState(false);
@@ -141,8 +157,8 @@ export function Hero() {
                     {/* Video Showreel */}
                     <div className="absolute inset-0 bg-neutral-950 flex items-center justify-center overflow-hidden">
                         <video
+                            ref={videoRef}
                             src="/videos/showreel.mp4"
-                            autoPlay
                             loop
                             muted
                             playsInline

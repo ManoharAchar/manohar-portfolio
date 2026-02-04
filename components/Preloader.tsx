@@ -1,11 +1,10 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LotusIcon } from "./icons/LotusIcon";
+import { useLoading } from "@/context/LoadingContext";
 
 export function Preloader() {
-    const [isLoading, setIsLoading] = useState(true);
+    const { isLoading, setIsLoading } = useLoading();
     const [count, setCount] = useState(0);
 
     useEffect(() => {
@@ -65,7 +64,7 @@ export function Preloader() {
             clearTimeout(safetyOverride);
         }
 
-    }, []);
+    }, [setIsLoading]);
 
     return (
         <AnimatePresence mode="wait">
