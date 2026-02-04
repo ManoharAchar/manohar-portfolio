@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import { siteConfig } from "@/content/site";
 import { useScroll, useTransform, motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
-import { HeroPlaceholder } from "./HeroPlaceholder";
 
 export function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
