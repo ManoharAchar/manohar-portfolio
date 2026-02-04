@@ -89,7 +89,7 @@ export function ToolStackStrip() {
     });
 
     return (
-        <div className="w-full py-12 md:py-16 bg-[#F3F2ED] overflow-hidden cursor-grab active:cursor-grabbing">
+        <div id="tool-stack" className="w-full py-12 md:py-16 bg-[#F3F2ED] overflow-hidden cursor-grab active:cursor-grabbing">
             <div className="w-full">
                 {/* Marquee Container */}
                 <div className="flex relative overflow-hidden" ref={containerRef}>
