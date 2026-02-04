@@ -32,10 +32,10 @@ export function TopBar() {
             const proxies = document.getElementById('proxies');
 
             const updateVisibility = () => {
-                // Hide if Footer is visible
-                // OR if strictly inside Case Study sections (WhatIBuilt active etc)
+                // Hide if strictly inside Case Study sections (WhatIBuilt active etc)
+                // Footer hiding logic removed as per user request (Bug 2)
                 const wibActive = wibVisible.current && !wibPrevVisible.current && !reflectionVisible.current && !proxiesVisible.current;
-                const shouldHide = footerVisible.current || wibActive;
+                const shouldHide = wibActive;
                 setIsVisible(!shouldHide);
             };
 
@@ -57,7 +57,7 @@ export function TopBar() {
             if (wibPrev) observer.observe(wibPrev);
             if (reflection) observer.observe(reflection);
             if (proxies) observer.observe(proxies);
-        }, 500); // 500ms delay for hydration/rendering
+        }, 800); // 800ms delay for hydration/rendering
 
         return () => {
             clearTimeout(timer);
