@@ -18,43 +18,51 @@ export function NavigationDock() {
     const proxiesVisible = useRef(false);
 
     useEffect(() => {
-        const footer = document.getElementById('site-footer');
-        const whatIBuilt = document.getElementById('what-i-built');
-        const wibPrev = document.getElementById('wib-prev');
-        const reflection = document.getElementById('reflection');
-        const proxies = document.getElementById('proxies');
+        let observer: IntersectionObserver | null = null;
 
-        const updateVisibility = () => {
-            // Hide if Footer is visible
-            // OR if strictly inside Case Study sections (WhatIBuilt active etc)
-            // Condition: Inside WIB, but Previous section is gone, and Next section hasn't appeared
-            const wibActive = wibVisible.current && !wibPrevVisible.current && !reflectionVisible.current && !proxiesVisible.current;
+        // Small timeout to ensure DOM is ready after route change
+        const timer = setTimeout(() => {
+            const footer = document.getElementById('site-footer');
+            const whatIBuilt = document.getElementById('what-i-built');
+            const wibPrev = document.getElementById('wib-prev');
+            const reflection = document.getElementById('reflection');
+            const proxies = document.getElementById('proxies');
 
-            const shouldHide = footerVisible.current || wibActive;
-            setIsVisible(!shouldHide);
-        };
+            const updateVisibility = () => {
+                // Hide if Footer is visible
+                // OR if strictly inside Case Study sections (WhatIBuilt active etc)
+                // Condition: Inside WIB, but Previous section is gone, and Next section hasn't appeared
+                const wibActive = wibVisible.current && !wibPrevVisible.current && !reflectionVisible.current && !proxiesVisible.current;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.target === footer) footerVisible.current = entry.isIntersecting;
-                if (entry.target === whatIBuilt) wibVisible.current = entry.isIntersecting;
-                if (entry.target === wibPrev) wibPrevVisible.current = entry.isIntersecting;
-                if (entry.target === reflection) reflectionVisible.current = entry.isIntersecting;
-                if (entry.target === proxies) proxiesVisible.current = entry.isIntersecting;
+                const shouldHide = footerVisible.current || wibActive;
+                setIsVisible(!shouldHide);
+            };
+
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.target === footer) footerVisible.current = entry.isIntersecting;
+                    if (entry.target === whatIBuilt) wibVisible.current = entry.isIntersecting;
+                    if (entry.target === wibPrev) wibPrevVisible.current = entry.isIntersecting;
+                    if (entry.target === reflection) reflectionVisible.current = entry.isIntersecting;
+                    if (entry.target === proxies) proxiesVisible.current = entry.isIntersecting;
+                });
+                updateVisibility();
+            }, {
+                threshold: 0.1 // Trigger when 10% is visible
             });
-            updateVisibility();
-        }, {
-            threshold: 0.1 // Trigger when 10% is visible
-        });
 
-        if (footer) observer.observe(footer);
-        if (whatIBuilt) observer.observe(whatIBuilt);
-        if (wibPrev) observer.observe(wibPrev);
-        if (reflection) observer.observe(reflection);
-        if (proxies) observer.observe(proxies);
+            if (footer) observer.observe(footer);
+            if (whatIBuilt) observer.observe(whatIBuilt);
+            if (wibPrev) observer.observe(wibPrev);
+            if (reflection) observer.observe(reflection);
+            if (proxies) observer.observe(proxies);
+        }, 800); // 800ms delay for hydration/rendering
 
-        return () => observer.disconnect();
-    }, []);
+        return () => {
+            clearTimeout(timer);
+            if (observer) observer.disconnect();
+        };
+    }, [pathname]);
 
     return (
         <div className="fixed bottom-2 md:bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none">
