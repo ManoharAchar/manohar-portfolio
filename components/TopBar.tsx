@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { siteConfig } from "@/content/site";
 import { Button } from "./Button";
 import { ContactButtonFramer } from "./ContactButton";
@@ -10,6 +10,7 @@ import { SkipLink } from "./SkipLink";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function TopBar() {
+    const pathname = usePathname();
     // Static transparent bar, no scroll state needed for transparency
     const [isVisible, setIsVisible] = useState(true);
     // Case Study Refs
@@ -20,41 +21,49 @@ export function TopBar() {
     const proxiesVisible = useRef(false);
 
     useEffect(() => {
-        const footer = document.getElementById('site-footer');
-        const whatIBuilt = document.getElementById('what-i-built');
-        const wibPrev = document.getElementById('wib-prev');
-        const reflection = document.getElementById('reflection');
-        const proxies = document.getElementById('proxies');
+        let observer: IntersectionObserver | null = null;
 
-        const updateVisibility = () => {
-            // Hide if Footer is visible
-            // OR if strictly inside Case Study sections (WhatIBuilt active etc)
-            const wibActive = wibVisible.current && !wibPrevVisible.current && !reflectionVisible.current && !proxiesVisible.current;
-            const shouldHide = footerVisible.current || wibActive;
-            setIsVisible(!shouldHide);
-        };
+        // Small timeout to ensure DOM is ready after route change
+        const timer = setTimeout(() => {
+            const footer = document.getElementById('site-footer');
+            const whatIBuilt = document.getElementById('what-i-built');
+            const wibPrev = document.getElementById('wib-prev');
+            const reflection = document.getElementById('reflection');
+            const proxies = document.getElementById('proxies');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.target === footer) footerVisible.current = entry.isIntersecting;
-                if (entry.target === whatIBuilt) wibVisible.current = entry.isIntersecting;
-                if (entry.target === wibPrev) wibPrevVisible.current = entry.isIntersecting;
-                if (entry.target === reflection) reflectionVisible.current = entry.isIntersecting;
-                if (entry.target === proxies) proxiesVisible.current = entry.isIntersecting;
+            const updateVisibility = () => {
+                // Hide if Footer is visible
+                // OR if strictly inside Case Study sections (WhatIBuilt active etc)
+                const wibActive = wibVisible.current && !wibPrevVisible.current && !reflectionVisible.current && !proxiesVisible.current;
+                const shouldHide = footerVisible.current || wibActive;
+                setIsVisible(!shouldHide);
+            };
+
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.target === footer) footerVisible.current = entry.isIntersecting;
+                    if (entry.target === whatIBuilt) wibVisible.current = entry.isIntersecting;
+                    if (entry.target === wibPrev) wibPrevVisible.current = entry.isIntersecting;
+                    if (entry.target === reflection) reflectionVisible.current = entry.isIntersecting;
+                    if (entry.target === proxies) proxiesVisible.current = entry.isIntersecting;
+                });
+                updateVisibility();
+            }, {
+                threshold: 0.1 // Trigger when 10% is visible
             });
-            updateVisibility();
-        }, {
-            threshold: 0.1 // Trigger when 10% is visible
-        });
 
-        if (footer) observer.observe(footer);
-        if (whatIBuilt) observer.observe(whatIBuilt);
-        if (wibPrev) observer.observe(wibPrev);
-        if (reflection) observer.observe(reflection);
-        if (proxies) observer.observe(proxies);
+            if (footer) observer.observe(footer);
+            if (whatIBuilt) observer.observe(whatIBuilt);
+            if (wibPrev) observer.observe(wibPrev);
+            if (reflection) observer.observe(reflection);
+            if (proxies) observer.observe(proxies);
+        }, 500); // 500ms delay for hydration/rendering
 
-        return () => observer.disconnect();
-    }, []);
+        return () => {
+            clearTimeout(timer);
+            if (observer) observer.disconnect();
+        };
+    }, [pathname]);
 
     const variants = {
         visible: { y: "0%" },
