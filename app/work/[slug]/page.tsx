@@ -63,54 +63,65 @@ export default async function CaseStudyPage({ params }: Props) {
                 Iterates through the content array and renders the matching component for each section type.
             */}
             {project.content.map((section, index) => {
+                // Determine if this section is the one immediately before "what-i-shipped"
+                const nextSection = project.content[index + 1];
+                const isPrevToWib = nextSection?.type === 'what-i-shipped';
+                const dynamicId = isPrevToWib ? 'wib-prev' : undefined;
+
+                // Helper to pass ID if supported - cast to any to avoid TS errors for components missing 'id' type
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const commonProps: any = { key: index, ...section, id: dynamicId };
+
                 switch (section.type) {
                     case 'hero':
-                        return <CsHero key={index} {...section} />;
+                        return <CsHero {...commonProps} />;
 
                     case 'tldr':
-                        return <CsTLDR key={index} {...section} />;
+                        return <CsTLDR {...commonProps} />;
 
                     case 'problem-context':
-                        return <CsProblemContext key={index} {...section} />;
+                        return <CsProblemContext {...commonProps} />;
 
                     case 'approach':
-                        return <CsApproach key={index} {...section} />;
+                        return <CsApproach {...commonProps} />;
 
                     case 'key-decisions':
-                        return <CsKeyDecisions key={index} {...section} />;
+                        // @ts-ignore - Component needs update to accept ID
+                        return <CsKeyDecisions {...commonProps} />;
 
                     case 'what-i-shipped':
-                        return <CsWhatIShipped key={index} {...section} />;
+                        return <CsWhatIShipped {...commonProps} />;
 
                     case 'proxies':
-                        return <CsProxies key={index} {...section} />;
+                        return <CsProxies {...commonProps} />;
 
                     case 'measurement-plan':
-                        return <CsMeasurementPlan key={index} {...section} />;
+                        return <CsMeasurementPlan {...commonProps} />;
 
                     case 'constraints':
-                        return <CsConstraints key={index} {...section} />;
+                        return <CsConstraints {...commonProps} />;
 
                     case 'challenges':
-                        return <CsChallenges key={index} {...section} />;
+                        return <CsChallenges {...commonProps} />;
 
                     case 'collaboration':
-                        return <CsCollaboration key={index} {...section} />;
+                        return <CsCollaboration {...commonProps} />;
 
                     case 'iteration-roadmap':
-                        return <CsIterationRoadmap key={index} {...section} />;
+                        return <CsIterationRoadmap {...commonProps} />;
 
                     case 'iteration-gallery':
-                        return <CsIterationGallery key={index} {...section} />;
+                        return <CsIterationGallery {...commonProps} />;
 
                     case 'reflection':
-                        return <CsReflection key={index} {...section} />;
+                        return <CsReflection {...commonProps} />;
 
                     case 'design-execution':
-                        return <CsDesignExecution key={index} {...section} />;
+                        // @ts-ignore - Component needs update to accept ID
+                        return <CsDesignExecution {...commonProps} />;
 
                     case 'testing-results':
-                        return <CsTestingResults key={index} {...section} />;
+                        return <CsTestingResults {...commonProps} />;
 
                     // Future sections will be added here
                     case 'text':

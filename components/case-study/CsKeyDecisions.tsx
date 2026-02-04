@@ -4,11 +4,12 @@ import { CaseStudySection } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/Reveal";
 
-type KeyDecisionsProps = Extract<CaseStudySection, { type: 'key-decisions' }>;
+// Update Props to include optional ID
+type KeyDecisionsProps = Extract<CaseStudySection, { type: 'key-decisions' }> & { id?: string };
 
-export function CsKeyDecisions({ title, decisions }: KeyDecisionsProps) {
+export function CsKeyDecisions({ title, decisions, id }: KeyDecisionsProps) {
     return (
-        <section className="bg-[#F6F4EF] text-[#141414] py-24 md:py-32">
+        <section id={id} className="bg-[#F6F4EF] text-[#141414] py-24 md:py-32">
             <div className="w-[95vw] md:w-[85%] max-w-[1440px] mx-auto">
 
                 {/* Section Header */}

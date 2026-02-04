@@ -18,13 +18,14 @@ type DesignExecutionProps = {
     // New props for variant
     variant?: 'dark' | 'light';
     intro?: string;
+    id?: string;
 };
 
-export function CsDesignExecution({ title, items, variant = 'dark', intro }: DesignExecutionProps) {
+export function CsDesignExecution({ title, items, variant = 'dark', intro, id }: DesignExecutionProps) {
     const isLight = variant === 'light';
 
     return (
-        <section className={cn(
+        <section id={id} className={cn(
             "py-24 md:py-32",
             isLight ? "bg-[#F6F4EF] text-[#0E0E0E]" : "bg-[#0A0A0A] text-white"
         )}>

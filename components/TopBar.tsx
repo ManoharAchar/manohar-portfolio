@@ -15,19 +15,22 @@ export function TopBar() {
     // Case Study Refs
     const footerVisible = useRef(false);
     const wibVisible = useRef(false);
+    const wibPrevVisible = useRef(false);
     const reflectionVisible = useRef(false);
     const proxiesVisible = useRef(false);
 
     useEffect(() => {
         const footer = document.getElementById('site-footer');
         const whatIBuilt = document.getElementById('what-i-built');
+        const wibPrev = document.getElementById('wib-prev');
         const reflection = document.getElementById('reflection');
         const proxies = document.getElementById('proxies');
 
         const updateVisibility = () => {
             // Hide if Footer is visible
-            // OR if WhatIBuilt is visible AND neither Reflection NOR Proxies is visible
-            const shouldHide = footerVisible.current || (wibVisible.current && !reflectionVisible.current && !proxiesVisible.current);
+            // OR if strictly inside Case Study sections (WhatIBuilt active etc)
+            const wibActive = wibVisible.current && !wibPrevVisible.current && !reflectionVisible.current && !proxiesVisible.current;
+            const shouldHide = footerVisible.current || wibActive;
             setIsVisible(!shouldHide);
         };
 
@@ -35,6 +38,7 @@ export function TopBar() {
             entries.forEach(entry => {
                 if (entry.target === footer) footerVisible.current = entry.isIntersecting;
                 if (entry.target === whatIBuilt) wibVisible.current = entry.isIntersecting;
+                if (entry.target === wibPrev) wibPrevVisible.current = entry.isIntersecting;
                 if (entry.target === reflection) reflectionVisible.current = entry.isIntersecting;
                 if (entry.target === proxies) proxiesVisible.current = entry.isIntersecting;
             });
@@ -45,6 +49,7 @@ export function TopBar() {
 
         if (footer) observer.observe(footer);
         if (whatIBuilt) observer.observe(whatIBuilt);
+        if (wibPrev) observer.observe(wibPrev);
         if (reflection) observer.observe(reflection);
         if (proxies) observer.observe(proxies);
 

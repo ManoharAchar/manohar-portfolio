@@ -13,20 +13,24 @@ export function NavigationDock() {
     // Case Study Refs
     const footerVisible = useRef(false);
     const wibVisible = useRef(false);
+    const wibPrevVisible = useRef(false); // Section immediately before What I Built
     const reflectionVisible = useRef(false);
     const proxiesVisible = useRef(false);
 
     useEffect(() => {
         const footer = document.getElementById('site-footer');
         const whatIBuilt = document.getElementById('what-i-built');
+        const wibPrev = document.getElementById('wib-prev');
         const reflection = document.getElementById('reflection');
         const proxies = document.getElementById('proxies');
 
         const updateVisibility = () => {
             // Hide if Footer is visible
-            // OR if WhatIBuilt is visible AND neither Reflection NOR Proxies is visible
-            // (Meaning we are in the middle of WhatIBuilt, but not yet seeing the next section)
-            const shouldHide = footerVisible.current || (wibVisible.current && !reflectionVisible.current && !proxiesVisible.current);
+            // OR if strictly inside Case Study sections (WhatIBuilt active etc)
+            // Condition: Inside WIB, but Previous section is gone, and Next section hasn't appeared
+            const wibActive = wibVisible.current && !wibPrevVisible.current && !reflectionVisible.current && !proxiesVisible.current;
+
+            const shouldHide = footerVisible.current || wibActive;
             setIsVisible(!shouldHide);
         };
 
@@ -34,6 +38,7 @@ export function NavigationDock() {
             entries.forEach(entry => {
                 if (entry.target === footer) footerVisible.current = entry.isIntersecting;
                 if (entry.target === whatIBuilt) wibVisible.current = entry.isIntersecting;
+                if (entry.target === wibPrev) wibPrevVisible.current = entry.isIntersecting;
                 if (entry.target === reflection) reflectionVisible.current = entry.isIntersecting;
                 if (entry.target === proxies) proxiesVisible.current = entry.isIntersecting;
             });
@@ -44,6 +49,7 @@ export function NavigationDock() {
 
         if (footer) observer.observe(footer);
         if (whatIBuilt) observer.observe(whatIBuilt);
+        if (wibPrev) observer.observe(wibPrev);
         if (reflection) observer.observe(reflection);
         if (proxies) observer.observe(proxies);
 
