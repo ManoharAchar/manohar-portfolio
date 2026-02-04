@@ -16,29 +16,17 @@ export function NavigationDock() {
     const reflectionVisible = useRef(false);
     const proxiesVisible = useRef(false);
 
-    // Home Page Refs
-    const workVisible = useRef(false);
-    const toolsVisible = useRef(false); // What I Boot (Tool Stack)
-
     useEffect(() => {
         const footer = document.getElementById('site-footer');
         const whatIBuilt = document.getElementById('what-i-built');
         const reflection = document.getElementById('reflection');
         const proxies = document.getElementById('proxies');
 
-        // Home Page Sections
-        const work = document.getElementById('work');
-        const tools = document.getElementById('tool-stack');
-
         const updateVisibility = () => {
             // Hide if Footer is visible
-            // OR if strictly inside Case Study sections (WhatIBuilt active etc)
-            // OR if strictly inside Home Page immersive sections (Work or Tool Stack)
-
-            const caseStudyHide = (wibVisible.current && !reflectionVisible.current && !proxiesVisible.current);
-            const homePageHide = workVisible.current || toolsVisible.current;
-
-            const shouldHide = footerVisible.current || caseStudyHide || homePageHide;
+            // OR if WhatIBuilt is visible AND neither Reflection NOR Proxies is visible
+            // (Meaning we are in the middle of WhatIBuilt, but not yet seeing the next section)
+            const shouldHide = footerVisible.current || (wibVisible.current && !reflectionVisible.current && !proxiesVisible.current);
             setIsVisible(!shouldHide);
         };
 
@@ -48,9 +36,6 @@ export function NavigationDock() {
                 if (entry.target === whatIBuilt) wibVisible.current = entry.isIntersecting;
                 if (entry.target === reflection) reflectionVisible.current = entry.isIntersecting;
                 if (entry.target === proxies) proxiesVisible.current = entry.isIntersecting;
-
-                if (entry.target === work) workVisible.current = entry.isIntersecting;
-                if (entry.target === tools) toolsVisible.current = entry.isIntersecting;
             });
             updateVisibility();
         }, {
@@ -61,9 +46,6 @@ export function NavigationDock() {
         if (whatIBuilt) observer.observe(whatIBuilt);
         if (reflection) observer.observe(reflection);
         if (proxies) observer.observe(proxies);
-
-        if (work) observer.observe(work);
-        if (tools) observer.observe(tools);
 
         return () => observer.disconnect();
     }, []);
