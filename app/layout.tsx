@@ -57,6 +57,7 @@ export default function RootLayout({
         )}
       >
         <LoadingProvider>
+          {/* Global Loading Provider used for sync */}
           <Preloader />
           <SmoothScroll />
           <TopBar />
