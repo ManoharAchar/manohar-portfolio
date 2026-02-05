@@ -72,7 +72,8 @@ export function Preloader() {
         <AnimatePresence mode="wait">
             {isLoading && (
                 <motion.div
-                    className="fixed inset-0 z-[9999] bg-[#0A0A0A] flex flex-col items-center justify-center text-[#F6F4EF]"
+                    className="fixed left-0 w-screen z-[9999] bg-[#0A0A0A] flex flex-col items-center justify-center text-[#F6F4EF] touch-none overscroll-none"
+                    style={{ height: '140vh', top: '-20vh' }}
                     initial={{ y: 0 }}
                     exit={{
                         y: "-100%",
@@ -85,7 +86,7 @@ export function Preloader() {
                     </div>
 
                     {/* Counter */}
-                    <div className="overflow-hidden h-12 md:h-16 flex items-center justify-center">
+                    <div className="overflow-hidden h-12 md:h-16 flex items-center justify-center px-4">
                         <motion.span
                             className="text-4xl md:text-6xl font-bold tracking-tighter"
                             style={{ fontFamily: 'Clash Display, sans-serif' }}
@@ -96,13 +97,19 @@ export function Preloader() {
                         </motion.span>
                     </div>
 
-                    {/* Brand Label (Optional) */}
+                    {/* Brand Label & Disclaimer */}
+                    {/* Adjusted bottom position to account for top offset */}
                     <motion.div
-                        className="absolute bottom-12 text-sm uppercase tracking-widest opacity-50"
+                        className="absolute bottom-[25vh] flex flex-col items-center gap-3"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5, transition: { delay: 0.5 } }}
+                        animate={{ opacity: 1, transition: { delay: 0.5 } }}
                     >
-                        Manohar Achar
+                        <p className="text-xs md:text-sm text-[#F6F4EF]/40 font-medium tracking-wide">
+                            I vibe coded this portfolio as an experiment.
+                        </p>
+                        <span className="text-sm uppercase tracking-widest opacity-50">
+                            Manohar Achar
+                        </span>
                     </motion.div>
                 </motion.div>
             )}

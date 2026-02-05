@@ -58,7 +58,6 @@ export default function RootLayout({
       >
         <LoadingProvider>
           {/* Global Loading Provider used for sync */}
-          <Preloader />
           <SmoothScroll />
           <TopBar />
           <main id="main-content" className="flex-grow pt-24 min-h-screen">
@@ -66,6 +65,7 @@ export default function RootLayout({
           </main>
           <NavigationDock />
           <Footer />
+          <Preloader />
         </LoadingProvider>
       </body>
     </html>

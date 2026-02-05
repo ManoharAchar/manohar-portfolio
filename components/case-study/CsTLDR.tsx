@@ -11,7 +11,7 @@ import { MediaRenderer } from "@/components/MediaRenderer";
 type TLDRProps = Extract<CaseStudySection, { type: 'tldr' }>;
 
 export function CsTLDR({ intro, cards, title }: TLDRProps) {
-    const targetRef = useRef<HTMLDivElement>(null);
+    const targetRef = useRef<HTMLDivElement>(null); // HMR force
     const cardsRef = useRef<HTMLDivElement>(null);
     const [scrollRange, setScrollRange] = useState(0);
 
@@ -76,9 +76,12 @@ export function CsTLDR({ intro, cards, title }: TLDRProps) {
 
             {/* 2. Sticky Container: Locks into view while scrolling the parent */}
             {/* Mobile: Top alignment + padding ensures header visibility. Native scroll. */}
-            <div className="relative md:sticky top-0 md:top-[-15vh] h-auto md:h-screen flex flex-col justify-start md:justify-center overflow-visible md:overflow-hidden">
+            {/* 2. Sticky Container: Locks into view while scrolling the parent */}
+            {/* Mobile: Top alignment + padding ensures header visibility. Native scroll. */}
+            {/* Switched to min-h-screen to allow content to expand naturally without overlap */}
+            <div className="relative md:sticky top-0 h-auto min-h-screen flex flex-col justify-start overflow-visible md:overflow-hidden">
 
-                <div className="w-full md:w-[85%] max-w-[1440px] mx-auto flex flex-col h-full justify-start md:justify-center pt-24 md:pt-0">
+                <div className="w-full md:w-[85%] max-w-[1440px] mx-auto flex flex-col h-full justify-start pt-24 md:pt-24">
 
                     {/* Header & Intro */}
                     {/* mb-8 adds exactly 32px gap between intro text and cards */}
@@ -135,14 +138,14 @@ export function CsTLDR({ intro, cards, title }: TLDRProps) {
                                         {/* pt-8 (32px) from image top edge */}
                                         {/* px-2 (+Parent px-4) = 24px horiz. */}
                                         {/* pb-4 combined with Parent pb-4 = 32px from bottom tile edge */}
-                                        <div className="h-[45%] md:h-[35%] flex flex-col justify-start pt-4 px-2 pb-4 gap-2">
-                                            {/* Gap-2 ensures tighter spacing between Title and Description */}
-                                            <Reveal>
+                                        <div className="h-[45%] md:h-[35%] flex flex-col justify-start pt-4 px-2 pb-4 gap-1">
+                                            {/* Gap-1 ensures tighter spacing between Title and Description */}
+                                            <Reveal height="auto">
                                                 <h3 className="text-lg md:text-[22px] font-bold text-white leading-tight" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                                     {card.title}
                                                 </h3>
                                             </Reveal>
-                                            <Reveal delay={0.1}>
+                                            <Reveal delay={0.1} height="auto">
                                                 <p className="text-[#999999] text-base md:text-lg font-normal leading-snug md:leading-relaxed overflow-y-auto" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                                     {card.description}
                                                 </p>

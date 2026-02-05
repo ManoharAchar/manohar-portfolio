@@ -94,12 +94,22 @@ export function NavigationDock() {
                 <div className="flex items-center gap-8">
                     {[
                         { label: "HOME", href: "/" },
-                        { label: "WORK", href: "/#work" },
-                        { label: "CAVE", href: "/#cave" } // Assuming generic link for now
+                        { label: "WORK", href: "/work" },
+                        { label: "ABOUT", href: "/#about" }
                     ].map((item) => (
                         <Link
                             key={item.label}
                             href={item.href}
+                            onClick={() => {
+                                if (item.href.includes('#')) {
+                                    const hash = item.href.split('#')[1];
+                                    if (hash) {
+                                        window.dispatchEvent(new CustomEvent('lenis-scroll-to', {
+                                            detail: { target: `#${hash}` }
+                                        }));
+                                    }
+                                }
+                            }}
                             className="text-white text-sm font-bold tracking-wide transition-colors"
                         >
                             <RollingText text={item.label} />

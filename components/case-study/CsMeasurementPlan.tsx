@@ -63,16 +63,16 @@ export function CsMeasurementPlan({ title, description, items }: MeasurementPlan
             style={{ height: (scrollRange > 0 && window.innerWidth >= 768) ? `calc(100vh + ${scrollRange * 2.5}px)` : 'auto' }}
         >
             <div className="relative md:sticky top-0 h-auto md:h-screen flex flex-col overflow-visible md:overflow-hidden">
-                <div className="flex flex-col h-full pt-24 md:pt-24 2xl:pt-32 relative z-10 text-left">
+                <div className="flex flex-col h-full pt-24 md:pt-24 2xl:pt-32 relative z-10 text-left md:pb-[172px]">
 
                     {/* Header - Constrained width */}
-                    <div className="w-[90%] md:w-[85%] max-w-[1440px] mx-auto mb-8 shrink-0">
-                        <Reveal>
+                    <div className="w-[90%] md:w-[85%] max-w-[1440px] mx-auto mb-8 md:mb-0 shrink-0">
+                        <Reveal height="auto">
                             <span className="text-sm font-bold uppercase tracking-wider text-white mb-4 block" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                                 {title}
                             </span>
                         </Reveal>
-                        <Reveal delay={0.1}>
+                        <Reveal delay={0.1} height="auto">
                             <p className="text-2xl md:text-[32px] leading-tight text-white" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                 {description}
                             </p>
@@ -80,7 +80,7 @@ export function CsMeasurementPlan({ title, description, items }: MeasurementPlan
                     </div>
 
                     {/* Horizontal Scroll Track - Full width on mobile, constrained on desktop */}
-                    <div className="w-full md:w-[85%] max-w-[1440px] md:mx-auto mb-[200px] md:mb-0 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-8 md:pb-0">
+                    <div className="w-full md:w-[85%] max-w-[1440px] md:mx-auto mb-[200px] md:mb-0 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-8 md:pb-0 md:flex-1 md:flex md:flex-col md:justify-center">
                         <motion.div
                             ref={cardsRef}
                             style={{ x: (typeof window !== 'undefined' && window.innerWidth >= 768) ? x : 0 }}

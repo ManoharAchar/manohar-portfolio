@@ -6,7 +6,7 @@ import { AboutCarousel } from "./AboutCarousel";
 
 export function AboutSection() {
     return (
-        <section className="relative w-full bg-[#F3F2ED] text-black py-12 md:py-32">
+        <section id="about" className="relative w-full bg-[#F3F2ED] text-black py-12 md:py-32">
             {/* Container matches exact width of expanded Hero video (95vw) */}
             <div className="w-[95vw] mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative">

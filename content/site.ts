@@ -159,6 +159,9 @@ export interface Project {
     slug: string;
     title: string;
     role: string;
+    scope: string; // New field from design
+    platform: string; // New field from design
+    accentColor?: string; // New accent color for buttons
     timeframe: string;
     problem: string;
     outcome: string;
@@ -352,12 +355,15 @@ export const siteConfig: SiteConfig = {
             slug: "cooperant-learning",
             title: "Cooperant Learning",
             role: "Product Designer (0→1) + Implementation",
-            timeframe: "2023 — 2024",
+            scope: "UX strategy, IA, interaction design, UI + design system",
+            platform: "Figma + Wordpress + Custom HTML & CSS",
+            accentColor: "#A29BFE",
+            timeframe: "~4 months",
             summary: "Turning podcast listeners into CEU earners.",
             problem: "A Learning + Commerce platform (Designed + Built)",
             outcome: "Shipped v1 dashboard adopted by 5 Fortune 500 clients.",
             tags: ["AI/ML", "Data Viz", "Systems Design"],
-            thumbnail: "/images/cl-dashboard.png", // Placeholder
+            thumbnail: "/images/case-studies/cooperant-learning/hero-banner.png", // Corrected path
             logo: "/images/cl-logo.png", // Placeholder
             video: "/videos/cooperant_learning_lead.mp4",
             details: [
@@ -718,6 +724,8 @@ export const siteConfig: SiteConfig = {
                 slug: "senior-mode-android",
                 title: "Senior Mode for Android",
                 role: "Product Designer",
+                scope: "UX/UI",
+                platform: "Android",
                 timeframe: "2024",
                 summary: "Simplifying Android for seniors.",
                 problem: "Android interface is too complex for seniors.",
@@ -737,13 +745,16 @@ export const siteConfig: SiteConfig = {
         {
             slug: "senior-mode-android",
             title: "Senior Mode for Android",
-            role: "Product Designer",
-            timeframe: "2024",
+            role: "Product Designer (self-initiated) - end-to-end",
+            scope: "Research + interaction/UI + prototype + usability testing",
+            platform: "Android (concept) + Figma interactive prototype",
+            accentColor: "#C58F9D",
+            timeframe: "~1.5 months",
             summary: "Preventing “my phone is broken” moments for seniors.",
-            problem: "A state-first Android Senior Mode + caregiver recovery layer (tested + iterated).",
+            problem: "A state-first Android Senior Mode + caregiver recovery layer (tested + iterated)",
             outcome: "Increased adoption by seniors.",
             tags: ["Android", "Accessibility", "Research"],
-            thumbnail: "/images/senior-mode-thumb.png", // Placeholder
+            thumbnail: "/images/case-studies/senior-mode/hero-banner.jpg", // Corrected path
             logo: "/images/senior-mode-logo.png",
             video: "/videos/case-studies/senior-mode/senior-mode-preview.mp4",
             details: [
@@ -1108,6 +1119,8 @@ export const siteConfig: SiteConfig = {
                 slug: "black-baza",
                 title: "Black Baza Coffee Co.",
                 role: "Product Designer",
+                scope: "End-to-end product design",
+                platform: "Mobile App",
                 timeframe: "2022",
                 summary: "Redefining the coffee supply chain transparency.",
                 problem: "High drop-off rate during the user onboarding flow.",

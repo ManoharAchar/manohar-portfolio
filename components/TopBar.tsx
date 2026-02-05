@@ -7,10 +7,12 @@ import { ContactButtonFramer } from "./ContactButton";
 import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
 import { SkipLink } from "./SkipLink";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 
 export function TopBar() {
     const pathname = usePathname();
+    const { scrollY } = useScroll();
+    const scale = useTransform(scrollY, [0, 100], [1, 0.85]);
     // Static transparent bar, no scroll state needed for transparency
     const [isVisible, setIsVisible] = useState(true);
     // Case Study Refs
@@ -88,26 +90,38 @@ export function TopBar() {
                 <div className="w-[95vw] mx-auto h-full flex items-center justify-between">
 
                     {/* MOBILE LEFT */}
-                    <div className="md:hidden flex flex-col leading-none gap-2">
+                    <motion.div
+                        className="md:hidden flex flex-col leading-none gap-2"
+                        style={{ scale, originX: 0, originY: 0.5 }}
+                    >
                         <span className="text-[16px] font-semibold tracking-tight">Open to</span>
                         <span className="text-[16px] font-semibold tracking-tight">Roles</span>
-                    </div>
+                    </motion.div>
 
                     {/* DESKTOP COLUMNS */}
-                    <div className="hidden md:flex flex-col leading-none gap-2">
+                    <motion.div
+                        className="hidden md:flex flex-col leading-none gap-2"
+                        style={{ scale, originX: 0, originY: 0.5 }}
+                    >
                         <span className="text-[16px] font-semibold">{siteConfig.header.location.label}</span>
                         <span className="text-[16px] text-[#707070]">{siteConfig.header.location.value}</span>
-                    </div>
+                    </motion.div>
 
-                    <div className="hidden md:flex flex-col leading-none gap-2">
+                    <motion.div
+                        className="hidden md:flex flex-col leading-none gap-2"
+                        style={{ scale, originX: 0, originY: 0.5 }}
+                    >
                         <span className="text-[16px] font-semibold">{siteConfig.header.currentRole.label}</span>
                         <span className="text-[16px] text-[#707070]">{siteConfig.header.currentRole.value}</span>
-                    </div>
+                    </motion.div>
 
-                    <div className="hidden md:flex flex-col leading-none gap-2">
+                    <motion.div
+                        className="hidden md:flex flex-col leading-none gap-2"
+                        style={{ scale, originX: 0, originY: 0.5 }}
+                    >
                         <span className="text-[16px] font-semibold">{siteConfig.header.availability.label}</span>
                         <span className="text-[16px] text-[#707070]">{siteConfig.header.availability.value}</span>
-                    </div>
+                    </motion.div>
 
                     {/* Invisible Spacer for CTA alignment */}
                     <div className="flex justify-end opacity-0">

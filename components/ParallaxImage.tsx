@@ -33,12 +33,8 @@ export function ParallaxImage({ src, alt, className, offset = 25 }: ParallaxImag
     });
 
     // Map scroll progress (0 to 1) to Y transform (-offset to +offset)
-    // We reverse the range so it moves 'against' the scroll for depth.
-    // Also scale up to ensure edges are covered.
+    // Removed useSpring to prevent scroll jitter/fighting with Lenis
     const y = useTransform(scrollYProgress, [0, 1], [-currentOffset, currentOffset]);
-
-    // Add a smooth spring physics to the movement for that "premium" feel
-    const springY = useSpring(y, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
     return (
         <div ref={ref} className={cn("relative overflow-hidden w-full h-full", className)}>
@@ -46,7 +42,7 @@ export function ParallaxImage({ src, alt, className, offset = 25 }: ParallaxImag
                 src={src}
                 alt={alt}
                 className="w-full h-full object-cover"
-                style={{ y: springY, scale: 1.08 }} // Scale 1.08 gives room for the parallax movement
+                style={{ y, scale: 1.08 }} // Direct y mapping for stability
             />
         </div>
     );

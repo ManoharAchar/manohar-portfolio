@@ -43,13 +43,23 @@ export function Footer() {
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {[
                         { label: "work", href: "/#work" },
-                        { label: "cave", href: "/#cave" },
+                        { label: "about", href: "/#about" },
                         { label: "contact", href: "mailto:hello@example.com" },
                         { label: "LinkedIn", href: siteConfig.meta.links.linkedin }
                     ].map((item) => (
                         <Link
                             key={item.label}
                             href={item.href}
+                            onClick={() => {
+                                if (item.href.includes('#')) {
+                                    const hash = item.href.split('#')[1];
+                                    if (hash) {
+                                        window.dispatchEvent(new CustomEvent('lenis-scroll-to', {
+                                            detail: { target: `#${hash}` }
+                                        }));
+                                    }
+                                }
+                            }}
                             className="group relative h-32 md:h-96 rounded-3xl overflow-hidden transition-colors duration-300"
                         >
                             {/* Glass Effect Background */}

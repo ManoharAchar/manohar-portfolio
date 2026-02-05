@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 interface RevealProps {
     children: React.ReactNode;
     width?: "fit-content" | "100%";
+    height?: string; // Added height prop
     className?: string;
     delay?: number;
     direction?: "up" | "down" | "left" | "right";
@@ -15,6 +16,7 @@ interface RevealProps {
 export function Reveal({
     children,
     width = "fit-content",
+    height = "100%", // Default to 100% for backward compatibility
     className,
     delay = 0.25,
     direction = "up",
@@ -57,7 +59,7 @@ export function Reveal({
             initial="hidden"
             animate={controls}
             className={className}
-            style={{ width }}
+            style={{ width, height, willChange: "transform, opacity, filter" }}
         >
             {children}
         </motion.div>
