@@ -42,7 +42,7 @@ export function Footer() {
                 {/* Navigation Tiles Grid */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {[
-                        { label: "work", href: "/#work" },
+                        { label: "work", href: "/work" },
                         { label: "about", href: "/#about" },
                         { label: "contact", href: "mailto:manohar.create@gmail.com" },
                         { label: "LinkedIn", href: siteConfig.meta.links.linkedin }

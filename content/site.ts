@@ -779,7 +779,7 @@ export const siteConfig: SiteConfig = {
                         { label: "Testing", value: "Remote moderated usability testing" },
                         { label: "Participants", value: "10 seniors + 8 caregivers (India)" }
                     ],
-                    liveUrl: "#", // Placeholder as requested (link: none) but label needed
+                    liveUrl: "https://www.figma.com/proto/m2Lrg2qKgCH3p4F4P0IP6b/Android-for-elderly?page-id=0%3A1&node-id=97-23413&viewport=751%2C-942%2C0.05&t=xKZMHwKY41udddfw-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=97%3A23413&show-proto-sidebar=1",
                     ctaLabel: "OPEN PROTOTYPE",
                     buttonColor: "#C58F9D"
                 },

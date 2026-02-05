@@ -17,13 +17,16 @@ export function Hero() {
     // Handle Video Playback on Load
     useEffect(() => {
         if (!isLoading && videoRef.current) {
-            videoRef.current.currentTime = 0;
-            const playPromise = videoRef.current.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Auto-play was prevented:", error);
-                });
-            }
+            const video = videoRef.current;
+            video.currentTime = 0;
+            const playVideo = async () => {
+                try {
+                    await video.play();
+                } catch (err) {
+                    console.warn("Auto-play was prevented:", err);
+                }
+            };
+            playVideo();
         }
     }, [isLoading]);
 
@@ -159,9 +162,12 @@ export function Hero() {
                         <video
                             ref={videoRef}
                             src="/videos/showreel.mp4"
+                            poster="/images/showreel-poster.png"
+                            autoPlay
                             loop
                             muted
                             playsInline
+                            preload="auto"
                             className="w-full h-full object-cover"
                         />
                     </div>

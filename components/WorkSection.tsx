@@ -71,7 +71,7 @@ export function WorkSection() {
                                     "relative w-36 md:w-56 lg:w-full aspect-[4/3] lg:aspect-[3/2] shrink-0 rounded-2xl flex items-center justify-center transition-all duration-500 ease-in-out group overflow-hidden",
                                     activeSlug === project.slug
                                         ? "bg-[#F3F2ED] scale-100 z-10"
-                                        : "bg-[#1F1F1F] z-0"
+                                        : "bg-[#1F1F1F] z-0 hover:scale-[1.02]"
                                 )}
                             >
                                 {/* Logo / Image Layer */}
@@ -91,7 +91,7 @@ export function WorkSection() {
 
                                 {/* Inactive Overlay with Title */}
                                 <div className={cn(
-                                    "absolute inset-0 bg-black/60 flex items-center justify-center transition-all duration-500 z-20",
+                                    "absolute inset-0 bg-black/60 group-hover:bg-black/40 flex items-center justify-center transition-all duration-500 z-20",
                                     activeSlug === project.slug ? "opacity-0 pointer-events-none" : "opacity-100"
                                 )}>
                                     <span className="text-white font-bold text-xs md:text-sm lg:text-xl uppercase tracking-widest text-center px-2 drop-shadow-md">
