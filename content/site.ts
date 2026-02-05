@@ -274,7 +274,7 @@ export const siteConfig: SiteConfig = {
         },
         cta: {
             label: "Get in touch",
-            href: "mailto:manohar.achar@gmail.com",
+            href: "mailto:manohar.create@gmail.com",
         }
     },
     navigation: {

@@ -94,8 +94,8 @@ export function TopBar() {
                         className="md:hidden flex flex-col leading-none gap-2"
                         style={{ scale, originX: 0, originY: 0.5 }}
                     >
-                        <span className="text-[16px] font-semibold tracking-tight">Open to</span>
-                        <span className="text-[16px] font-semibold tracking-tight">Roles</span>
+                        <span className="text-[16px] font-semibold tracking-tight">System-First</span>
+                        <span className="text-[16px] font-semibold tracking-tight">Designer</span>
                     </motion.div>
 
                     {/* DESKTOP COLUMNS */}
@@ -142,8 +142,8 @@ export function TopBar() {
 
                     {/* Invisible Spacers to match Layer 1 layout precisely */}
                     <div className="md:hidden opacity-0 flex flex-col leading-none gap-2">
-                        <span className="text-[16px] font-semibold tracking-tight">Open to</span>
-                        <span className="text-[16px] font-semibold tracking-tight">Roles</span>
+                        <span className="text-[16px] font-semibold tracking-tight">System-First</span>
+                        <span className="text-[16px] font-semibold tracking-tight">Designer</span>
                     </div>
 
                     <div className="hidden md:flex flex-col opacity-0 leading-none gap-2">
