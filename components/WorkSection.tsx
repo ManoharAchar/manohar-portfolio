@@ -36,7 +36,7 @@ export function WorkSection() {
     // ... existing imports
 
     return (
-        <section id="work" className="relative w-full bg-[#F3F2ED] pt-2 pb-12 md:py-12">
+        <section id="work" className="relative w-full bg-[#F3F2ED] pt-12 pb-12 md:pt-32 md:pb-12">
             <div className="w-[95vw] mx-auto">
                 {/* Header */}
                 <div className="flex justify-between items-end mb-8">
