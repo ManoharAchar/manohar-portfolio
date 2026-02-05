@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionV
 import { cn } from "@/lib/utils";
 
 const IMAGES = [
-    { src: "/images/about/01-headshot.jpg", label: "That's me! Say Hi!!" },
+    { src: "/images/about/01-headshot.jpg", label: "I vibe coded this site, how is it? Let me know!" },
     { src: "/images/about/02-workstation.jpg", label: "The workshop" },
     { src: "/images/about/03-design-club.jpg", label: "Hosting a Design Hackathon is a handful Ill tell you that" },
     { src: "/images/about/04-brioche.jpg", label: "Tiktok recipie turned out better than I expected" },

@@ -15,7 +15,7 @@ interface ContactButtonProps {
 
 export function ContactButtonFramer({ href, label, emoji = "🤙", className }: ContactButtonProps) {
     return (
-        <Link href={href} className={cn("relative inline-block group", className)}>
+        <Link href={href} target="_blank" rel="noopener noreferrer" className={cn("relative inline-block group", className)}>
             <motion.div
                 className="relative z-10 flex items-center justify-center h-12 px-6 rounded-full bg-neutral-900 text-white font-medium border border-transparent"
                 whileHover={{ scale: 1.02 }}

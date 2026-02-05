@@ -44,7 +44,7 @@ export function Footer() {
                     {[
                         { label: "work", href: "/#work" },
                         { label: "about", href: "/#about" },
-                        { label: "contact", href: "mailto:hello@example.com" },
+                        { label: "contact", href: "mailto:manohar.create@gmail.com" },
                         { label: "LinkedIn", href: siteConfig.meta.links.linkedin }
                     ].map((item) => (
                         <Link
