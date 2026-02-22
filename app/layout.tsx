@@ -20,17 +20,24 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://manoharachar.design"),
   title: {
     template: "%s | Product Designer",
     default: "Manohar | Product Designer",
   },
   description: "Product designer with an engineering backbone and a systems-first mindset.",
   openGraph: {
-    title: "Manohar | Product Designer",
+    title: "Manohar Achar | Product Designer",
     description: "Product designer with an engineering backbone and a systems-first mindset.",
     type: "website",
     locale: "en_US",
-    siteName: "Manohar Portfolio",
+    url: "https://manoharachar.design",
+    siteName: "Manohar | Product Designer",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Manohar Achar | Product Designer",
+    description: "Product designer with an engineering backbone and a systems-first mindset.",
   },
   icons: {
     icon: "/icon.svg",
