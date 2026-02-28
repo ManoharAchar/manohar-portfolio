@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { TopBar } from "@/components/TopBar";
 import { Footer } from "@/components/Footer";
 import { NavigationDock } from "@/components/NavigationDock";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { Preloader } from "@/components/Preloader";
 import { LoadingProvider } from "@/context/LoadingContext";
 
@@ -61,6 +62,7 @@ export default function RootLayout({
       >
         <LoadingProvider>
           {/* Global Loading Provider used for sync */}
+          <SmoothScroll />
           <TopBar />
           <main id="main-content" className="flex-grow pt-24 min-h-screen">
             {children}

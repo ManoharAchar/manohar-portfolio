@@ -88,10 +88,9 @@ export function NavigationDock() {
                                 if (item.href.includes('#')) {
                                     const hash = item.href.split('#')[1];
                                     if (hash) {
-                                        const target = document.querySelector(`#${hash}`);
-                                        if (target) {
-                                            target.scrollIntoView({ behavior: 'smooth' });
-                                        }
+                                        window.dispatchEvent(new CustomEvent('lenis-scroll-to', {
+                                            detail: { target: `#${hash}` }
+                                        }));
                                     }
                                 }
                             }}

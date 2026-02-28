@@ -85,6 +85,7 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
                     {/* Scrollable Container for Resume Images */}
                     <motion.div
                         className="absolute inset-0 overflow-y-auto px-4 lg:px-0 z-10"
+                        data-lenis-prevent="true"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
