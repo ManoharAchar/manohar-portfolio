@@ -53,7 +53,7 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Controls (matching the mockup style, aligned side-by-side to right edge) */}
-                        <div className="absolute -top-16 right-4 lg:top-0 lg:-right-[120px] flex flex-row items-center gap-4 z-[110]">
+                        <div className="absolute -top-16 right-4 lg:top-0 lg:-right-[108px] flex flex-row items-center gap-3 z-[110]">
                             <motion.a
                                 href="/resume/Manohar Achar - Resume .pdf"
                                 download
