@@ -51,6 +51,7 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
                     <div 
                         className="relative w-full max-w-[850px] mx-auto flex flex-col gap-8 mt-24 md:mt-32 pb-12 z-10 cursor-auto px-4 lg:px-0" 
                         onClick={(e) => e.stopPropagation()}
+                    >
                         {/* Controls (matching the mockup style, fixed on screen next to resume paper) */}
                         <div 
                             className="fixed flex flex-row items-center gap-3 z-[110]"
