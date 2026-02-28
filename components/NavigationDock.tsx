@@ -4,85 +4,66 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/content/site";
 import { RollingText } from "@/components/RollingText";
-import { motion } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export function NavigationDock() {
     const pathname = usePathname();
     const [isVisible, setIsVisible] = useState(true);
-    // Case Study Refs
-    const footerVisible = useRef(false);
-    const wibVisible = useRef(false);
-    const wibPrevVisible = useRef(false); // Section immediately before What I Built
-    const reflectionVisible = useRef(false);
-    const proxiesVisible = useRef(false);
+    const [defaultScale, setDefaultScale] = useState(0.8);
+    const [hoverScale, setHoverScale] = useState(1);
+    const { scrollY } = useScroll();
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useMotionValueEvent(scrollY, "change", (latest: number) => {
+        if (latest <= 50) {
+            setIsVisible(true);
+        } else if (latest > lastScrollY) {
+            setIsVisible(false); // Hide on scroll down
+        } else {
+            setIsVisible(true); // Show on scroll up
+        }
+        setLastScrollY(latest);
+    });
 
     useEffect(() => {
-        let observer: IntersectionObserver | null = null;
+        const updateScales = () => {
+            const isMonitor = window.innerWidth >= 1440; // Desktop vs Monitor cutoff
+            setDefaultScale(isMonitor ? 0.8 : 0.72); // 10% smaller default on desktop
+            setHoverScale(isMonitor ? 1 : 0.9); // 10% smaller hover on desktop
+        };
 
-        // Small timeout to ensure DOM is ready after route change
-        const timer = setTimeout(() => {
-            const footer = document.getElementById('site-footer');
-            const whatIBuilt = document.getElementById('what-i-built');
-            const wibPrev = document.getElementById('wib-prev');
-            const reflection = document.getElementById('reflection');
-            const proxies = document.getElementById('proxies');
-
-            const updateVisibility = () => {
-                // Hide if Footer is visible
-                // OR if strictly inside Case Study sections (WhatIBuilt active etc)
-                // Condition: Inside WIB, but Previous section is gone, and Next section hasn't appeared
-                const wibActive = wibVisible.current && !wibPrevVisible.current && !reflectionVisible.current && !proxiesVisible.current;
-
-                const shouldHide = footerVisible.current || wibActive;
-                setIsVisible(!shouldHide);
-            };
-
-            observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.target === footer) footerVisible.current = entry.isIntersecting;
-                    if (entry.target === whatIBuilt) wibVisible.current = entry.isIntersecting;
-                    if (entry.target === wibPrev) wibPrevVisible.current = entry.isIntersecting;
-                    if (entry.target === reflection) reflectionVisible.current = entry.isIntersecting;
-                    if (entry.target === proxies) proxiesVisible.current = entry.isIntersecting;
-                });
-                updateVisibility();
-            }, {
-                threshold: 0.1 // Trigger when 10% is visible
-            });
-
-            if (footer) observer.observe(footer);
-            if (whatIBuilt) observer.observe(whatIBuilt);
-            if (wibPrev) observer.observe(wibPrev);
-            if (reflection) observer.observe(reflection);
-            if (proxies) observer.observe(proxies);
-        }, 800); // 800ms delay for hydration/rendering
+        updateScales();
+        window.addEventListener('resize', updateScales);
 
         return () => {
-            clearTimeout(timer);
-            if (observer) observer.disconnect();
+            window.removeEventListener('resize', updateScales);
         };
+    }, []);
+
+    useEffect(() => {
+        setIsVisible(true);
     }, [pathname]);
 
     return (
         <div className="fixed bottom-2 md:bottom-6 inset-x-0 z-50 flex justify-center pointer-events-none">
             <motion.nav
-                initial={{ y: 20, opacity: 0, scale: 0.8 }}
+                initial={{ y: 20, opacity: 0, scale: defaultScale }}
                 animate={{
                     y: isVisible ? 0 : 150,
                     opacity: isVisible ? 1 : 0,
-                    scale: 0.8
+                    scale: defaultScale
                 }}
-                whileHover={{ scale: 1 }}
+                whileHover={{ scale: hoverScale }}
                 transition={{
                     y: { duration: 0.5, ease: "easeInOut" },
                     opacity: { duration: 0.5, ease: "easeInOut" },
                     scale: { type: "spring", stiffness: 300, damping: 20 }
                 }}
-                className="pointer-events-auto flex items-center gap-6 pl-[12px] pr-[32px] py-[12px] rounded-full bg-[#141414] border border-white/5 shadow-2xl origin-bottom"
+                className="pointer-events-auto flex items-center gap-6 pl-[12px] pr-[32px] py-[12px] rounded-full bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl origin-bottom transition-colors duration-500 hover:bg-white/60"
             >
                 {/* Avatar Placeholder - User to replace src */}
-                <div className="relative w-[72px] h-[64px] overflow-hidden rounded-full border border-white/10 shrink-0">
+                <div className="relative w-[72px] h-[64px] overflow-hidden rounded-full border border-white/40 shrink-0">
                     <img
                         src="/images/manohar-nav.jpg"
                         alt="Profile"
@@ -93,9 +74,9 @@ export function NavigationDock() {
                 {/* Navigation Links */}
                 <div className="flex items-center gap-8">
                     {[
-                        { label: "HOME", href: "/" },
-                        { label: "WORK", href: "/work" },
-                        { label: "ABOUT", href: "/#about" }
+                        { label: "home", href: "/" },
+                        { label: "work", href: "/work" },
+                        { label: "about", href: "/#about" }
                     ].map((item) => (
                         <Link
                             key={item.label}
@@ -110,7 +91,7 @@ export function NavigationDock() {
                                     }
                                 }
                             }}
-                            className="text-white text-sm font-bold tracking-wide transition-colors"
+                            className="text-black text-sm font-bold tracking-wide transition-colors lowercase font-sans"
                         >
                             <RollingText text={item.label} />
                         </Link>

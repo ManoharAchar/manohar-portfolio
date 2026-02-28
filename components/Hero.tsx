@@ -187,10 +187,10 @@ export function Hero() {
                         opacity: textOpacity,
                         y: textY
                     }}
-                    className={`z-10 px-4 w-full max-w-[90vw] text-center ${isMobile ? "relative order-2 mt-8" : "absolute top-[42%]"}`}
+                    className={`z-10 px-4 w-full text-center mx-auto ${isMobile ? "relative order-2 mt-8 max-w-[90vw]" : "absolute top-[42%] max-w-[60vw] left-0 right-0"}`}
                 >
-                    <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide text-[#0E0E0E] text-balance leading-[1.1]" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                        Product Designer who ships intuitive, research-backed products turning Complex systems into simple experiences.
+                    <h1 className="text-[clamp(1.5rem,3vw,4rem)] font-medium tracking-normal text-[#0E0E0E] text-balance leading-[1.1]" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                        Product Designer who ships intuitive, research-backed products turning <span className="font-bold">Complex systems into simple experiences.</span>
                     </h1>
                 </motion.div>
 

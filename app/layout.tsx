@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Archivo } from "next/font/google";
+import { Work_Sans, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TopBar } from "@/components/TopBar";
@@ -9,13 +9,13 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { Preloader } from "@/components/Preloader";
 import { LoadingProvider } from "@/context/LoadingContext";
 
-const inter = Inter({
-  variable: "--font-inter",
+const workSans = Work_Sans({
+  variable: "--font-work-sans",
   subsets: ["latin"],
 });
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
 });
 
@@ -53,14 +53,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet" />
-      </head>
       <body
         className={cn(
           "min-h-screen bg-[#F6F4EF] font-sans antialiased text-foreground selection:bg-accent selection:text-accent-foreground",
-          inter.variable,
-          archivo.variable
+          workSans.variable,
+          sourceSerif.variable
         )}
       >
         <LoadingProvider>

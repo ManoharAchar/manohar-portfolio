@@ -59,7 +59,13 @@ export function Reveal({
             initial="hidden"
             animate={controls}
             className={className}
-            style={{ width, height, willChange: "transform, opacity, filter" }}
+            style={{ width, height }}
+            onAnimationComplete={() => {
+                // Remove the filter completely after animation allows text to regain subpixel anti-aliasing
+                if (ref.current) {
+                    (ref.current as HTMLElement).style.filter = 'none';
+                }
+            }}
         >
             {children}
         </motion.div>

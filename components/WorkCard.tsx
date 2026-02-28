@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Project } from "@/content/site";
 import { ArrowUpRight } from "lucide-react";
 import { ParallaxImage } from "@/components/ParallaxImage";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { MouseEvent, useState } from "react";
 
 interface WorkCardProps {
     project: Project;
@@ -13,14 +15,27 @@ interface WorkCardProps {
 export function WorkCard({ project, index }: WorkCardProps) {
     const paddedIndex = (index + 1).toString().padStart(2, '0');
 
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+    const [isHovering, setIsHovering] = useState(false);
+
+    function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
+        const { left, top } = currentTarget.getBoundingClientRect();
+        mouseX.set(clientX - left);
+        mouseY.set(clientY - top);
+    }
+
     return (
         <div
-            className="w-full h-full bg-[#111111] rounded-[1.25rem] p-5 md:p-6 flex flex-col justify-between gap-4 md:gap-5 group overflow-hidden relative"
+            className="w-full h-full bg-[#E0DFD9] rounded-[1.25rem] p-5 md:p-6 group overflow-hidden relative transition-shadow duration-500 hover:shadow-xl"
+            onMouseMove={handleMouseMove}
             onMouseEnter={() => {
+                setIsHovering(true);
                 const video = document.getElementById(`video-${project.slug}`) as HTMLVideoElement;
                 if (video) video.play();
             }}
             onMouseLeave={() => {
+                setIsHovering(false);
                 const video = document.getElementById(`video-${project.slug}`) as HTMLVideoElement;
                 if (video) {
                     video.pause();
@@ -28,10 +43,28 @@ export function WorkCard({ project, index }: WorkCardProps) {
                 }
             }}
         >
-            {/* Top Section: Index and Content */}
-            <div className="flex flex-col gap-3 md:gap-4">
+            {/* Expanding Circle Overlay */}
+            <motion.div
+                className="pointer-events-none absolute inset-0"
+                initial={false}
+                animate={{
+                    clipPath: isHovering ? "circle(150% at var(--mouse-x) var(--mouse-y))" : "circle(0% at var(--mouse-x) var(--mouse-y))"
+                }}
+                transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+                style={{
+                    backgroundColor: project.accentColor || '#ffffff',
+                    // Use a simple motion template to pipe the coordinates into CSS vars
+                    "--mouse-x": useMotionTemplate`${mouseX}px`,
+                    "--mouse-y": useMotionTemplate`${mouseY}px`,
+                } as any}
+            />
+
+            {/* Content Wrapper ensures it sits above the background */}
+            <div className="relative z-10 flex flex-col justify-start gap-4 md:gap-5 h-full">
+                {/* Top Section: Index and Content */}
+                <div className="flex flex-col gap-3 md:gap-4">
                 {/* Index */}
-                <span className="text-white/40 font-mono text-xs tracking-widest leading-none">
+                <span className="text-[#050505]/40 font-mono text-xs tracking-widest leading-none">
                     {paddedIndex}
                 </span>
 
@@ -39,14 +72,14 @@ export function WorkCard({ project, index }: WorkCardProps) {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-6">
                     {/* Title */}
                     <div className="lg:col-span-4">
-                        <h2 className="text-2xl md:text-3xl font-medium text-white leading-[1.05] tracking-tight min-h-[2.1em] line-clamp-2">
+                        <h2 className="text-2xl md:text-3xl font-medium text-[#050505] leading-[1.05] tracking-tight min-h-[2.1em] line-clamp-2">
                             {project.title}
                         </h2>
                     </div>
 
                     {/* Description (Problem) */}
                     <div className="lg:col-span-8 flex items-start">
-                        <p className="text-base md:text-xl text-white/90 leading-snug min-h-[2.5em] line-clamp-2">
+                        <p className="text-base md:text-xl text-[#050505]/90 leading-snug min-h-[2.5em] line-clamp-2">
                             {project.problem}
                         </p>
                     </div>
@@ -55,7 +88,7 @@ export function WorkCard({ project, index }: WorkCardProps) {
                 {/* Media Area - Moved Above Metadata */}
                 <Link
                     href={`/work/${project.slug}`}
-                    className="relative w-full aspect-[2/1] overflow-hidden rounded-md bg-[#1C1C1C] cursor-pointer block mt-1"
+                    className="relative w-full aspect-[2/1] overflow-hidden rounded-md bg-black/5 cursor-pointer block mt-1"
                 >
                     {/* Image/Video */}
                     <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.02]">
@@ -76,7 +109,7 @@ export function WorkCard({ project, index }: WorkCardProps) {
                                 className="w-full h-full"
                             />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center text-white/20 font-mono text-xs uppercase tracking-widest">
+                            <div className="w-full h-full flex items-center justify-center text-[#050505]/20 font-mono text-xs uppercase tracking-widest">
                                 No Preview
                             </div>
                         )}
@@ -99,31 +132,20 @@ export function WorkCard({ project, index }: WorkCardProps) {
             </div>
 
 
-            {/* Metadata Grid - Moved Below Media */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-4 md:gap-y-0 pt-2">
+            {/* Metadata Footer - Inline Role and Timeline */}
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-y-2 gap-x-4 mt-auto">
                 {/* Role */}
-                <div className="flex flex-col gap-1">
-                    <span className="text-white font-bold text-[10px] md:text-xs tracking-wide uppercase opacity-80">Role</span>
-                    <span className="text-white/70 text-xs md:text-sm leading-tight">{project.role}</span>
-                </div>
-
-                {/* Scope */}
-                <div className="flex flex-col gap-1">
-                    <span className="text-white font-bold text-[10px] md:text-xs tracking-wide uppercase opacity-80">Scope</span>
-                    <span className="text-white/70 text-xs md:text-sm leading-tight">{project.scope}</span>
-                </div>
-
-                {/* Platform */}
-                <div className="flex flex-col gap-1">
-                    <span className="text-white font-bold text-[10px] md:text-xs tracking-wide uppercase opacity-80">Platform</span>
-                    <span className="text-white/70 text-xs md:text-sm leading-tight">{project.platform}</span>
+                <div className="flex items-baseline gap-2">
+                    <span className="text-[#050505] font-bold text-[10px] md:text-xs tracking-wide uppercase opacity-80 whitespace-nowrap">Role</span>
+                    <span className="text-[#050505]/70 text-xs md:text-sm leading-tight line-clamp-1">{project.role}</span>
                 </div>
 
                 {/* Timeline */}
-                <div className="flex flex-col gap-1">
-                    <span className="text-white font-bold text-[10px] md:text-xs tracking-wide uppercase opacity-80">Timeline</span>
-                    <span className="text-white/70 text-xs md:text-sm leading-tight">{project.timeframe}</span>
+                <div className="flex items-baseline gap-2 sm:text-right">
+                    <span className="text-[#050505] font-bold text-[10px] md:text-xs tracking-wide uppercase opacity-80 whitespace-nowrap">Timeline</span>
+                    <span className="text-[#050505]/70 text-xs md:text-sm leading-tight whitespace-nowrap">{project.timeframe}</span>
                 </div>
+            </div>
             </div>
         </div>
     );
