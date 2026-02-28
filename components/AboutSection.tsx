@@ -48,7 +48,7 @@ export function AboutSection() {
                     {/* Use top-[25vh] to stick near visual center without overlapping previous section via restart/transform */}
                     <div className="hidden lg:block relative min-h-full">
                         <div className="sticky top-[25vh] w-full h-auto ml-auto lg:max-w-none">
-                            <AboutCarousel />
+                            <AboutCarousel enableParallax />
                         </div>
                     </div>
 
