@@ -51,7 +51,7 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
                     <motion.div 
                         className="fixed top-24 md:top-32 flex flex-row items-center gap-3 z-[110]"
                         style={{ 
-                            right: 'calc(50vw - 425px - 108px)' // 425 = half paper width, 108 = desired gap + width of buttons
+                            right: 'calc(50vw - 425px - 120px)' // 425 = half paper width, 120 = desired gap (12) + width of buttons (108)
                         }}
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
