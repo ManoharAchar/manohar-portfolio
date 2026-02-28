@@ -1,6 +1,6 @@
 "use client";
 
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 interface ScrollRevealTextProps {
@@ -10,43 +10,41 @@ interface ScrollRevealTextProps {
 
 export function ScrollRevealText({ text, className }: ScrollRevealTextProps) {
     const element = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: element,
-        offset: ["start 0.9", "start 0.25"],
-    });
+    // Trigger when the element is 20% of the way up from the bottom of the screen
+    const isInView = useInView(element, { once: true, margin: "0px 0px -20% 0px" });
 
     const words = text.split(" ");
+    
+    const containerVariants = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.03, // Stagger each word fade-in by 30ms for a rapid fluid cascade
+            }
+        }
+    };
+    
+    const wordVariants = {
+        hidden: { opacity: 0.1 },
+        visible: { 
+            opacity: 1,
+            transition: { duration: 0.8, ease: "easeOut" }
+        }
+    };
 
     return (
-        <div
-            ref={element} // Reference for scroll container
+        <motion.div
+            ref={element}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
             className={`${className} flex flex-wrap gap-x-[0.25em]`}
         >
-            {words.map((word, i) => {
-                const start = i / words.length;
-                const end = start + (1 / words.length);
-                return (
-                    <Word key={i} progress={scrollYProgress} range={[start, end]}>
-                        {word}
-                    </Word>
-                );
-            })}
-        </div>
+            {words.map((word, i) => (
+                <motion.span key={i} variants={wordVariants}>
+                    {word}
+                </motion.span>
+            ))}
+        </motion.div>
     );
 }
-
-interface WordProps {
-    children: string;
-    progress: MotionValue<number>;
-    range: [number, number];
-}
-
-const Word = ({ children, progress, range }: WordProps) => {
-    const opacity = useTransform(progress, range, [0.1, 1]);
-
-    return (
-        <motion.span style={{ opacity }}>
-            {children}
-        </motion.span>
-    );
-};
