@@ -4,57 +4,17 @@ import { Reveal } from "./Reveal";
 import { ScrollRevealText } from "./ScrollRevealText";
 import { AboutCarousel } from "./AboutCarousel";
 import { ResumeOverlay } from "./ResumeOverlay";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 export function AboutSection() {
     const [isResumeOpen, setIsResumeOpen] = useState(false);
-
-    const gridRef = useRef<HTMLDivElement>(null);
-    const rightColRef = useRef<HTMLDivElement>(null);
-    const [pinBounds, setPinBounds] = useState({ start: 0, max: 0 });
-
-    useEffect(() => {
-        const updateBounds = () => {
-            if (gridRef.current && rightColRef.current) {
-                const rect = gridRef.current.getBoundingClientRect();
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                const absoluteTop = rect.top + scrollTop;
-                
-                // 25vh is our desired visual "sticky" top margin
-                const vh25 = window.innerHeight * 0.25;
-                const start = Math.max(0, absoluteTop - vh25);
-                
-                // Max translation is difference in height between parent grid and the image itself
-                const max = Math.max(0, gridRef.current.offsetHeight - rightColRef.current.offsetHeight);
-                
-                setPinBounds({ start, max });
-            }
-        };
-
-        const observer = new ResizeObserver(updateBounds);
-        if (gridRef.current) observer.observe(gridRef.current);
-        if (rightColRef.current) observer.observe(rightColRef.current);
-
-        updateBounds();
-
-        return () => observer.disconnect();
-    }, []);
-
-    const { scrollY } = useScroll();
-    
-    // Engine: Cancels out scroll movement precisely to emulate sticky behavior on the main thread
-    const yTranslate = useTransform(
-        scrollY, 
-        [pinBounds.start, pinBounds.start + pinBounds.max], 
-        [0, pinBounds.max]
-    );
 
     return (
         <section id="about" className="relative w-full bg-[#F3F2ED] text-black py-12 md:py-32">
             {/* Container matches exact width of expanded Hero video (95vw) */}
             <div className="w-[95vw] mx-auto">
-                <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative">
                     {/* Left Column: Text - Aligns with Left Edge. No special alignment, it defines height. */}
                     <div className="flex flex-col gap-8 pb-24">
                         <Reveal width="100%">
@@ -83,16 +43,13 @@ export function AboutSection() {
                         </div>
                     </div>
 
-                    {/* Right Column: Mathematical Pinning Engine */}
-                    {/* Replaced CSS 'sticky' to prevent compositor desync with Lenis and Framer text reveals */}
+                    {/* Right Column: Media Placeholder - Aligns with Right Edge. Sticky behavior. */}
+                    {/* Parent div stretches to match text height. Inner div adheres to sticky positioning. */}
+                    {/* Use top-[25vh] to stick near visual center without overlapping previous section via restart/transform */}
                     <div className="hidden lg:block relative min-h-full">
-                        <motion.div 
-                            ref={rightColRef}
-                            style={{ y: yTranslate }}
-                            className="w-full h-auto ml-auto lg:max-w-none"
-                        >
+                        <div className="sticky top-[25vh] w-full h-auto ml-auto lg:max-w-none">
                             <AboutCarousel />
-                        </motion.div>
+                        </div>
                     </div>
 
 
