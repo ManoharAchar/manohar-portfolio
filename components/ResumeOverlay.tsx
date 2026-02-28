@@ -49,9 +49,8 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
 
                     {/* Controls (Fully fixed to viewport, unaffected by scrolling content) */}
                     <motion.div 
-                        className="fixed flex flex-row items-center gap-3 z-[110]"
+                        className="fixed top-24 md:top-32 flex flex-row items-center gap-3 z-[110]"
                         style={{ 
-                            top: 'max(6rem, 8vh)', // Rough alignment with mt-24 of the resume paper
                             right: 'calc(50vw - 425px - 108px)' // 425 = half paper width, 108 = desired gap + width of buttons
                         }}
                         initial={{ opacity: 0, y: -20 }}
