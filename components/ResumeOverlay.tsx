@@ -51,9 +51,14 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
                     <div 
                         className="relative w-full max-w-[850px] mx-auto flex flex-col gap-8 mt-24 md:mt-32 pb-12 z-10 cursor-auto px-4 lg:px-0" 
                         onClick={(e) => e.stopPropagation()}
-                    >
-                        {/* Controls (matching the mockup style, aligned side-by-side to right edge) */}
-                        <div className="absolute -top-16 right-0 lg:fixed lg:top-32 lg:left-[50%] lg:translate-x-[calc(425px+12px)] flex flex-row items-center gap-3 z-[110]">
+                        {/* Controls (matching the mockup style, fixed on screen next to resume paper) */}
+                        <div 
+                            className="fixed flex flex-row items-center gap-3 z-[110]"
+                            style={{ 
+                                top: '8rem', // Align roughy with mt-32 of resume
+                                right: 'calc(50vw - 425px - 120px)' 
+                            }}
+                        >
                             <motion.a
                                 href="/resume/Manohar Achar - Resume .pdf"
                                 download
