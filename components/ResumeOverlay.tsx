@@ -36,72 +36,88 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
     return (
         <AnimatePresence>
             {isOpen && (
-                <motion.div
-                    className="fixed inset-0 z-[100] flex flex-col items-center justify-start overflow-y-auto bg-white/40 backdrop-blur-xl p-4 md:p-8"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    data-lenis-prevent="true"
-                >
-                    {/* Close Overlay by clicking background */}
-                    <div className="fixed inset-0 z-0" onClick={onClose} />
+                <div className="fixed inset-0 z-[100]">
+                    {/* Backdrop matching TopBar style overlay */}
+                    <motion.div
+                        className="absolute inset-0 bg-white/40 backdrop-blur-xl z-0"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        onClick={onClose}
+                    />
 
-                    {/* Resume Images & Controls Container */}
-                    <div 
-                        className="relative w-full max-w-[850px] mx-auto flex flex-col gap-8 mt-24 md:mt-32 pb-12 z-10 cursor-auto px-4 lg:px-0" 
-                        onClick={(e) => e.stopPropagation()}
+                    {/* Controls (Fully fixed to viewport, unaffected by scrolling content) */}
+                    <motion.div 
+                        className="fixed flex flex-row items-center gap-3 z-[110]"
+                        style={{ 
+                            top: 'max(6rem, 8vh)', // Rough alignment with mt-24 of the resume paper
+                            right: 'calc(50vw - 425px - 108px)' // 425 = half paper width, 108 = desired gap + width of buttons
+                        }}
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
                     >
-                        {/* Controls (matching the mockup style, fixed on screen next to resume paper) */}
-                        <div 
-                            className="fixed flex flex-row items-center gap-3 z-[110]"
-                            style={{ 
-                                top: '8rem', // Align roughy with mt-32 of resume
-                                right: 'calc(50vw - 425px - 120px)' 
-                            }}
+                        <motion.a
+                            href="/resume/Manohar Achar - Resume .pdf"
+                            download
+                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
+                            aria-label="Download Resume"
+                            onClick={(e) => e.stopPropagation()}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
                         >
-                            <motion.a
-                                href="/resume/Manohar Achar - Resume .pdf"
-                                download
-                                className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
-                                aria-label="Download Resume"
-                                onClick={(e) => e.stopPropagation()}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.95 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                            >
-                                <Download strokeWidth={2.5} className="w-6 h-6" />
-                            </motion.a>
-                            <motion.button
-                                onClick={onClose}
-                                className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
-                                aria-label="Close Resume"
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.95 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                            >
-                                <X strokeWidth={2.5} className="w-6 h-6" />
-                            </motion.button>
-                        </div>
+                            <Download strokeWidth={2.5} className="w-6 h-6" />
+                        </motion.a>
+                        <motion.button
+                            onClick={onClose}
+                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
+                            aria-label="Close Resume"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                        >
+                            <X strokeWidth={2.5} className="w-6 h-6" />
+                        </motion.button>
+                    </motion.div>
 
-                        <motion.img 
-                            src="/resume/Manohar Achar - Resume page 1.jpg" 
-                            alt="Resume Page 1" 
-                            className="w-full h-auto rounded-xl shadow-2xl"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1, type: "spring", stiffness: 300, damping: 25 }}
-                        />
-                        <motion.img 
-                            src="/resume/Manohar Achar - Resume page 2.jpg" 
-                            alt="Resume Page 2" 
-                            className="w-full h-auto rounded-xl shadow-2xl"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2, type: "spring", stiffness: 300, damping: 25 }}
-                        />
-                    </div>
-                </motion.div>
+                    {/* Scrollable Container for Resume Images */}
+                    <motion.div
+                        className="absolute inset-0 overflow-y-auto px-4 lg:px-0 z-10"
+                        data-lenis-prevent="true"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        {/* Invisible clickable spacer above resume to close modal */}
+                        <div className="w-full h-24 md:h-32" onClick={onClose} />
+                        
+                        <div 
+                            className="relative w-full max-w-[850px] mx-auto flex flex-col gap-8 pb-12 cursor-auto" 
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <motion.img 
+                                src="/resume/Manohar Achar - Resume page 1.jpg" 
+                                alt="Resume Page 1" 
+                                className="w-full h-auto rounded-xl shadow-2xl"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1, type: "spring", stiffness: 300, damping: 25 }}
+                            />
+                            <motion.img 
+                                src="/resume/Manohar Achar - Resume page 2.jpg" 
+                                alt="Resume Page 2" 
+                                className="w-full h-auto rounded-xl shadow-2xl"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2, type: "spring", stiffness: 300, damping: 25 }}
+                            />
+                        </div>
+                    </motion.div>
+                </div>
             )}
         </AnimatePresence>
     );
