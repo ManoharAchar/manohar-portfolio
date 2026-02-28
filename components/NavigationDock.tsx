@@ -13,17 +13,20 @@ export function NavigationDock() {
     const [defaultScale, setDefaultScale] = useState(0.8);
     const [hoverScale, setHoverScale] = useState(1);
     const { scrollY } = useScroll();
-    const [lastScrollY, setLastScrollY] = useState(0);
 
     useMotionValueEvent(scrollY, "change", (latest: number) => {
+        const previous = scrollY.getPrevious() ?? 0;
+        
+        // Ignore micro-bounces from smooth scrolling libraries
+        if (Math.abs(latest - previous) < 10 && latest > 50) return;
+
         if (latest <= 50) {
             setIsVisible(true);
-        } else if (latest > lastScrollY) {
+        } else if (latest > previous) {
             setIsVisible(false); // Hide on scroll down
         } else {
             setIsVisible(true); // Show on scroll up
         }
-        setLastScrollY(latest);
     });
 
     useEffect(() => {

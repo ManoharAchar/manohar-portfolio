@@ -13,17 +13,20 @@ export function TopBar() {
     const pathname = usePathname();
     const { scrollY } = useScroll();
     const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
 
     useMotionValueEvent(scrollY, "change", (latest: number) => {
+        const previous = scrollY.getPrevious() ?? 0;
+        
+        // Ignore micro-bounces from smooth scrolling libraries
+        if (Math.abs(latest - previous) < 10 && latest > 50) return;
+
         if (latest <= 50) {
             setIsVisible(true);
-        } else if (latest > lastScrollY) {
+        } else if (latest > previous) {
             setIsVisible(false);
         } else {
             setIsVisible(true);
         }
-        setLastScrollY(latest);
     });
 
     const variants = {
@@ -78,9 +81,13 @@ export function TopBar() {
                         <span className="text-[13px] text-[#707070]">{siteConfig.header.availability.value}</span>
                     </div>
 
-                    {/* Invisible Spacer for CTA alignment */}
-                    <div className="flex justify-end opacity-0">
-                        <div className="w-[140px] h-10" />
+                    {/* Invisible Spacer for CTA alignment (Exact copy guarantees identical height constraint for flex centering) */}
+                    <div className="flex justify-end opacity-0 pointer-events-none">
+                        <ContactButtonFramer
+                            href={siteConfig.header.cta.href}
+                            label={siteConfig.header.cta.label}
+                            emoji="🤙"
+                        />
                     </div>
                 </div>
             </motion.header>
