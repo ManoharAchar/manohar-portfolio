@@ -33,13 +33,7 @@ export function ParallaxImage({ src, alt, className, offset = 25 }: ParallaxImag
     });
 
     // Map scroll progress (0 to 1) to Y transform (-offset to +offset)
-    // Re-added useSpring since global Lenis has been removed to prevent macOS native scroll jitter
-    const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
-    const y = useTransform(smoothProgress, [0, 1], [-currentOffset, currentOffset]);
+    const y = useTransform(scrollYProgress, [0, 1], [-currentOffset, currentOffset]);
 
     return (
         <div ref={ref} className={cn("relative overflow-hidden w-full h-full", className)}>

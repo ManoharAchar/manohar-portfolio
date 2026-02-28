@@ -14,13 +14,6 @@ export function Hero() {
         offset: ["start start", "end end"], // Critical: ensures animation starts at 0% when page is at top
     });
 
-    // Smooth out native scroll events to prevent jitter scaling (replacing Lenis globally)
-    const smoothYProgress = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
-
     // Handle Video Playback on Load
     useEffect(() => {
         if (!isLoading && videoRef.current) {
@@ -119,16 +112,14 @@ export function Hero() {
 
     // Animation Transforms using Calculated Pixels
     // Fallback to 0 if dimensions aren't loaded yet (SSR safety)
-    // Animation Transforms using Calculated Pixels
-    // Fallback to 0 if dimensions aren't loaded yet (SSR safety)
-    const width = useTransform(smoothYProgress, [0, 1], [dims.startW || "25vw", dims.endW || "95vw"]);
-    const height = useTransform(smoothYProgress, [0, 1], [dims.startH || "14vw", dims.endH || "95vh"]);
-    const top = useTransform(smoothYProgress, [0, 1], ["12%", "2.5%"]);
-    const borderRadius = useTransform(smoothYProgress, [0, 1], ["1.5rem", "1.5rem"]);
+    const width = useTransform(scrollYProgress, [0, 1], [dims.startW || "25vw", dims.endW || "95vw"]);
+    const height = useTransform(scrollYProgress, [0, 1], [dims.startH || "14vw", dims.endH || "95vh"]);
+    const top = useTransform(scrollYProgress, [0, 1], ["12%", "2.5%"]);
+    const borderRadius = useTransform(scrollYProgress, [0, 1], ["1.5rem", "1.5rem"]);
 
     // Text Animation (Desktop Only) - fades out synced with expansion
-    const textOpacity = useTransform(smoothYProgress, [0, 0.8], [1, 0]); // Fade out slightly earlier to be clean
-    const textY = useTransform(smoothYProgress, [0, 1], [0, -100]);
+    const textOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]); // Fade out slightly earlier to be clean
+    const textY = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
     return (
         <section

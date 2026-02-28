@@ -47,7 +47,7 @@ export function AboutSection() {
                     {/* Parent div stretches to match text height. Inner div adheres to sticky positioning. */}
                     {/* Use top-[25vh] to stick near visual center without overlapping previous section via restart/transform */}
                     <div className="hidden lg:block relative min-h-full">
-                        <div className="sticky top-[25vh] w-full h-auto ml-auto lg:max-w-none transform-gpu will-change-transform">
+                        <div className="sticky top-[25vh] w-full h-auto ml-auto lg:max-w-none">
                             <AboutCarousel />
                         </div>
                     </div>
