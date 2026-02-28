@@ -65,14 +65,19 @@ export function NavigationDock() {
                 }}
                 className="pointer-events-auto flex items-center gap-6 pl-[12px] pr-[32px] py-[12px] rounded-full bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl origin-bottom transition-colors duration-500 hover:bg-white/60"
             >
-                {/* Avatar Placeholder - User to replace src */}
-                <div className="relative w-[72px] h-[64px] overflow-hidden rounded-full border border-white/40 shrink-0">
+                {/* Avatar Placeholder - Links to LinkedIn */}
+                <Link 
+                    href={siteConfig.author.social.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="relative w-[72px] h-[64px] overflow-hidden rounded-full border border-white/40 shrink-0 transition-transform duration-300 hover:scale-105"
+                >
                     <img
                         src="/images/manohar-nav.png"
                         alt="Profile"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-90"
                     />
-                </div>
+                </Link>
 
                 {/* Navigation Links */}
                 <div className="flex items-center gap-8">
