@@ -17,7 +17,7 @@ export function Footer() {
     const scale = 1.05;
 
     return (
-        <footer ref={containerRef} id="site-footer" className="relative w-full min-h-[400px] md:min-h-[600px] flex items-end justify-center overflow-hidden bg-[#F6F4EF] pt-12 pb-4 md:pt-32 md:pb-6">
+        <footer ref={containerRef} id="site-footer" className="relative w-full flex items-end justify-center overflow-hidden bg-[#F6F4EF] pt-12 pb-4 md:pt-16 md:pb-6">
 
             {/* Background Gradient Layer (Behind text and cards) */}
             <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#E0DFD9] via-[#E0DFD9]/80 to-transparent pointer-events-none" />

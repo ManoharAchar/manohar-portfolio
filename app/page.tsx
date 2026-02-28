@@ -10,6 +10,7 @@ import { AboutSection } from "@/components/AboutSection";
 import { WorkSection } from "@/components/WorkSection";
 import { MindsetSection } from "@/components/MindsetSection";
 import { ToolStackStrip } from "@/components/ToolStackStrip";
+import { GetInTouchSection } from "@/components/GetInTouchSection";
 
 export default function Home() {
   return (
@@ -28,6 +29,9 @@ export default function Home() {
 
       {/* Tool Stack Section */}
       <ToolStackStrip />
+
+      {/* Get In Touch Section */}
+      <GetInTouchSection />
     </div>
   );
 }
