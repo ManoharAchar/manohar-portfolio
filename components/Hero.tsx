@@ -155,7 +155,7 @@ export function Hero() {
                         top,
                         x // Apply blended X position
                     }}
-                    className={`z-20 bg-neutral-900 overflow-hidden flex items-center justify-center ${isMobile ? "relative order-1 mt-2" : "absolute"}`}
+                    className={`z-20 bg-neutral-900 overflow-hidden flex items-center justify-center will-change-transform transform-gpu ${isMobile ? "relative order-1 mt-2" : "absolute"}`}
                 >
                     {/* Video Showreel */}
                     <div className="absolute inset-0 bg-neutral-950 flex items-center justify-center overflow-hidden">
