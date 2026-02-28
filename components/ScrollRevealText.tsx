@@ -1,6 +1,6 @@
 "use client";
 
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { useScroll, useTransform, motion, MotionValue, useSpring } from "framer-motion";
 import { useRef } from "react";
 
 interface ScrollRevealTextProps {
@@ -15,6 +15,13 @@ export function ScrollRevealText({ text, className }: ScrollRevealTextProps) {
         offset: ["start 0.9", "start 0.25"],
     });
 
+    // Smooth out native scroll events to prevent jitter (replacing Lenis globally)
+    const smoothProgress = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+    });
+
     const words = text.split(" ");
 
     return (
@@ -26,7 +33,7 @@ export function ScrollRevealText({ text, className }: ScrollRevealTextProps) {
                 const start = i / words.length;
                 const end = start + (1 / words.length);
                 return (
-                    <Word key={i} progress={scrollYProgress} range={[start, end]}>
+                    <Word key={i} progress={smoothProgress} range={[start, end]}>
                         {word}
                     </Word>
                 );
@@ -45,7 +52,7 @@ const Word = ({ children, progress, range }: WordProps) => {
     const opacity = useTransform(progress, range, [0.1, 1]);
 
     return (
-        <motion.span style={{ opacity }} className="transition-opacity duration-200">
+        <motion.span style={{ opacity }}>
             {children}
         </motion.span>
     );
