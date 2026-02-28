@@ -68,7 +68,7 @@ export function NavigationDock() {
                 {/* Avatar Placeholder - User to replace src */}
                 <div className="relative w-[72px] h-[64px] overflow-hidden rounded-full border border-white/40 shrink-0">
                     <img
-                        src="/images/manohar-nav.jpg"
+                        src="/images/manohar-nav.png"
                         alt="Profile"
                         className="w-full h-full object-cover"
                     />
