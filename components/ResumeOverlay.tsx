@@ -49,22 +49,28 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
 
                     {/* Controls (matching the mockup style) */}
                     <div className="fixed top-6 right-6 md:top-8 md:right-8 flex items-center gap-4 z-[110]">
-                        <a
+                        <motion.a
                             href="/resume/Manohar Achar - Resume .pdf"
                             download
-                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl transition-colors duration-300 hover:bg-white/60"
+                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
                             aria-label="Download Resume"
                             onClick={(e) => e.stopPropagation()}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
                         >
                             <Download strokeWidth={2.5} className="w-6 h-6" />
-                        </a>
-                        <button
+                        </motion.a>
+                        <motion.button
                             onClick={onClose}
-                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl transition-colors duration-300 hover:bg-white/60"
+                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
                             aria-label="Close Resume"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
                         >
                             <X strokeWidth={2.5} className="w-6 h-6" />
-                        </button>
+                        </motion.button>
                     </div>
 
                     {/* Resume Images */}
