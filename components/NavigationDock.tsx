@@ -67,7 +67,7 @@ export function NavigationDock() {
             >
                 {/* Avatar Placeholder - Links to LinkedIn */}
                 <Link 
-                    href={siteConfig.author.social.linkedin} 
+                    href={siteConfig.meta.links.linkedin} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="relative w-[72px] h-[64px] overflow-hidden rounded-full border border-white/40 shrink-0 transition-transform duration-300 hover:scale-105"
