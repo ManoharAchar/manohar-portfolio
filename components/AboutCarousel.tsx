@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const IMAGES = [
@@ -16,21 +16,10 @@ const IMAGES = [
     { src: "/images/about/08-doodles-laughs.jpg", label: "Dropping a few caricature hacks at a club event." },
 ];
 
-export function AboutCarousel({ className, enableParallax = false }: { className?: string; enableParallax?: boolean }) {
+export function AboutCarousel({ className }: { className?: string }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const [isHovering, setIsHovering] = useState(false);
-
-
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"]
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-    const springY = useSpring(y, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
-    const parallaxStyle = enableParallax ? { y: springY, scale: 1.1 } : {};
 
     const nextImage = () => {
         setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
@@ -46,12 +35,7 @@ export function AboutCarousel({ className, enableParallax = false }: { className
                 ref={containerRef}
                 className="relative w-full aspect-[640/384] overflow-hidden bg-[#1C1C1C] rounded-[24px]"
             >
-            {/* Hidden Pre-mount Container for Instant Loading */}
-            <div className="absolute inset-0 w-0 h-0 opacity-0 overflow-hidden pointer-events-none">
-                {IMAGES.map((img, idx) => (
-                    <img key={idx} src={img.src} alt="preload" loading="eager" />
-                ))}
-            </div>
+            {/* Image Display */}
 
             {/* Image Display */}
             <div className="absolute inset-0 w-full h-full">
@@ -61,7 +45,6 @@ export function AboutCarousel({ className, enableParallax = false }: { className
                         src={IMAGES[currentIndex].src}
                         alt={IMAGES[currentIndex].label}
                         className="w-full h-full object-cover"
-                        style={parallaxStyle}
                         initial={{ opacity: 1 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }} // Try 0 for instant switch visual, or stick to basically instant swap
