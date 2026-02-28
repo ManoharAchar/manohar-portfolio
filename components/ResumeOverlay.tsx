@@ -47,37 +47,37 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
                     {/* Close Overlay by clicking background */}
                     <div className="fixed inset-0 z-0" onClick={onClose} />
 
-                    {/* Controls (matching the mockup style) */}
-                    <div className="fixed top-6 right-6 md:top-8 md:right-8 flex items-center gap-4 z-[110]">
-                        <motion.a
-                            href="/resume/Manohar Achar - Resume .pdf"
-                            download
-                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
-                            aria-label="Download Resume"
-                            onClick={(e) => e.stopPropagation()}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                        >
-                            <Download strokeWidth={2.5} className="w-6 h-6" />
-                        </motion.a>
-                        <motion.button
-                            onClick={onClose}
-                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
-                            aria-label="Close Resume"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                        >
-                            <X strokeWidth={2.5} className="w-6 h-6" />
-                        </motion.button>
-                    </div>
-
-                    {/* Resume Images */}
+                    {/* Resume Images & Controls Container */}
                     <div 
-                        className="relative w-full max-w-4xl mx-auto flex flex-col gap-8 mt-20 md:mt-24 pb-12 z-10 cursor-auto" 
+                        className="relative w-full max-w-[850px] mx-auto flex flex-col gap-8 mt-24 md:mt-32 pb-12 z-10 cursor-auto px-4 lg:px-0" 
                         onClick={(e) => e.stopPropagation()}
                     >
+                        {/* Controls (matching the mockup style, aligned to top edge of resume) */}
+                        <div className="absolute -top-16 right-4 lg:top-0 lg:-right-[120px] lg:flex-col xl:flex-row xl:-top-16 xl:right-0 flex items-center gap-4 z-[110]">
+                            <motion.a
+                                href="/resume/Manohar Achar - Resume .pdf"
+                                download
+                                className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
+                                aria-label="Download Resume"
+                                onClick={(e) => e.stopPropagation()}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            >
+                                <Download strokeWidth={2.5} className="w-6 h-6" />
+                            </motion.a>
+                            <motion.button
+                                onClick={onClose}
+                                className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
+                                aria-label="Close Resume"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            >
+                                <X strokeWidth={2.5} className="w-6 h-6" />
+                            </motion.button>
+                        </div>
+
                         <motion.img 
                             src="/resume/Manohar Achar - Resume page 1.jpg" 
                             alt="Resume Page 1" 
