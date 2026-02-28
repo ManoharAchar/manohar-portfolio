@@ -89,10 +89,13 @@ export function ToolStackStrip() {
     });
 
     return (
-        <div className="w-full py-12 md:py-16 bg-[#F3F2ED] overflow-hidden cursor-grab active:cursor-grabbing">
+        <div className="w-full py-12 md:py-16 bg-[#F6F4EF] overflow-hidden cursor-grab active:cursor-grabbing flex flex-col gap-8 md:gap-12">
+            <div className="w-[95vw] mx-auto px-4 lg:px-0">
+                <span className="text-sm font-semibold uppercase tracking-wide text-black" style={{ fontFamily: 'Clash Display, sans-serif' }}>Tool Stack</span>
+            </div>
             <div className="w-full">
                 {/* Marquee Container */}
-                <div className="flex relative overflow-hidden" ref={containerRef}>
+                <div className="flex relative" ref={containerRef}>
                     <motion.div
                         className="flex items-center gap-12 md:gap-20 shrink-0 pr-12 md:pr-20"
                         style={{ x }}

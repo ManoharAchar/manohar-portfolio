@@ -19,22 +19,33 @@ export function Footer() {
     return (
         <footer ref={containerRef} id="site-footer" className="relative w-full min-h-[400px] md:min-h-[600px] flex items-end justify-center overflow-hidden bg-[#F6F4EF] pt-12 pb-4 md:pt-32 md:pb-6">
 
-            {/* Background Image Layer */}
-            <div className="absolute inset-0 z-0">
-                {/* Mobile Background: Custom image with text, bottom aligned */}
-                <motion.img
-                    style={{ y, scale }}
-                    src="/images/footer-bg-mobile.png"
-                    alt="Footer Background Mobile"
-                    className="w-full h-auto absolute bottom-0 md:hidden object-contain object-bottom"
-                />
-                {/* Desktop Background: Original image, covers full area */}
-                <motion.img
-                    style={{ y, scale }}
-                    src="/images/footer-bg.png"
-                    alt="Footer Background Desktop"
-                    className="hidden md:block w-full h-full object-cover object-bottom"
-                />
+            {/* Background Gradient Layer (Behind text and cards) */}
+            <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#E0DFD9] via-[#E0DFD9]/80 to-transparent pointer-events-none" />
+
+            {/* Background Text Layer */}
+            <div className="absolute inset-x-0 bottom-0 z-0 flex flex-col items-center justify-end pb-4 md:pb-6 pointer-events-none">
+                <div className="w-full h-20 md:h-60 flex items-center justify-center">
+                    <motion.div
+                        style={{ y, scale }}
+                        className="w-[70vw] flex items-center justify-center"
+                    >
+                    {/* SVG ensures the text perfectly fills the 70vw container and scales properly across all viewports without breaking into multiple lines or having unpredictable font-size scaling issues */}
+                    <svg viewBox="0 0 1400 250" className="w-full h-auto opacity-90 fill-[#050505]">
+                        <text
+                            x="50%"
+                            y="50%"
+                            dominantBaseline="middle"
+                            textAnchor="middle"
+                            fontFamily="Clash Display, sans-serif"
+                            fontWeight="800"
+                            fontSize="180"
+                            letterSpacing="-0.02em"
+                        >
+                            Manohar Achar
+                        </text>
+                    </svg>
+                </motion.div>
+                </div>
             </div>
 
             {/* Content Layer */}
@@ -60,10 +71,10 @@ export function Footer() {
                                     }
                                 }
                             }}
-                            className="group relative h-32 md:h-96 rounded-3xl overflow-hidden transition-colors duration-300"
+                            className="group relative h-20 md:h-60 rounded-3xl overflow-hidden transition-colors duration-300"
                         >
                             {/* Glass Effect Background */}
-                            <div className="absolute inset-0 bg-white/10 backdrop-blur-xl border border-white/20 transition-all duration-500 group-hover:bg-white/60" />
+                            <div className="absolute inset-0 bg-white/10 backdrop-blur-md border border-white/10 transition-all duration-500 group-hover:bg-white/70" />
 
                             {/* Text Content */}
                             <div className="relative h-full p-6 flex flex-col justify-start">
