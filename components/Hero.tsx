@@ -157,9 +157,9 @@ export function Hero() {
                         borderRadius,
                         top,
                         x, // Apply blended X position
-                        borderWidth: isMobile ? 0 : "2px",
+                        borderWidth: "4px",
                         borderStyle: "solid",
-                        borderColor: isMobile ? "transparent" : borderColor
+                        borderColor: borderColor
                     }}
                     className={`z-20 bg-neutral-900 overflow-hidden flex items-center justify-center will-change-transform transform-gpu ${isMobile ? "relative order-1 mt-2" : "absolute"}`}
                 >
