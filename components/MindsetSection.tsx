@@ -53,7 +53,7 @@ export function MindsetSection() {
 
                                         {/* Title */}
                                         <div className="md:col-span-4">
-                                            <h3 className="text-xl md:text-2xl lg:text-3xl font-medium text-[#050505]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                                            <h3 className="text-lg md:text-xl lg:text-2xl font-normal text-[#050505]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                                 {item.title}
                                             </h3>
                                         </div>
