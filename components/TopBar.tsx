@@ -30,12 +30,12 @@ export function TopBar() {
     });
 
     const variants = {
-        visible: { y: "0%" },
-        hidden: { y: "-100%" }
+        visible: { opacity: 1, scale: 1, y: 0 },
+        hidden: { opacity: 0, scale: 0.95, y: 10 }
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const transition: any = { duration: 0.5, ease: [0.42, 0, 0.58, 1] };
+    const transition: any = { duration: 1.2, ease: [0.16, 1, 0.3, 1] };
 
     return (
         <>

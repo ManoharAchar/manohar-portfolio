@@ -137,11 +137,11 @@ export function Hero() {
                 <motion.div
                     // Mobile: Entry animation. Desktop: Use calculated pixel dimensions to match transform
                     initial={isMobile
-                        ? { opacity: 0, y: 20, filter: "blur(5px)" }
-                        : { width: dims.startW || "25vw", height: dims.startH || "14vw", borderRadius: "1.5rem", top: "12%" }
+                        ? { opacity: 0, scale: 0.95, y: 20, filter: "blur(5px)" }
+                        : { width: dims.startW || "25vw", height: dims.startH || "14vw", borderRadius: "1.5rem", top: "12%", opacity: 0, scale: 0.95 }
                     }
-                    animate={isMobile ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-                    transition={{ duration: 0.8, ease: [0.25, 0.25, 0, 1] }}
+                    animate={isMobile ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" } : { opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
 
                     style={isMobile ? {
                         width: "95vw",
@@ -176,9 +176,9 @@ export function Hero() {
                 {/* Text Statement */}
                 <motion.div
                     // Mobile: Animation props for entry (delayed)
-                    initial={isMobile ? { opacity: 0, y: 20, filter: "blur(5px)" } : {}}
-                    animate={isMobile ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-                    transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.25, 0, 1] }}
+                    initial={isMobile ? { opacity: 0, scale: 0.95, y: 20, filter: "blur(5px)" } : { opacity: 0, scale: 0.95 }}
+                    animate={isMobile ? { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" } : { opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
 
                     style={isMobile ? {
                         y: 0

@@ -76,17 +76,23 @@ export function Preloader() {
                     style={{ height: '140vh', top: '-20vh' }}
                     initial={{ y: 0 }}
                     exit={{
-                        y: "-100%",
-                        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } // Curtain effect
+                        opacity: 0,
+                        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], when: "afterChildren" } // Fade out instead of curtain
                     }}
                 >
                     {/* Lotus Icon */}
-                    <div className="mb-8">
+                    <motion.div 
+                        className="mb-8"
+                        exit={{ scale: 0.9, opacity: 0, transition: { duration: 0.4 } }}
+                    >
                         <LotusIcon className="w-24 h-24 md:w-32 md:h-32 text-[#050505]" />
-                    </div>
+                    </motion.div>
 
                     {/* Counter */}
-                    <div className="overflow-hidden h-12 md:h-16 flex items-center justify-center px-4">
+                    <motion.div 
+                        className="overflow-hidden h-12 md:h-16 flex items-center justify-center px-4"
+                        exit={{ scale: 0.9, y: 10, opacity: 0, transition: { duration: 0.4, delay: 0.1 } }}
+                    >
                         <motion.span
                             className="text-4xl md:text-6xl font-bold tracking-tighter"
                             style={{ fontFamily: 'Clash Display, sans-serif' }}
@@ -95,14 +101,14 @@ export function Preloader() {
                         >
                             {count}%
                         </motion.span>
-                    </div>
+                    </motion.div>
 
                     {/* Brand Label & Disclaimer */}
-                    {/* Adjusted bottom position to account for top offset */}
                     <motion.div
                         className="absolute bottom-[25vh] flex flex-col items-center gap-3"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1, transition: { delay: 0.5 } }}
+                        exit={{ scale: 0.95, y: 10, opacity: 0, transition: { duration: 0.4, delay: 0.15 } }}
                     >
                         <p className="text-xs md:text-sm text-[#050505]/40 font-medium tracking-wide">
                             I vibe coded this portfolio as an experiment.
