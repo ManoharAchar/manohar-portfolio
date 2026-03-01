@@ -61,7 +61,7 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
                         <motion.a
                             href="/resume/Manohar Achar - Resume .pdf"
                             download
-                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
+                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-black/10 text-black shadow-2xl transition-colors duration-300 hover:text-white hover:bg-[#1C1C1C]"
                             aria-label="Download Resume"
                             onClick={(e) => e.stopPropagation()}
                             whileHover={{ scale: 1.1 }}
@@ -72,7 +72,7 @@ export function ResumeOverlay({ isOpen, onClose }: ResumeOverlayProps) {
                         </motion.a>
                         <motion.button
                             onClick={onClose}
-                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 text-black shadow-2xl hover:bg-white/60"
+                            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-black/10 text-black shadow-2xl transition-colors duration-300 hover:text-white hover:bg-[#1C1C1C]"
                             aria-label="Close Resume"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
