@@ -61,10 +61,13 @@ export function Footer() {
                         <Link
                             key={item.label}
                             href={item.href}
-                            onClick={() => {
+                            target={item.href.startsWith('http') ? '_blank' : undefined}
+                            rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                            onClick={(e) => {
                                 if (item.href.includes('#')) {
                                     const hash = item.href.split('#')[1];
-                                    if (hash) {
+                                    if (hash && window.location.pathname === '/') {
+                                        e.preventDefault();
                                         window.dispatchEvent(new CustomEvent('lenis-scroll-to', {
                                             detail: { target: `#${hash}` }
                                         }));

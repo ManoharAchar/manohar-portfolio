@@ -253,7 +253,7 @@ export const siteConfig: SiteConfig = {
         tagline: "Product Designer",
         email: "hello@example.com",
         links: {
-            linkedin: "https://linkedin.com/in/username",
+            linkedin: "https://www.linkedin.com/in/manohar-achar/",
             github: "https://github.com/username",
         },
         resumeUrl: "/resume",
