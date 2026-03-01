@@ -58,9 +58,8 @@ export function MindsetSection() {
                                             </h3>
                                         </div>
 
-                                        {/* Description */}
                                         <div className="md:col-span-7">
-                                            <p className="text-lg md:text-xl lg:text-2xl text-[#050505]/80 leading-normal md:max-w-[70%]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                                            <p className="text-base md:text-lg lg:text-xl text-[#050505]/80 leading-normal md:max-w-[70%]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                                 {item.description}
                                             </p>
                                         </div>
