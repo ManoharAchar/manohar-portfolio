@@ -111,7 +111,7 @@ export function Preloader() {
                         exit={{ scale: 0.95, y: 10, opacity: 0, transition: { duration: 0.4, delay: 0.15 } }}
                     >
                         <p className="text-xs md:text-sm text-[#050505]/40 font-medium tracking-wide">
-                            I vibe coded this portfolio as an experiment.
+                            vibe coded by
                         </p>
                         <span className="text-sm uppercase tracking-widest opacity-50">
                             Manohar Achar
