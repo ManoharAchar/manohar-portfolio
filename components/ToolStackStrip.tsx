@@ -89,8 +89,10 @@ export function ToolStackStrip() {
 
     return (
         <div className="w-full py-12 md:py-16 bg-[#F6F4EF] overflow-hidden cursor-grab active:cursor-grabbing flex flex-col gap-8 md:gap-12">
-            <div className="w-[95vw] mx-auto px-4 lg:px-0">
-                <span className="text-sm font-semibold uppercase tracking-wide text-black" style={{ fontFamily: 'Clash Display, sans-serif' }}>Tool Stack</span>
+            <div className="w-[95vw] mx-auto">
+                <div className="w-full max-w-7xl mx-auto lg:px-8 mb-8 md:mb-12">
+                    <span className="text-sm font-semibold uppercase tracking-wide px-4 lg:px-0 text-black" style={{ fontFamily: 'Clash Display, sans-serif' }}>Tool Stack</span>
+                </div>
             </div>
             <div className="w-full">
                 {/* Marquee Container */}
