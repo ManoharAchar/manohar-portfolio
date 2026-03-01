@@ -59,9 +59,7 @@ export function Reveal({
             className={className}
             style={{ 
                 width, 
-                height,
-                willChange: "transform, opacity", // Force early GPU layer creation
-                transform: "translateZ(0)" // Explicitly push to composite layer
+                height
             }}
         >
             {children}
