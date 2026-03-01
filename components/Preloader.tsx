@@ -72,7 +72,7 @@ export function Preloader() {
         <AnimatePresence mode="wait">
             {isLoading && (
                 <motion.div
-                    className="fixed left-0 w-screen z-[9999] bg-[#0A0A0A] flex flex-col items-center justify-center text-[#F6F4EF] touch-none overscroll-none"
+                    className="fixed left-0 w-screen z-[9999] bg-[#F6F4EF] flex flex-col items-center justify-center text-[#050505] touch-none overscroll-none"
                     style={{ height: '140vh', top: '-20vh' }}
                     initial={{ y: 0 }}
                     exit={{
@@ -82,7 +82,7 @@ export function Preloader() {
                 >
                     {/* Lotus Icon */}
                     <div className="mb-8">
-                        <LotusIcon className="w-24 h-24 md:w-32 md:h-32 text-[#F6F4EF]" />
+                        <LotusIcon className="w-24 h-24 md:w-32 md:h-32 text-[#050505]" />
                     </div>
 
                     {/* Counter */}
@@ -104,7 +104,7 @@ export function Preloader() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1, transition: { delay: 0.5 } }}
                     >
-                        <p className="text-xs md:text-sm text-[#F6F4EF]/40 font-medium tracking-wide">
+                        <p className="text-xs md:text-sm text-[#050505]/40 font-medium tracking-wide">
                             I vibe coded this portfolio as an experiment.
                         </p>
                         <span className="text-sm uppercase tracking-widest opacity-50">
