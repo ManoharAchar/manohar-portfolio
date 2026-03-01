@@ -88,7 +88,7 @@ export function ToolStackStrip() {
     });
 
     return (
-        <div className="w-full py-12 md:py-16 bg-[#F6F4EF] overflow-hidden cursor-grab active:cursor-grabbing flex flex-col gap-8 md:gap-12">
+        <div className="w-full py-16 bg-[#F6F4EF] cursor-grab active:cursor-grabbing flex flex-col gap-8 md:gap-12">
             <div className="w-[95vw] mx-auto">
                 <div className="w-full max-w-7xl mx-auto lg:px-8 mb-8 md:mb-12">
                     <span className="text-sm font-semibold uppercase tracking-wide px-4 lg:px-0 text-black" style={{ fontFamily: 'Clash Display, sans-serif' }}>Tool Stack</span>
@@ -128,9 +128,9 @@ function ToolIcon({ tool }: { tool: { name: string; file: string } }) {
     if (error) return null;
 
     return (
-        <div className="group relative shrink-0 flex flex-col items-center justify-center">
+        <div className="group relative shrink-0 flex flex-col items-center justify-center pt-8">
             {/* Tooltip */}
-            <div className="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black text-white text-xs uppercase font-bold px-3 py-1.5 rounded pointer-events-none whitespace-nowrap z-10">
+            <div className="absolute top-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black text-white text-xs uppercase font-bold px-3 py-1.5 rounded pointer-events-none whitespace-nowrap z-50">
                 {tool.name}
             </div>
 
