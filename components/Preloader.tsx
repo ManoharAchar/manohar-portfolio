@@ -14,7 +14,7 @@ export function Preloader() {
         // We want a non-linear counter that "hangs" a bit at 80-90% to simulate real loading
         // then snaps to 100 once everything is "ready".
 
-        let start = 0;
+        const start = 0;
         const totalDuration = 2000; // 2 seconds total minimum load time
         const intervalTime = 20; // Update every 20ms
         const steps = totalDuration / intervalTime;
@@ -28,7 +28,7 @@ export function Preloader() {
             // const easedProgress = 1 - Math.pow(1 - progress, 3); 
 
             // Simpler Linear for now, but let's cap it at 99 until we clear it
-            let nextCount = Math.min(Math.round(progress * 100), 99);
+            const nextCount = Math.min(Math.round(progress * 100), 99);
 
             if (currentStep >= steps) {
                 // Time's up, wait for actual load signal or just finish?

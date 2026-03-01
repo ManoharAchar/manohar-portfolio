@@ -45,7 +45,6 @@ export function ToolStackStrip() {
     // speed in pixels per second (approx). 
     // Original duration was 35s for the full width. 
     // We'll calibrate this dynamically or pick a reasonable default.
-    const speed = 50; // pixels per second? Let's tune this.
 
     // Measure the width of one set of tools (half the total width)
     useEffect(() => {
@@ -79,7 +78,7 @@ export function ToolStackStrip() {
         } else if (isDragging && contentWidth > 0) {
             // While dragging, we still want to enforce the wrap-around logic 
             // so the user doesn't hit a wall or whitespace.
-            let currentX = x.get();
+            const currentX = x.get();
             if (currentX <= -contentWidth) {
                 x.set(currentX + contentWidth);
             } else if (currentX > 0) {

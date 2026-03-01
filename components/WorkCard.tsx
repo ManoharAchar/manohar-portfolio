@@ -56,7 +56,7 @@ export function WorkCard({ project, index }: WorkCardProps) {
                     // Use a simple motion template to pipe the coordinates into CSS vars
                     "--mouse-x": useMotionTemplate`${mouseX}px`,
                     "--mouse-y": useMotionTemplate`${mouseY}px`,
-                } as any}
+                } as React.CSSProperties}
             />
 
             {/* Content Wrapper ensures it sits above the background */}

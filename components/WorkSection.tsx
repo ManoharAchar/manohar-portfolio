@@ -19,7 +19,7 @@ export function WorkSection() {
                     </Reveal>
                     <Reveal delay={0.1}>
                         <h2 className="text-[15vw] md:text-[10rem] font-bold leading-none tracking-tight uppercase text-black font-sans">
-                            '25
+                            &apos;25
                         </h2>
                     </Reveal>
                 </div>

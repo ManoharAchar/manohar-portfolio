@@ -38,7 +38,7 @@ export function SmoothScroll() {
 
     // Expose Lenis instance via custom event for decoupled components
     useEffect(() => {
-        const handleScrollTo = (e: CustomEvent<{ target: string | number | HTMLElement, options?: any }>) => {
+        const handleScrollTo = (e: CustomEvent<{ target: string | number | HTMLElement, options?: Record<string, unknown> }>) => {
             if (lenisRef.current && e.detail.target) {
                 lenisRef.current.scrollTo(e.detail.target, e.detail.options || { immediate: false });
             }

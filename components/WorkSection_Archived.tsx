@@ -47,7 +47,7 @@ export function WorkSection() {
                     </Reveal>
                     <Reveal delay={0.1}>
                         <span className="text-[18vw] md:text-[12rem] font-bold leading-none tracking-wide uppercase text-black" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                            '25
+                            &apos;25
                         </span>
                     </Reveal>
                 </div>
