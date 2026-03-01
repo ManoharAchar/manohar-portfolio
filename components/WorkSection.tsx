@@ -11,16 +11,21 @@ export function WorkSection() {
         <section id="work" className="w-full bg-[#F3F2ED] pt-12 md:pt-32 pb-12">
             <div className="w-[95vw] mx-auto">
                 {/* Header */}
-                <div className="flex justify-between items-end mb-12">
+                <div className="flex justify-between items-end mb-12 max-w-7xl mx-auto lg:px-8">
                     <Reveal>
                         <h2 className="text-[15vw] md:text-[10rem] font-bold leading-none tracking-tight uppercase text-black font-sans">
                             Work
                         </h2>
                     </Reveal>
+                    <Reveal delay={0.1}>
+                        <h2 className="text-[15vw] md:text-[10rem] font-bold leading-none tracking-tight uppercase text-black font-sans">
+                            '25
+                        </h2>
+                    </Reveal>
                 </div>
 
                 {/* Grid Container */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-7xl mx-auto lg:px-8">
                     {siteConfig.projects.map((project, index) => (
                         <Reveal key={project.slug} delay={index * 0.1} width="100%" className="h-full">
                             <WorkCard project={project} index={index} />
