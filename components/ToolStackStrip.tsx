@@ -90,7 +90,7 @@ export function ToolStackStrip() {
 
     return (
         <div className="w-full py-12 md:py-16 bg-[#F6F4EF] overflow-hidden cursor-grab active:cursor-grabbing flex flex-col gap-8 md:gap-12">
-            <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
+            <div className="w-[95vw] mx-auto px-4 lg:px-0 text-center">
                 <span className="text-sm font-semibold uppercase tracking-wide text-black" style={{ fontFamily: 'Clash Display, sans-serif' }}>Tool Stack</span>
             </div>
             <div className="w-full">
