@@ -8,8 +8,8 @@ export function MindsetSection() {
 
     return (
         <section className="w-full pt-12 pb-2 md:py-24">
-            {/* Container matching Work section width (95vw) */}
-            <div className="w-[95vw] mx-auto">
+            {/* Container matching Work section width (95vw) but capped for large screens */}
+            <div className="w-[95vw] max-w-[1440px] mx-auto">
                 {/* Outer Container - Light */}
                 <div className="bg-[#E0DFD9] rounded-[25px] pt-6 md:pt-12 lg:pt-16 pb-[25px] flex flex-col text-[#050505] overflow-hidden">
                     
