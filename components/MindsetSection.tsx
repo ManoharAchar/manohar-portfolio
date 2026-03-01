@@ -21,7 +21,7 @@ export function MindsetSection() {
                         </span>
 
                         {/* Body - Scroll Reveal Animation */}
-                        <div className="text-lg md:text-xl lg:text-2xl leading-normal font-normal text-[#050505] text-balance" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                        <div className="text-lg md:text-xl lg:text-2xl leading-normal font-normal text-[#050505] text-balance lg:max-w-[90%]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                             <Reveal delay={0.1}>
                                 <p>{mindset.description}</p>
                             </Reveal>
