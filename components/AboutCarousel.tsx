@@ -18,21 +18,6 @@ const IMAGES = [
 export function AboutCarousel({ className }: { className?: string }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
-    const tooltipRef = useRef<HTMLDivElement>(null);
-
-    const handleMouseEnter = () => {
-        if (tooltipRef.current) {
-            tooltipRef.current.style.opacity = "1";
-            tooltipRef.current.style.transform = "translateX(-50%) scale(1)";
-        }
-    };
-
-    const handleMouseLeave = () => {
-        if (tooltipRef.current) {
-            tooltipRef.current.style.opacity = "0";
-            tooltipRef.current.style.transform = "translateX(-50%) scale(0.95)";
-        }
-    };
 
     const nextImage = () => {
         setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
@@ -43,7 +28,7 @@ export function AboutCarousel({ className }: { className?: string }) {
     };
 
     return (
-        <div className={cn("relative w-full flex flex-col gap-4 max-w-full overflow-hidden", className)}>
+        <div className={cn("group relative w-full flex flex-col gap-4 max-w-full overflow-hidden", className)}>
             <div
                 ref={containerRef}
                 className="relative w-full aspect-[640/384] overflow-hidden bg-[#1C1C1C] rounded-[24px]"
@@ -60,34 +45,26 @@ export function AboutCarousel({ className }: { className?: string }) {
                 />
             </div>
 
-            {/* Hover Caption Overlay (Bypasses React DOM diffing) */}
+            {/* Hover Caption Overlay (Pure CSS to prevent JS thread blocking) */}
             <div
-                ref={tooltipRef}
-                className="absolute bottom-4 left-1/2 z-20 flex items-center justify-center bg-black/80 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap pointer-events-none transition-all duration-200 ease-out opacity-0"
-                style={{
-                    transform: "translateX(-50%) scale(0.95)",
-                    willChange: "transform, opacity",
-                }}
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center bg-black/80 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap pointer-events-none transition-all duration-200 ease-out opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100"
+                style={{ willChange: "transform, opacity" }}
             >
                 {IMAGES[currentIndex].label}
             </div>
             </div>
 
             {/* Thumbnail Navigation Row */}
-            <div 
-                className="w-full flex items-center justify-between gap-1.5 md:gap-2"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
+            <div className="w-full flex items-center justify-between gap-1.5 md:gap-2">
                 {IMAGES.map((img, idx) => (
                     <button
                         key={idx}
                         onClick={() => setCurrentIndex(idx)}
                         className={cn(
-                            "relative w-full flex-1 aspect-[4/3] rounded-xl overflow-hidden transition-all duration-300 border-2",
+                            "relative w-full flex-1 aspect-[4/3] rounded-xl overflow-hidden transition-opacity duration-300 border-2",
                             currentIndex === idx
                                 ? "border-[#B55A3A]" // Selected state: simple burnt orange border
-                                : "border-transparent opacity-50 hover:opacity-100 hover:border-black/20"
+                                : "border-transparent opacity-50 hover:opacity-100"
                         )}
                     >
                         <img src={img.src} alt="thumbnail" className="w-full h-full object-cover" />
