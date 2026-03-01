@@ -98,9 +98,9 @@ export function Hero() {
             const sW = w * 0.25;
             const sH = sW * (9 / 16); // Strict 16:9 Ratio
 
-            // End: 95vw, 95vh
-            const eW = w * 0.95;
-            const eH = h * 0.95;
+            // End: 95vw, but strictly capped at 1440px max width for ultrawide monitors
+            const eW = Math.min(w * 0.95, 1440);
+            const eH = Math.min(h * 0.95, 1000); // Also gently cap the height so it doesn't get insanely tall on 4k portrait
 
             setDims({ startW: sW, startH: sH, endW: eW, endH: eH });
         };
