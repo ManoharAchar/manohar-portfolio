@@ -77,7 +77,7 @@ export function Footer() {
                             className="group relative h-20 md:h-60 rounded-3xl overflow-hidden transition-colors duration-300"
                         >
                             {/* Glass Effect Background */}
-                            <div className="absolute inset-0 bg-white/10 backdrop-blur-md border border-white/10 transition-all duration-500 group-hover:bg-white/70" />
+                            <div className="absolute inset-0 bg-white/10 backdrop-blur-md border border-black/10 transition-all duration-500 group-hover:bg-white/70" />
 
                             {/* Text Content */}
                             <div className="relative h-full p-6 flex flex-col justify-start">
