@@ -36,13 +36,20 @@ export function AboutCarousel({ className }: { className?: string }) {
             {/* Image Display */}
 
             {/* Image Display */}
-            <div className="absolute inset-0 w-full h-full transition-opacity duration-300">
-                <img
-                    key={currentIndex}
-                    src={IMAGES[currentIndex].src}
-                    alt={IMAGES[currentIndex].label}
-                    className="w-full h-full object-cover"
-                />
+            <div className="absolute inset-0 w-full h-full">
+                {IMAGES.map((img, idx) => (
+                    <img
+                        key={idx}
+                        src={img.src}
+                        alt={img.label}
+                        // Loading set to eager for immediate decoding, preventing click lag
+                        loading="eager"
+                        className={cn(
+                            "absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none",
+                            currentIndex === idx ? "opacity-100 z-10" : "opacity-0 z-0"
+                        )}
+                    />
+                ))}
             </div>
 
             {/* Hover Caption Overlay (Pure CSS to prevent JS thread blocking) */}
