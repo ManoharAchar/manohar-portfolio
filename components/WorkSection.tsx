@@ -8,7 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function WorkSection() {
     return (
-        <section id="work" className="w-full bg-[#F3F2ED] pt-12 md:pt-32 pb-12">
+        <section id="work" className="w-full pt-12 md:pt-32 pb-12">
             <div className="w-[95vw] mx-auto">
                 {/* Header */}
                 <div className="flex justify-between items-end mb-12 max-w-7xl mx-auto lg:px-8">

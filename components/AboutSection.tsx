@@ -9,10 +9,8 @@ export function AboutSection() {
     const [isResumeOpen, setIsResumeOpen] = useState(false);
 
     return (
-        <section id="about" className="relative w-full bg-[#F3F2ED] text-black py-12 md:py-32">
-            {/* Container matches exact width of expanded Hero video (95vw) */}
+        <section id="about" className="relative w-full text-black py-12 md:py-32">
             <div className="w-[95vw] mx-auto">
-                {/* Section Header */}
                 <div className="w-full max-w-7xl mx-auto lg:px-8 mb-8">
                     <span className="text-sm font-semibold uppercase tracking-wide px-4 lg:px-0" style={{ fontFamily: 'Clash Display, sans-serif' }}>About</span>
                 </div>
