@@ -2,7 +2,6 @@
 
 import { useState, useRef } from "react";
 
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const IMAGES = [
@@ -19,7 +18,21 @@ const IMAGES = [
 export function AboutCarousel({ className }: { className?: string }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [isHovering, setIsHovering] = useState(false);
+    const tooltipRef = useRef<HTMLDivElement>(null);
+
+    const handleMouseEnter = () => {
+        if (tooltipRef.current) {
+            tooltipRef.current.style.opacity = "1";
+            tooltipRef.current.style.transform = "translateX(-50%) scale(1)";
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (tooltipRef.current) {
+            tooltipRef.current.style.opacity = "0";
+            tooltipRef.current.style.transform = "translateX(-50%) scale(0.95)";
+        }
+    };
 
     const nextImage = () => {
         setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
@@ -38,42 +51,33 @@ export function AboutCarousel({ className }: { className?: string }) {
             {/* Image Display */}
 
             {/* Image Display */}
-            <div className="absolute inset-0 w-full h-full">
-                <AnimatePresence mode="wait">
-                    <motion.img
-                        key={currentIndex}
-                        src={IMAGES[currentIndex].src}
-                        alt={IMAGES[currentIndex].label}
-                        className="w-full h-full object-cover"
-                        initial={{ opacity: 1 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }} // Try 0 for instant switch visual, or stick to basically instant swap
-                        transition={{ duration: 0 }} // Instant transition
-                        loading="eager" // Force eager load for current image too
-                    />
-                </AnimatePresence>
+            <div className="absolute inset-0 w-full h-full transition-opacity duration-300">
+                <img
+                    key={currentIndex}
+                    src={IMAGES[currentIndex].src}
+                    alt={IMAGES[currentIndex].label}
+                    className="w-full h-full object-cover"
+                />
             </div>
 
-            {/* Hover Caption Overlay */}
-            <motion.div
-                className="absolute bottom-4 left-1/2 z-20 flex items-center justify-center bg-black/80 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap pointer-events-none"
-                style={{ translateX: "-50%" }}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{
-                    opacity: isHovering ? 1 : 0,
-                    scale: isHovering ? 1 : 0.95,
+            {/* Hover Caption Overlay (Bypasses React DOM diffing) */}
+            <div
+                ref={tooltipRef}
+                className="absolute bottom-4 left-1/2 z-20 flex items-center justify-center bg-black/80 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap pointer-events-none transition-all duration-200 ease-out opacity-0"
+                style={{
+                    transform: "translateX(-50%) scale(0.95)",
+                    willChange: "transform, opacity",
                 }}
-                transition={{ duration: 0.2 }}
             >
                 {IMAGES[currentIndex].label}
-            </motion.div>
+            </div>
             </div>
 
             {/* Thumbnail Navigation Row */}
             <div 
                 className="w-full flex items-center justify-between gap-1.5 md:gap-2"
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
             >
                 {IMAGES.map((img, idx) => (
                     <button
