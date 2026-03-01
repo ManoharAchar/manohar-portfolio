@@ -37,7 +37,7 @@ export function AboutSection() {
                         <div className="px-4 lg:px-0 mt-auto">
                             <motion.button
                                 onClick={() => setIsResumeOpen(true)}
-                                className="relative z-10 inline-flex items-center justify-center h-12 px-8 rounded-full bg-[#1C1C1C] text-white text-[15px] font-semibold shadow-2xl transition-colors hover:bg-black"
+                                className="relative z-10 inline-flex items-center justify-center h-12 px-8 rounded-full bg-[#050505]/5 backdrop-blur-xl border border-[#050505]/10 text-[#050505] text-[15px] font-semibold transition-colors duration-300 hover:text-white hover:bg-[#1C1C1C]"
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                             >
