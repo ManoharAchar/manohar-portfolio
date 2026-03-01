@@ -1,8 +1,7 @@
 "use client";
-
 import { AboutCarousel } from "./AboutCarousel";
 import { ResumeOverlay } from "./ResumeOverlay";
-import { ScrollRevealText } from "./ScrollRevealText";
+import { Reveal } from "./Reveal";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -29,7 +28,9 @@ export function AboutSection() {
 
                         {/* Body Text */}
                         <div className="text-lg md:text-xl lg:text-2xl leading-normal font-medium px-4 lg:px-0" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
-                            <ScrollRevealText text="Product designer with an engineering backbone and a systems-first mindset. I map systems, identify leverage points, and craft interfaces that feel simple and inevitable. I’m especially drawn to the AI era of products, where trust, transparency, and edge cases matter, and I bring a bias toward clarity, tight interaction design, and shipping work that holds up in the real world." />
+                            <Reveal delay={0.1}>
+                                <p>Product designer with an engineering backbone and a systems-first mindset. I map systems, identify leverage points, and craft interfaces that feel simple and inevitable. I’m especially drawn to the AI era of products, where trust, transparency, and edge cases matter, and I bring a bias toward clarity, tight interaction design, and shipping work that holds up in the real world.</p>
+                            </Reveal>
                         </div>
 
                         {/* Resume BTN */}

@@ -1,7 +1,6 @@
 "use client";
 
 import { siteConfig } from "@/content/site";
-import { ScrollRevealText } from "./ScrollRevealText";
 import { Reveal } from "./Reveal";
 
 export function MindsetSection() {
@@ -22,8 +21,10 @@ export function MindsetSection() {
                         </span>
 
                         {/* Body - Scroll Reveal Animation */}
-                        <div className="text-2xl md:text-3xl lg:text-4xl leading-[1.1] font-medium text-[#050505] text-balance" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
-                            <ScrollRevealText text={mindset.description} />
+                        <div className="text-xl md:text-2xl lg:text-3xl leading-snug font-medium text-[#050505] text-balance" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                            <Reveal delay={0.1}>
+                                <p>{mindset.description}</p>
+                            </Reveal>
                         </div>
                     </div>
 
@@ -51,7 +52,7 @@ export function MindsetSection() {
 
                                 {/* Description */}
                                 <div className="md:col-span-7">
-                                    <p className="text-lg md:text-xl text-[#050505]/80 leading-relaxed md:max-w-[60%]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
+                                    <p className="text-lg md:text-xl lg:text-2xl text-[#050505]/80 leading-normal md:max-w-[70%]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                         {item.description}
                                     </p>
                                 </div>
