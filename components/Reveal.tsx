@@ -57,7 +57,12 @@ export function Reveal({
             initial="hidden"
             animate={controls}
             className={className}
-            style={{ width, height }}
+            style={{ 
+                width, 
+                height,
+                willChange: "transform, opacity", // Force early GPU layer creation
+                transform: "translateZ(0)" // Explicitly push to composite layer
+            }}
         >
             {children}
         </motion.div>
