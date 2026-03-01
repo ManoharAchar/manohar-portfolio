@@ -116,6 +116,9 @@ export function Hero() {
     const height = useTransform(scrollYProgress, [0, 1], [dims.startH || "14vw", dims.endH || "95vh"]);
     const top = useTransform(scrollYProgress, [0, 1], ["12%", "2.5%"]);
     const borderRadius = useTransform(scrollYProgress, [0, 1], ["1.5rem", "1.5rem"]);
+    
+    // Fade in a dark border as it expands to maximum width
+    const borderColor = useTransform(scrollYProgress, [0, 0.8, 1], ["rgba(5,5,5,0)", "rgba(5,5,5,0)", "rgba(5,5,5,1)"]);
 
     // Text Animation (Desktop Only) - fades out synced with expansion
     const textOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]); // Fade out slightly earlier to be clean
@@ -153,7 +156,10 @@ export function Hero() {
                         height,
                         borderRadius,
                         top,
-                        x // Apply blended X position
+                        x, // Apply blended X position
+                        borderWidth: isMobile ? 0 : "2px",
+                        borderStyle: "solid",
+                        borderColor: isMobile ? "transparent" : borderColor
                     }}
                     className={`z-20 bg-neutral-900 overflow-hidden flex items-center justify-center will-change-transform transform-gpu ${isMobile ? "relative order-1 mt-2" : "absolute"}`}
                 >
