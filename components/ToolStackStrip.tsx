@@ -130,7 +130,7 @@ function ToolIcon({ tool }: { tool: { name: string; file: string } }) {
     return (
         <div className="group relative shrink-0 flex flex-col items-center justify-center pt-8">
             {/* Tooltip */}
-            <div className="absolute top-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black text-white text-xs uppercase font-bold px-3 py-1.5 rounded pointer-events-none whitespace-nowrap z-50">
+            <div className="absolute top-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#F6F4EF] border border-black/20 text-[#050505] shadow-sm text-xs uppercase font-bold px-3 py-1.5 rounded-full pointer-events-none whitespace-nowrap z-50">
                 {tool.name}
             </div>
 
