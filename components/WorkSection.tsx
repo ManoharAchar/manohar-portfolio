@@ -13,14 +13,36 @@ export function WorkSection() {
                 {/* Header */}
                 <div className="flex justify-between items-end mb-12 max-w-7xl mx-auto lg:px-8">
                     <Reveal>
-                        <h2 className="text-[15vw] md:text-[10rem] font-bold leading-none tracking-tight uppercase text-black font-sans">
-                            Work
-                        </h2>
+                        <svg viewBox="0 0 550 180" className="h-20 md:h-[130px] lg:h-[180px] w-auto fill-black">
+                            <text
+                                x="0"
+                                y="50%"
+                                dominantBaseline="middle"
+                                fontFamily="Clash Display, sans-serif"
+                                fontWeight="800"
+                                fontSize="180"
+                                letterSpacing="-0.02em"
+                                textAnchor="start"
+                            >
+                                WORK
+                            </text>
+                        </svg>
                     </Reveal>
                     <Reveal delay={0.1}>
-                        <h2 className="text-[15vw] md:text-[10rem] font-bold leading-none tracking-tight uppercase text-black font-sans">
-                            &apos;25
-                        </h2>
+                        <svg viewBox="0 0 280 180" className="h-20 md:h-[130px] lg:h-[180px] w-auto fill-black">
+                            <text
+                                x="100%"
+                                y="50%"
+                                dominantBaseline="middle"
+                                fontFamily="Clash Display, sans-serif"
+                                fontWeight="800"
+                                fontSize="180"
+                                letterSpacing="-0.02em"
+                                textAnchor="end"
+                            >
+                                '25
+                            </text>
+                        </svg>
                     </Reveal>
                 </div>
 
