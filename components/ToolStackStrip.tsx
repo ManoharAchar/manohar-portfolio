@@ -97,9 +97,9 @@ export function ToolStackStrip() {
             <div className="w-full">
                 {/* Marquee Container */}
                 <div 
-                    className="flex relative w-[95vw] max-w-7xl mx-auto" 
+                    className="flex relative w-full" 
                     ref={containerRef}
-                    style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
+                    style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)' }}
                 >
                     <motion.div
                         className="flex items-center gap-12 md:gap-20 shrink-0 pr-12 md:pr-20"
