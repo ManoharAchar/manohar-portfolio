@@ -40,13 +40,12 @@ export function MindsetSection() {
                             >
                                 {/* ID */}
                                 {/* The number aligns flush left to match the paragraph above. */}
-                                <div className="md:col-span-1 text-sm font-bold text-[#050505]/40 pt-1 pl-4 lg:pl-8" style={{ fontFamily: 'var(--font-archivo)' }}>
+                                <div className="md:col-span-1 text-sm font-bold text-[#050505]/40 pt-1 ml-4 lg:ml-10" style={{ fontFamily: 'var(--font-archivo)' }}>
                                     {item.id}
                                 </div>
 
                                 {/* Title */}
-                                {/* Padding added here restores the visual gap between the number and title */}
-                                <div className="md:col-span-4 pl-6 md:pl-10 lg:pl-0">
+                                <div className="md:col-span-4 pl-4 md:pl-0">
                                     <h3 className="text-xl md:text-2xl lg:text-3xl font-medium text-[#050505]" style={{ fontFamily: 'var(--font-archivo), sans-serif' }}>
                                         {item.title}
                                     </h3>
