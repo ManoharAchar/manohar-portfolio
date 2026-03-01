@@ -745,7 +745,7 @@ export const siteConfig: SiteConfig = {
         {
             slug: "senior-mode-android",
             title: "Senior Mode for Android",
-            role: "Product Designer (self-initiated) - end-to-end",
+            role: "Product Designer - end-to-end",
             scope: "Research + interaction/UI + prototype + usability testing",
             platform: "Android (concept) + Figma interactive prototype",
             accentColor: "#C58F9D",
@@ -771,7 +771,7 @@ export const siteConfig: SiteConfig = {
                     title: "Senior Mode for Android",
                     subtitle: "Make critical phone state obvious + enable one-tap recovery when accidental setting changes happen.",
                     meta: [
-                        { label: "Role", value: "Product Designer (self-initiated) — end-to-end" },
+                        { label: "Role", value: "Product Designer — end-to-end" },
                         { label: "Scope", value: "Research + interaction/UI + prototyping + usability testing + iteration" },
                         { label: "Platform", value: "Android (concept) + Figma interactive prototype" },
                         { label: "Primary users", value: "Seniors (60–<80) + caregivers (adult children / helpers)" },
