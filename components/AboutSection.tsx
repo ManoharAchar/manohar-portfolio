@@ -13,7 +13,7 @@ export function AboutSection() {
             {/* Container matches exact width of expanded Hero video (95vw) */}
             <div className="w-[95vw] mx-auto">
                 {/* Section Header */}
-                <div className="w-full max-w-7xl mx-auto lg:px-8 mb-8 lg:mb-12">
+                <div className="w-full max-w-7xl mx-auto lg:px-8 mb-8">
                     <span className="text-sm font-semibold uppercase tracking-wide px-4 lg:px-0" style={{ fontFamily: 'Clash Display, sans-serif' }}>About</span>
                 </div>
 
