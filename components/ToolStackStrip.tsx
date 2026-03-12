@@ -97,7 +97,7 @@ export function ToolStackStrip() {
             <div className="w-full">
                 {/* Marquee Container */}
                 <div 
-                    className="flex relative w-full" 
+                    className="flex relative w-full overflow-hidden" 
                     ref={containerRef}
                     style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)' }}
                 >
